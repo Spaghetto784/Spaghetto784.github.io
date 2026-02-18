@@ -3,31 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Optimization -->
     <title>Matthieu Greiner | Cybersecurity Engineer Portfolio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description" content="Portfolio of Matthieu Greiner, Cybersecurity Engineering student at EPITA and Apprentice SSI Engineer at SFR Business. Specialized in Technical Governance and AI.">
     <meta name="keywords" content="Matthieu Greiner, Cybersecurity, EPITA, SFR Business, Governance, Engineer, Portfolio, C, Python">
     <meta name="author" content="Matthieu Greiner">
-    
-    <!-- Open Graph for LinkedIn/Social Media -->
     <meta property="og:title" content="Matthieu Greiner | Cybersecurity Engineer">
     <meta property="og:description" content="Engineering student at EPITA specializing in Cybersecurity and Technical Governance.">
     <meta property="og:url" content="https://spaghetto784.github.io">
     <meta property="og:type" content="website">
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <script>
         tailwind.config = {
             theme: {
@@ -46,7 +34,6 @@
             }
         }
     </script>
-
     <style>
         body {
             background-color: #0f172a;
@@ -88,8 +75,13 @@
     <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
         <div class="glass-card !bg-opacity-80 !border-0 !backdrop-blur-md border-b border-white/10">
             <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#" class="font-display font-bold text-2xl tracking-tight hover:text-white transition-colors flex items-center gap-2">
-                    <span class="text-indigo-400">&lt;</span>M. Greiner<span class="text-indigo-400">/&gt;</span>
+                <a href="#" class="group flex items-center gap-3 font-display font-bold text-2xl tracking-tight transition-colors hover:text-white">
+                    <div class="relative w-10 h-10 shrink-0 rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.3)] group-hover:border-indigo-400 transition-all">
+                        <img src="profile.jpeg" alt="Matthieu Greiner" class="w-full h-full object-cover scale-[1.7] object-[center_15%]">
+                    </div>
+                    <span>
+                            <span class="text-indigo-400 transition-colors group-hover:text-indigo-300">&lt;</span>M. Greiner<span class="text-indigo-400 transition-colors group-hover:text-indigo-300">/&gt;</span>
+                    </span>
                 </a>
                 <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
                     <a href="#about" class="hover:text-white transition-colors" data-i18n="nav-about">About</a>
@@ -101,7 +93,9 @@
                         <span class="text-slate-600">|</span>
                         <span id="btn-fr" class="lang-inactive" onclick="setLanguage('fr')">FR</span>
                     </div>
-                    <a href="#hobbies" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30" data-i18n="nav-hobbies">Hobbies</a>
+                    <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2" data-i18n="nav-cv">
+                        <i class="fas fa-file-pdf"></i> Resume
+                    </a>
                 </div>
                 <button class="md:hidden text-2xl text-slate-300 hover:text-white" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i>
@@ -113,7 +107,7 @@
             <a href="#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
             <a href="#experience" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-exp">Experience</a>
             <a href="#projects" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-projects">Projects</a>
-            <a href="#hobbies" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()" data-i18n="nav-hobbies">Hobbies</a>
+            <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()" data-i18n="nav-cv">Resume</a>
         </div>
     </nav>
 
@@ -299,7 +293,6 @@
                 </a>
             </div>
             <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Project 1: OCR Word Search Solver -->
                 <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col" data-aos="fade-up">
                     <div class="h-48 bg-slate-800 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -329,7 +322,6 @@
                     </div>
                 </div>
                 
-                <!-- Project 2: Mazic -->
                 <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-48 bg-slate-800 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -419,14 +411,13 @@
             else nav.classList.remove('shadow-lg');
         });
 
-        // --- Translation Logic ---
         const translations = {
             en: {
                 "nav-about": "About",
                 "nav-skills": "Skills",
                 "nav-exp": "Experience",
                 "nav-projects": "Projects",
-                "nav-hobbies": "Hobbies",
+                "nav-cv": "Resume",
                 "hero-welcome": "👋 Hello, welcome to my portfolio",
                 "hero-name": "I am Matthieu Greiner",
                 "hero-title": "Cybersecurity Engineer.",
@@ -492,7 +483,7 @@
                 "nav-skills": "Compétences",
                 "nav-exp": "Parcours",
                 "nav-projects": "Projets",
-                "nav-hobbies": "Loisirs",
+                "nav-cv": "Mon CV",
                 "hero-welcome": "👋 Bonjour, bienvenue sur mon portfolio",
                 "hero-name": "Je suis Matthieu Greiner",
                 "hero-title": "Ingénieur Cybersécurité.",
@@ -556,11 +547,9 @@
         };
 
         function setLanguage(lang) {
-            // Update active state in UI
             document.getElementById('btn-en').className = lang === 'en' ? 'lang-active' : 'lang-inactive';
             document.getElementById('btn-fr').className = lang === 'fr' ? 'lang-active' : 'lang-inactive';
             
-            // Translate elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
@@ -568,10 +557,7 @@
                 }
             });
 
-            // Update page language attribute
             document.documentElement.lang = lang;
-            
-            // Re-trigger AOS to fix any visibility issues during swap
             AOS.refresh();
         }
     </script>
