@@ -68,6 +68,35 @@
         .lang-active { color: white !important; font-weight: bold; }
         .lang-inactive { color: #64748b !important; cursor: pointer; }
         .lang-inactive:hover { color: #cbd5e1 !important; }
+        .more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.65rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 9999px;
+            padding: 2px 10px;
+            background: rgba(99, 102, 241, 0.08);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+        .more-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.6);
+            color: #a5b4fc;
+            transform: translateY(-1px);
+        }
+        .more-btn i {
+            font-size: 0.55rem;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
@@ -85,8 +114,8 @@
                 </a>
                 <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
                     <a href="#about" class="hover:text-white transition-colors" data-i18n="nav-about">About</a>
-                    <a href="#skills" class="hover:text-white transition-colors" data-i18n="nav-skills">Skills</a>
                     <a href="#experience" class="hover:text-white transition-colors" data-i18n="nav-exp">Experience</a>
+                    <a href="#skills" class="hover:text-white transition-colors" data-i18n="nav-skills">Skills</a>
                     <a href="#projects" class="hover:text-white transition-colors" data-i18n="nav-projects">Projects</a>
                     <div class="glass-card !bg-white/5 !border-white/10 px-3 py-1 rounded-full flex items-center gap-2 lang-toggle">
                         <span id="btn-en" class="lang-active" onclick="setLanguage('en')">EN</span>
@@ -104,8 +133,8 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-card border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
             <a href="#about" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-about">About</a>
-            <a href="#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
             <a href="#experience" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-exp">Experience</a>
+            <a href="#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
             <a href="#projects" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-projects">Projects</a>
             <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()" data-i18n="nav-cv">Resume</a>
         </div>
@@ -187,10 +216,13 @@
                        <span class="text-xs font-mono px-2 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20 w-fit">2025 - 2028</span>
                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-appr">Apprenticeship</span>
                    </div>
-                   <h3 class="text-xl font-bold text-white" data-i18n="exp-pos-sfr">SSI Engineer (Apprentice)</h3>
+                   <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
+                       <span data-i18n="exp-pos-sfr">SSI Engineer (Apprentice)</span>
+                       <a href="projects.html#sfr-projects" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
+                   </h3>
                    <h4 class="text-lg text-slate-300 mb-2">SFR Business</h4>
                    <p class="text-slate-400 text-sm max-w-2xl" data-i18n="exp-desc-sfr">
-                       Focus on <strong>IT Governance</strong>, Risk Analysis, and compliance. Leading initiatives in <strong>Internal AI Development</strong> to automate security processes.
+                       Focus on <strong>IT Governance</strong>, Risk Analysis, and internal <strong>AI Development</strong>. Created high-performance network utilities in Go.
                    </p>
                </div>
                <div class="relative pl-8" data-aos="fade-left" data-aos-delay="100">
@@ -208,7 +240,10 @@
                        <span class="text-xs font-mono px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 w-fit">2023 - 2028</span>
                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-edu">Education</span>
                    </div>
-                   <h3 class="text-xl font-bold text-white">EPITA - School of Engineering & CS</h3>
+                   <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
+                       EPITA - School of Engineering & CS
+                       <a href="projects.html#academic-projects" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
+                   </h3>
                    <p class="text-slate-400 text-sm mt-2 max-w-2xl" data-i18n="exp-desc-epita">Specializing in Cybersecurity with a focus on systems and networks.</p>
                </div>
            </div>
@@ -385,6 +420,20 @@
                     <h3 class="text-xl font-bold text-white mb-3" data-i18n="hob-title-code">Coding</h3>
                     <p class="text-slate-400 text-sm" data-i18n="hob-desc-code">Exploring new languages and automating daily tasks.</p>
                 </div>
+                <div class="glass-card p-8 rounded-2xl text-center group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mx-auto bg-orange-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-school text-3xl text-orange-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="hob-title-jpo">Open School Days</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="hob-desc-jpo">Active representative at EPITA open days and higher education fairs, presenting the school's programs to prospective students.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl text-center group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 mx-auto bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-trophy text-3xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="hob-title-ctf">CTF & Competitions</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="hob-desc-ctf">Keeping an eye on cybersecurity competitions and CTF events, sharpening offensive and defensive skills beyond the classroom.</p>
+                </div>
             </div>
             <div class="mt-16 text-center">
                 <p class="text-slate-400 mb-6" data-i18n="contact-chat">Want to chat about security, music, or code?</p>
@@ -402,9 +451,9 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, offset: 50, duration: 800 });
-        
+
         function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
-        
+
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) nav.classList.add('shadow-lg');
@@ -414,15 +463,15 @@
         const translations = {
             en: {
                 "nav-about": "About",
+                "nav-experience": "Experience",
                 "nav-skills": "Skills",
-                "nav-exp": "Experience",
                 "nav-projects": "Projects",
-                "nav-cv": "Resume",
+                "nav-cv": "<i class='fas fa-file-pdf'></i> Resume",
                 "hero-welcome": "👋 Hello, welcome to my portfolio",
                 "hero-name": "I am Matthieu Greiner",
                 "hero-title": "Cybersecurity Engineer.",
                 "hero-desc": "Engineering student at EPITA specializing in Cybersecurity. Leveraging both my <span class='text-white font-medium'>technical expertise</span> and <span class='text-white font-medium'>governance experience</span>, I am seeking opportunities focused on <strong class='text-indigo-400'>Technical Governance</strong>.",
-                "hero-btn-work": "View Work",
+                "hero-btn-work": "<i class='fab fa-github'></i> View Work",
                 "about-title": "About <span class='text-indigo-400'>Me</span>",
                 "about-p1": "Pursuing my Master's at <strong>EPITA</strong>, majoring in Cybersecurity.",
                 "about-p2": "Passionate about low-level programming and system architecture to better secure infrastructures.",
@@ -433,7 +482,8 @@
                 "exp-title": "My <span class='text-gradient'>Journey</span>",
                 "exp-type-appr": "Apprenticeship",
                 "exp-pos-sfr": "SSI Engineer (Apprentice)",
-                "exp-desc-sfr": "Focus on <strong>IT Governance</strong>, Risk Analysis, and compliance. Leading initiatives in <strong>Internal AI Development</strong> to automate security processes.",
+                "exp-desc-sfr": "Focus on <strong>IT Governance</strong>, Risk Analysis, and internal <strong>AI Development</strong>. Created high-performance network utilities in Go.",
+                "btn-more": "more <i class='fas fa-arrow-right'></i>",
                 "exp-type-intl": "International Exchange",
                 "exp-pos-chula": "Chulalongkorn University (Thailand)",
                 "exp-desc-chula": "Exchange semester in Bangkok focusing on advanced Cybersecurity and Cloud Computing.",
@@ -449,7 +499,7 @@
                 "cert-desc-ebios": "ANSSI standard for risk assessment and management.",
                 "proj-title": "Featured <span class='text-indigo-400'>Projects</span>",
                 "proj-subtitle": "Selection of academic and personal work.",
-                "proj-btn-all": "View GitHub",
+                "proj-btn-all": "View GitHub <i class='fas fa-arrow-right text-sm'></i>",
                 "ocr-p1": "A robust software suite developed to solve word search puzzles directly from images. It bridges low-level system programming with advanced character recognition and grid-solving logic.",
                 "ocr-core": "Technical Core:",
                 "ocr-l1": "<strong>96%+ C Implementation:</strong> High-performance code with optimized Makefile management.",
@@ -473,6 +523,10 @@
                 "btn-watch": "Watch Gameplay",
                 "hob-title-code": "Coding",
                 "hob-desc-code": "Exploring new languages and automating daily tasks.",
+                "hob-title-jpo": "Open School Days",
+                "hob-desc-jpo": "Active representative at EPITA open days and higher education fairs, presenting the school's programs to prospective students.",
+                "hob-title-ctf": "CTF & Competitions",
+                "hob-desc-ctf": "Keeping an eye on cybersecurity competitions and CTF events, sharpening offensive and defensive skills beyond the classroom.",
                 "contact-chat": "Want to chat about security, music, or code?",
                 "btn-email": "Send me an email",
                 "footer-built": "Built with",
@@ -480,15 +534,15 @@
             },
             fr: {
                 "nav-about": "À propos",
+                "nav-experience": "Parcours",
                 "nav-skills": "Compétences",
-                "nav-exp": "Parcours",
                 "nav-projects": "Projets",
-                "nav-cv": "Mon CV",
+                "nav-cv": "<i class='fas fa-file-pdf'></i> Mon CV",
                 "hero-welcome": "👋 Bonjour, bienvenue sur mon portfolio",
                 "hero-name": "Je suis Matthieu Greiner",
                 "hero-title": "Ingénieur Cybersécurité.",
                 "hero-desc": "Étudiant ingénieur à l'EPITA spécialisé en Cybersécurité. Utilisant à la fois mon <span class='text-white font-medium'>expertise technique</span> et mon <span class='text-white font-medium'>expérience en gouvernance</span>, je recherche des opportunités axées sur la <strong class='text-indigo-400'>Gouvernance Technique</strong>.",
-                "hero-btn-work": "Voir mes travaux",
+                "hero-btn-work": "<i class='fab fa-github'></i> Voir mes travaux",
                 "about-title": "À propos de <span class='text-indigo-400'>moi</span>",
                 "about-p1": "Actuellement en Master à l'<strong>EPITA</strong>, majeur Cybersécurité.",
                 "about-p2": "Passionné par la programmation bas-niveau et l'architecture système pour mieux sécuriser les infrastructures.",
@@ -499,7 +553,8 @@
                 "exp-title": "Mon <span class='text-gradient'>Parcours</span>",
                 "exp-type-appr": "Alternance",
                 "exp-pos-sfr": "Ingénieur SSI (Apprenti)",
-                "exp-desc-sfr": "Focus sur la <strong>Gouvernance IT</strong>, l'Analyse de Risques et la conformité. Pilotage d'initiatives de <strong>développement d'IA interne</strong> pour automatiser les processus de sécurité.",
+                "exp-desc-sfr": "Focus sur la <strong>Gouvernance IT</strong>, l'Analyse de Risques et <strong>Développement d'IA</strong> interne. Création d'outils réseaux en Go.",
+                "btn-more": "voir plus <i class='fas fa-arrow-right'></i>",
                 "exp-type-intl": "Échange International",
                 "exp-pos-chula": "Université Chulalongkorn (Thaïlande)",
                 "exp-desc-chula": "Semestre d'échange à Bangkok axé sur la Cybersécurité avancée et le Cloud Computing.",
@@ -515,7 +570,7 @@
                 "cert-desc-ebios": "Standard ANSSI pour l'appréciation et le traitement des risques.",
                 "proj-title": "Projets <span class='text-indigo-400'>Phare</span>",
                 "proj-subtitle": "Sélection de travaux académiques et personnels.",
-                "proj-btn-all": "Voir mon GitHub",
+                "proj-btn-all": "Voir mon GitHub <i class='fas fa-arrow-right text-sm'></i>",
                 "ocr-p1": "Une suite logicielle robuste développée pour résoudre des mots fléchés directement à partir d'images. Elle lie la programmation système bas-niveau avec la reconnaissance de caractères avancée.",
                 "ocr-core": "Cœur Technique :",
                 "ocr-l1": "<strong>Implémentation C (96%+) :</strong> Code haute performance avec gestion optimisée via Makefile.",
@@ -539,6 +594,10 @@
                 "btn-watch": "Gameplay Vidéo",
                 "hob-title-code": "Coding",
                 "hob-desc-code": "Exploration de nouveaux langages et automatisation des tâches quotidiennes.",
+                "hob-title-jpo": "Journées Portes Ouvertes",
+                "hob-desc-jpo": "Représentant actif lors des JPO et salons de l'enseignement supérieur de l'EPITA, présentant les programmes de l'école aux futurs étudiants.",
+                "hob-title-ctf": "CTF & Concours",
+                "hob-desc-ctf": "Veille active sur les compétitions de cybersécurité et les CTF, pour affiner les compétences offensives et défensives au-delà du cursus.",
                 "contact-chat": "Envie de discuter cyber, musique ou code ?",
                 "btn-email": "M'envoyer un email",
                 "footer-built": "Conçu avec",
@@ -549,7 +608,7 @@
         function setLanguage(lang) {
             document.getElementById('btn-en').className = lang === 'en' ? 'lang-active' : 'lang-inactive';
             document.getElementById('btn-fr').className = lang === 'fr' ? 'lang-active' : 'lang-inactive';
-            
+
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {

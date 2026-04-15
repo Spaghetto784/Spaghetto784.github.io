@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Journey | Matthieu Greiner</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236366f1;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2306b6d4;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M10,50 Q50,10 90,50 Q50,90 10,50 Z' fill='none' stroke='url(%23grad)' stroke-width='5' stroke-linecap='round' /%3E%3Ccircle cx='50' cy='50' r='18' fill='none' stroke='url(%23grad)' stroke-width='3' /%3E%3Ccircle cx='50' cy='50' r='8' fill='url(%23grad)' /%3E%3Cpath d='M50,20 L50,10 M50,90 L50,80 M20,50 L10,50 M90,50 L80,50' stroke='url(%23grad)' stroke-width='3' /%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: '#6366f1',
+                        dark: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .text-gradient {
+            background: linear-gradient(to right, #818cf8, #c084fc, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .lang-toggle { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; letter-spacing: 1px; }
+        .lang-active { color: white !important; font-weight: bold; }
+        .lang-inactive { color: #64748b !important; cursor: pointer; }
+        .lang-inactive:hover { color: #cbd5e1 !important; }
+        .year-badge {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        .project-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+            color: rgba(255,255,255,0.04);
+            position: absolute;
+            top: -8px;
+            right: 16px;
+            pointer-events: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div style="background: rgba(15,23,42,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="index.html" class="group flex items-center gap-3 font-display font-bold text-2xl tracking-tight transition-colors hover:text-white">
+                    <div class="relative w-10 h-10 shrink-0 rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.3)] group-hover:border-indigo-400 transition-all">
+                        <img src="profile.jpeg" alt="Matthieu Greiner" class="w-full h-full object-cover scale-[1.7] object-[center_15%]">
+                    </div>
+                    <span>
+                        <span class="text-indigo-400 transition-colors group-hover:text-indigo-300">&lt;</span>M. Greiner<span class="text-indigo-400 transition-colors group-hover:text-indigo-300">/&gt;</span>
+                    </span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                    <a href="index.html#about" class="hover:text-white transition-colors" data-i18n="nav-about">About</a>
+                    <a href="index.html#experience" class="hover:text-white transition-colors" data-i18n="nav-exp">Experience</a>
+                    <a href="index.html#skills" class="hover:text-white transition-colors" data-i18n="nav-skills">Skills</a>
+                    <a href="index.html#projects" class="hover:text-white transition-colors" data-i18n="nav-projects">Projects</a>
+                    <div class="glass-card px-3 py-1 rounded-full flex items-center gap-2 lang-toggle" style="border-color: rgba(255,255,255,0.1);">
+                        <span id="btn-en" class="lang-active" onclick="setLanguage('en')">EN</span>
+                        <span class="text-slate-600">|</span>
+                        <span id="btn-fr" class="lang-inactive" onclick="setLanguage('fr')">FR</span>
+                    </div>
+                    <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2" data-i18n="nav-cv">
+                        <i class="fas fa-file-pdf"></i> Resume
+                    </a>
+                </div>
+                <button class="md:hidden text-2xl text-slate-300 hover:text-white" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-card border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
+            <a href="index.html#about" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-about">About</a>
+            <a href="index.html#experience" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-exp">Experience</a>
+            <a href="index.html#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
+            <a href="index.html#projects" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-projects">Projects</a>
+            <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()" data-i18n="nav-cv">Resume</a>
+        </div>
+    </nav>
+
+    <div class="pt-32 pb-16 px-6">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-slate-300 transition-colors text-sm mb-8">
+                <i class="fas fa-arrow-left text-xs"></i>
+                <span data-i18n="back-home">Back to portfolio</span>
+            </a>
+            <h1 class="font-display text-4xl md:text-6xl font-bold mb-4">
+                <span data-i18n="page-title">3 Years at</span> <span class="text-gradient">SFR Business</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="page-subtitle">
+                A deep dive into the projects, initiatives, and technical work carried out during my apprenticeship as an SSI Engineer.
+            </p>
+        </div>
+    </div>
+
+    <section id="sfr-projects" class="py-8 px-6 scroll-mt-24">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-card rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8" data-aos="fade-up">
+                <div class="flex-shrink-0 text-center">
+                    <div class="w-20 h-20 bg-red-500/10 rounded-2xl flex items-center justify-center mx-auto mb-2 shadow-[0_0_20px_rgba(239,68,68,0.15)]">
+                        <i class="fas fa-building text-3xl text-red-400"></i>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 year-badge">2025 — 2028</span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-3 mb-2 flex-wrap">
+                        <h2 class="font-display text-2xl font-bold text-white">SFR Business</h2>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/15 text-red-400 border border-red-500/25 tracking-wide uppercase" data-i18n="badge-appr">Apprenticeship · 3 years</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed" data-i18n="sfr-intro">
+                        SFR Business is the B2B branch of the SFR Group, one of France's leading telecom operators. As an apprentice SSI Engineer within the IT Security team, my work spans IT Governance, risk management, internal AI tooling, automation, and operational security support across the group's enterprise infrastructure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-10" data-aos="fade-up" data-i18n="section-projects">
+                <span class="text-gradient">Key Projects</span>
+            </h2>
+
+            <div class="space-y-6">
+
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden" data-aos="fade-up">
+                    <span class="project-number">01</span>
+                    <div class="flex items-center gap-3 mb-1">
+                        <span class="w-8 h-8 bg-indigo-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-robot text-indigo-400 text-sm"></i>
+                        </span>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold" data-i18n="tag-ai">Internal AI Tooling</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 mt-2" data-i18n="proj1-title">Internal AI Assistant for Security & Compliance</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="proj1-desc">
+                        Contributed to the design and operational framing of an internal AI assistant dedicated to cybersecurity and governance activities. The objective was to accelerate security questionnaires, contractual and regulatory analysis, internal documentation search, and the preparation of structured responses on SSI, RGPD, NIS2, and DORA topics. The initiative was built around internal knowledge bases, controlled data exposure, and enterprise security constraints, with a strong focus on reliability, consistency, and practical support for day-to-day GRC work.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">AI</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Knowledge Base</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">GRC</span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden" data-aos="fade-up" data-aos-delay="80">
+                    <span class="project-number">02</span>
+                    <div class="flex items-center gap-3 mb-1">
+                        <span class="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-shield-halved text-emerald-400 text-sm"></i>
+                        </span>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold" data-i18n="tag-risk">Risk Management</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 mt-2" data-i18n="proj2-title">Global GRC, Risk Analysis & Regulatory Compliance</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="proj2-desc">
+                        Worked on governance, risk, and compliance activities across several B2B scopes, combining operational security constraints with regulatory and contractual requirements. This included structured risk analysis work, support on supplier security assessments, contribution to NIS2 and DORA readiness topics, participation in internal compliance efforts, and production of material used for reporting and remediation follow-up. The role required bridging technical realities, business expectations, and formal security governance.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">GRC</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">NIS2</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">DORA</span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden" data-aos="fade-up" data-aos-delay="160">
+                    <span class="project-number">03</span>
+                    <div class="flex items-center gap-3 mb-1">
+                        <span class="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-sitemap text-blue-400 text-sm"></i>
+                        </span>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold" data-i18n="tag-gov">IT Governance & Compliance</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 mt-2" data-i18n="proj3-title">Security Integration in Projects & Policy Governance</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="proj3-desc">
+                        Contributed to security governance through project reviews, policy support, awareness material, and the integration of security requirements into operational processes. Activities covered project security framing, alignment with internal policies, support on contractual and supplier-related security topics, and participation in broader security-by-design efforts. This work sat at the intersection of governance, documentation, process formalization, and stakeholder coordination.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">ISP</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Policies</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Compliance</span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden" data-aos="fade-up" data-aos-delay="240">
+                    <span class="project-number">04</span>
+                    <div class="flex items-center gap-3 mb-1">
+                        <span class="w-8 h-8 bg-purple-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-chart-line text-purple-400 text-sm"></i>
+                        </span>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold" data-i18n="tag-kpi">Security Metrics & Reporting</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 mt-2" data-i18n="proj4-title">Excel Macros, KPI Dashboards & Reporting Automation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="proj4-desc">
+                        Built and improved several Excel-based automation workflows used for security reporting, KPI tracking, consolidation of scattered data sources, and recurring governance deliverables. This included macros, formulas, structured dashboards, and automation logic designed to reduce manual work, improve data consistency, and make reporting more reliable over time. These tools supported operational follow-up on audits, compliance, project monitoring, and broader SSI governance activities.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Excel</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Macros</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Automation</span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 relative overflow-hidden" data-aos="fade-up" data-aos-delay="320">
+                    <span class="project-number">05</span>
+                    <div class="flex items-center gap-3 mb-1">
+                        <span class="w-8 h-8 bg-cyan-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-network-wired text-cyan-400 text-sm"></i>
+                        </span>
+                        <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold" data-i18n="tag-sectool">Security Tooling</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3 mt-2" data-i18n="proj5-title">CyberTool (Go)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="proj5-desc">
+                        Developed an internal cybersecurity utility in Go to perform technical checks without depending on external online services. The tool was designed to keep analysis in-house while providing fast and practical security insights such as HTTP response analysis, TLS and certificate inspection, DNS checks, and evaluation of exposed security headers. Built with performance and simplicity in mind, it combines concurrent processing with a lightweight architecture to support internal security assessment workflows.
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Golang</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">TLS</span>
+                        <span class="text-xs px-2 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Internal Tooling</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="academic-projects" class="py-16 px-6 bg-black/20 scroll-mt-24">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-10" data-aos="fade-up" data-i18n="section-academic">
+                Academic & Personal <span class="text-gradient">Highlights</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <div class="glass-card rounded-2xl p-6" data-aos="fade-up">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-eye text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-white text-lg">OCR Word Search Solver</h3>
+                            <span class="text-xs text-slate-500 font-mono" data-i18n="ocr-subtitle">S3 · C · Computer Vision · Neural Net</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="ocr-long">
+                        Full-stack image processing pipeline built entirely in C. Implements a custom neural network from scratch — no external ML libraries. Handles grayscale conversion, grid detection and straightening, character segmentation, and final puzzle resolution. GTK 3.0 and SDL for the graphical interface. One of the most technically demanding projects of the cycle, representing 96%+ C codebase.
+                    </p>
+                    <a href="https://github.com/Spaghetto784/OCR---Projet-S3" target="_blank" class="mt-4 inline-flex items-center gap-2 text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+                        <i class="fab fa-github"></i> <span data-i18n="view-repo">View repository</span>
+                    </a>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6" data-aos="fade-up" data-aos-delay="80">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-gamepad text-purple-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-white text-lg">Mazic</h3>
+                            <span class="text-xs text-slate-500 font-mono" data-i18n="mazic-subtitle">S1 · Python · Game · Team Project</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="mazic-long">
+                        Cooperative maze game developed in a team during the first year of integrated prépa. Full Python implementation with Poetry for dependency management, Conventional Commits, Google-style docstrings, Pdoc3 documentation, and an integrated logging system. A project as much about software engineering methodology as about game design.
+                    </p>
+                    <a href="https://github.com/Spaghetto784/Mazic" target="_blank" class="mt-4 inline-flex items-center gap-2 text-xs text-purple-400 hover:text-purple-300 transition-colors">
+                        <i class="fab fa-github"></i> <span data-i18n="view-repo">View repository</span>
+                    </a>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 border border-red-500/20" data-aos="fade-up" data-aos-delay="160">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-secret text-red-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-white text-lg" data-i18n="rootkit-title">Wlkom Rootkit</h3>
+                            <span class="text-xs text-slate-500 font-mono" data-i18n="rootkit-subtitle">Personal · C · Linux Kernel</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="rootkit-desc">
+                        An educational Linux kernel rootkit developed in C to understand deep system mechanics, kernel module programming, and evasion techniques. Focuses on hooking syscalls and manipulating kernel data structures. Developed strictly for educational and defensive understanding.
+                    </p>
+                    <a href="https://github.com/Spaghetto784/wlkom-rootkit" target="_blank" class="mt-4 inline-flex items-center gap-2 text-xs text-red-400 hover:text-red-300 transition-colors">
+                        <i class="fab fa-github"></i> <span data-i18n="view-repo">View repository</span>
+                    </a>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6" data-aos="fade-up" data-aos-delay="240">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-terminal text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-white text-lg" data-i18n="debugger-title">42sh / Debugger Projects</h3>
+                            <span class="text-xs text-slate-500 font-mono" data-i18n="debugger-subtitle">S4 · C · Systems Programming</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="debugger-desc">
+                        Systems programming projects at the core of the EPITA curriculum — a POSIX shell implementation and a GDB-like debugger using ptrace. Heavy use of process management, signal handling, ELF binary parsing, and low-level memory inspection. Exactly the kind of work that makes reading CVE writeups feel intuitive.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <p class="text-slate-500 text-sm mb-6" data-i18n="cta-text">Curious about the full picture?</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://github.com/Spaghetto784" target="_blank" class="px-6 py-3 glass-card text-white font-medium rounded-full hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-sm" style="border-color: rgba(255,255,255,0.1);">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" class="px-6 py-3 glass-card text-white font-medium rounded-full hover:bg-white/10 transition-all flex items-center justify-center gap-2 text-sm" style="border-color: rgba(255,255,255,0.1);">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:greinermatthieu635@gmail.com" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 text-sm" data-i18n="btn-email">
+                    <i class="far fa-envelope"></i> Send me an email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 text-center text-slate-600 text-sm border-t border-white/5 bg-black/40">
+        <p>© 2026 Matthieu Greiner. <span data-i18n="footer-built">Built with</span> <i class="fas fa-heart text-red-500 mx-1"></i> <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" class="hover:text-white transition-colors underline underline-offset-4 decoration-indigo-500/50">GitHub Pages</a>.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50, duration: 800 });
+
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('shadow-lg');
+            else nav.classList.remove('shadow-lg');
+        });
+
+        const translations = {
+            en: {
+                "nav-about": "About",
+                "nav-exp": "Experience",
+                "nav-skills": "Skills",
+                "nav-projects": "Projects",
+                "nav-cv": "Resume",
+                "back-home": "Back to portfolio",
+                "page-title": "3 Years at",
+                "page-subtitle": "A deep dive into the projects, initiatives, and technical work carried out during my apprenticeship as an SSI Engineer.",
+                "badge-appr": "Apprenticeship · 3 years",
+                "sfr-intro": "SFR Business is the B2B branch of the SFR Group, one of France's leading telecom operators. As an apprentice SSI Engineer within the IT Security team, my work spans IT Governance, risk management, internal AI tooling, automation, and operational security support across the group's enterprise infrastructure.",
+                "section-projects": "<span class='text-gradient'>Key Projects</span>",
+                "tag-ai": "Internal AI Tooling",
+                "proj1-title": "Internal AI Assistant for Security & Compliance",
+                "proj1-desc": "Contributed to the design and operational framing of an internal AI assistant dedicated to cybersecurity and governance activities. The objective was to accelerate security questionnaires, contractual and regulatory analysis, internal documentation search, and the preparation of structured responses on SSI, RGPD, NIS2, and DORA topics. The initiative was built around internal knowledge bases, controlled data exposure, and enterprise security constraints, with a strong focus on reliability, consistency, and practical support for day-to-day GRC work.",
+                "tag-risk": "Risk Management",
+                "proj2-title": "Global GRC, Risk Analysis & Regulatory Compliance",
+                "proj2-desc": "Worked on governance, risk, and compliance activities across several B2B scopes, combining operational security constraints with regulatory and contractual requirements. This included structured risk analysis work, support on supplier security assessments, contribution to NIS2 and DORA readiness topics, participation in internal compliance efforts, and production of material used for reporting and remediation follow-up. The role required bridging technical realities, business expectations, and formal security governance.",
+                "tag-gov": "IT Governance & Compliance",
+                "proj3-title": "Security Integration in Projects & Policy Governance",
+                "proj3-desc": "Contributed to security governance through project reviews, policy support, awareness material, and the integration of security requirements into operational processes. Activities covered project security framing, alignment with internal policies, support on contractual and supplier-related security topics, and participation in broader security-by-design efforts. This work sat at the intersection of governance, documentation, process formalization, and stakeholder coordination.",
+                "tag-kpi": "Security Metrics & Reporting",
+                "proj4-title": "Excel Macros, KPI Dashboards & Reporting Automation",
+                "proj4-desc": "Built and improved several Excel-based automation workflows used for security reporting, KPI tracking, consolidation of scattered data sources, and recurring governance deliverables. This included macros, formulas, structured dashboards, and automation logic designed to reduce manual work, improve data consistency, and make reporting more reliable over time. These tools supported operational follow-up on audits, compliance, project monitoring, and broader SSI governance activities.",
+                "tag-sectool": "Security Tooling",
+                "proj5-title": "CyberTool (Go)",
+                "proj5-desc": "Developed an internal cybersecurity utility in Go to perform technical checks without depending on external online services. The tool was designed to keep analysis in-house while providing fast and practical security insights such as HTTP response analysis, TLS and certificate inspection, DNS checks, and evaluation of exposed security headers. Built with performance and simplicity in mind, it combines concurrent processing with a lightweight architecture to support internal security assessment workflows.",
+                "section-academic": "Academic & Personal <span class='text-gradient'>Highlights</span>",
+                "ocr-subtitle": "S3 · C · Computer Vision · Neural Net",
+                "ocr-long": "Full-stack image processing pipeline built entirely in C. Implements a custom neural network from scratch — no external ML libraries. Handles grayscale conversion, grid detection and straightening, character segmentation, and final puzzle resolution. GTK 3.0 and SDL for the graphical interface. One of the most technically demanding projects of the cycle, representing 96%+ C codebase.",
+                "mazic-subtitle": "S1 · Python · Game · Team Project",
+                "mazic-long": "Cooperative maze game developed in a team during the first year of integrated prépa. Full Python implementation with Poetry for dependency management, Conventional Commits, Google-style docstrings, Pdoc3 documentation, and an integrated logging system. A project as much about software engineering methodology as about game design.",
+                "rootkit-title": "Wlkom Rootkit",
+                "rootkit-subtitle": "Personal · C · Linux Kernel",
+                "rootkit-desc": "An educational Linux kernel rootkit developed in C to understand deep system mechanics, kernel module programming, and evasion techniques. Focuses on hooking syscalls and manipulating kernel data structures. Developed strictly for educational and defensive understanding.",
+                "debugger-title": "42sh / Debugger Projects",
+                "debugger-subtitle": "S4 · C · Systems Programming",
+                "debugger-desc": "Systems programming projects at the core of the EPITA curriculum — a POSIX shell implementation and a GDB-like debugger using ptrace. Heavy use of process management, signal handling, ELF binary parsing, and low-level memory inspection. Exactly the kind of work that makes reading CVE writeups feel intuitive.",
+                "view-repo": "View repository",
+                "cta-text": "Curious about the full picture?",
+                "btn-email": "Send me an email",
+                "footer-built": "Built with",
+                "footer-and": "and C code. Hosted on"
+            },
+            fr: {
+                "nav-about": "À propos",
+                "nav-exp": "Parcours",
+                "nav-skills": "Compétences",
+                "nav-projects": "Projets",
+                "nav-cv": "Mon CV",
+                "back-home": "Retour au portfolio",
+                "page-title": "3 ans chez",
+                "page-subtitle": "Un aperçu approfondi des projets, initiatives et travaux techniques menés durant mon apprentissage en tant qu'Ingénieur SSI.",
+                "badge-appr": "Alternance · 3 ans",
+                "sfr-intro": "SFR Business est la branche B2B du groupe SFR, l'un des principaux opérateurs télécom français. En tant qu'ingénieur SSI apprenti au sein de l'équipe Sécurité IT, mon activité couvre la gouvernance IT, la gestion des risques, l'outillage IA interne, l'automatisation et le support sécurité opérationnel sur l'infrastructure d'entreprise du groupe.",
+                "section-projects": "<span class='text-gradient'>Projets Clés</span>",
+                "tag-ai": "Outillage IA Interne",
+                "proj1-title": "Assistant IA interne pour la sécurité et la conformité",
+                "proj1-desc": "Contribution à la conception et au cadrage opérationnel d'un assistant IA interne dédié aux activités cybersécurité et gouvernance. L'objectif était d'accélérer les questionnaires sécurité, l'analyse contractuelle et réglementaire, la recherche documentaire interne, ainsi que la préparation de réponses structurées sur les sujets SSI, RGPD, NIS2 et DORA. L'initiative reposait sur des bases de connaissances internes, une exposition contrôlée des données et des contraintes de sécurité d'entreprise, avec un fort accent sur la fiabilité, la cohérence et l'aide concrète aux activités GRC quotidiennes.",
+                "tag-risk": "Gestion des Risques",
+                "proj2-title": "GRC globale, analyse de risques et conformité réglementaire",
+                "proj2-desc": "Participation à des activités de gouvernance, risques et conformité sur plusieurs périmètres B2B, en combinant contraintes opérationnelles de sécurité et exigences réglementaires et contractuelles. Cela incluait des travaux d'analyse de risques structurée, le support aux évaluations de sécurité fournisseurs, la contribution aux sujets de mise en conformité NIS2 et DORA, la participation aux démarches de conformité internes et la production de supports utilisés pour le reporting et le suivi des remédiations. Ce rôle nécessitait de faire le lien entre réalités techniques, attentes métier et gouvernance sécurité formalisée.",
+                "tag-gov": "Gouvernance IT & Conformité",
+                "proj3-title": "Sécurité dans les projets et gouvernance des politiques",
+                "proj3-desc": "Contribution à la gouvernance sécurité via des revues projet, le support aux politiques, des supports de sensibilisation et l'intégration des exigences sécurité dans les processus opérationnels. Les activités couvraient le cadrage sécurité des projets, l'alignement avec les politiques internes, le support sur les sujets contractuels et fournisseurs, ainsi que la participation à des démarches plus larges de security by design. Ce travail se situait à l'intersection de la gouvernance, de la documentation, de la formalisation de processus et de la coordination des parties prenantes.",
+                "tag-kpi": "Métriques & Reporting Sécurité",
+                "proj4-title": "Macros Excel, tableaux de bord KPI et automatisation du reporting",
+                "proj4-desc": "Développement et amélioration de plusieurs workflows d'automatisation sous Excel utilisés pour le reporting sécurité, le suivi de KPI, la consolidation de sources de données dispersées et la production récurrente de livrables de gouvernance. Cela incluait des macros, des formules, des dashboards structurés et une logique d'automatisation conçue pour réduire le travail manuel, améliorer la cohérence des données et rendre le reporting plus fiable dans le temps. Ces outils ont soutenu le suivi opérationnel des audits, de la conformité, du pilotage projet et plus largement des activités de gouvernance SSI.",
+                "tag-sectool": "Outillage de Sécurité",
+                "proj5-title": "CyberTool (Go)",
+                "proj5-desc": "Développement d'un outil de cybersécurité interne en Go permettant d'effectuer des vérifications techniques sans dépendre de services en ligne externes. L'outil a été pensé pour garder l'analyse en interne tout en fournissant rapidement des informations utiles comme l'analyse des réponses HTTP, l'inspection TLS et certificats, les vérifications DNS et l'évaluation des headers de sécurité exposés. Conçu avec un objectif de performance et de simplicité, il combine traitement concurrent et architecture légère pour soutenir des workflows internes d'évaluation sécurité.",
+                "section-academic": "Points Forts <span class='text-gradient'>Académiques & Persos</span>",
+                "ocr-subtitle": "S3 · C · Vision par Ordinateur · Réseau de Neurones",
+                "ocr-long": "Pipeline de traitement d'images entièrement en C. Implémente un réseau de neurones maison de zéro — sans bibliothèque ML externe. Gère la conversion en niveaux de gris, la détection et le redressement de grille, la segmentation des caractères et la résolution finale du puzzle. GTK 3.0 et SDL pour l'interface graphique. L'un des projets les plus exigeants du cycle, avec une base de code C à 96%+.",
+                "mazic-subtitle": "S1 · Python · Jeu · Projet d'Équipe",
+                "mazic-long": "Jeu de labyrinthe coopératif développé en équipe en première année de prépa intégrée. Implémentation Python complète avec Poetry, Conventional Commits, docstrings Google, documentation Pdoc3 et système de logs intégré. Un projet autant centré sur la méthodologie de développement logiciel que sur le game design.",
+                "rootkit-title": "Wlkom Rootkit",
+                "rootkit-subtitle": "Personnel · C · Noyau Linux",
+                "rootkit-desc": "Un rootkit éducatif pour le noyau Linux développé en C afin de comprendre la mécanique interne du système, la programmation de modules noyau et les techniques d'évasion. Se concentre sur le hooking d'appels système et la manipulation des structures de données du noyau. Développé strictement dans un but éducatif et défensif.",
+                "debugger-title": "42sh / Projets Debugger",
+                "debugger-subtitle": "S4 · C · Programmation Système",
+                "debugger-desc": "Projets de programmation système au cœur du cursus EPITA — un shell POSIX et un débogueur type GDB utilisant ptrace. Usage intensif de la gestion de processus, des signaux, du parsing de binaires ELF et de l'inspection mémoire bas niveau. Exactement le genre de travail qui rend la lecture de writeups de CVE intuitive.",
+                "view-repo": "Voir le dépôt",
+                "cta-text": "Curieux d'en savoir plus ?",
+                "btn-email": "M'envoyer un email",
+                "footer-built": "Conçu avec",
+                "footer-and": "et du code C. Hébergé sur"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('btn-en').className = lang === 'en' ? 'lang-active' : 'lang-inactive';
+            document.getElementById('btn-fr').className = lang === 'fr' ? 'lang-active' : 'lang-inactive';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.documentElement.lang = lang;
+            AOS.refresh();
+        }
+    </script>
+</body>
+</html>
