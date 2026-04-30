@@ -94,9 +94,7 @@
             color: #a5b4fc;
             transform: translateY(-1px);
         }
-        .more-btn i {
-            font-size: 0.55rem;
-        }
+        .more-btn i { font-size: 0.55rem; }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
@@ -109,7 +107,7 @@
                         <img src="profile.jpeg" alt="Matthieu Greiner" class="w-full h-full object-cover scale-[1.7] object-[center_15%]">
                     </div>
                     <span>
-                            <span class="text-indigo-400 transition-colors group-hover:text-indigo-300">&lt;</span>M. Greiner<span class="text-indigo-400 transition-colors group-hover:text-indigo-300">/&gt;</span>
+                        <span class="text-indigo-400 transition-colors group-hover:text-indigo-300">&lt;</span>M. Greiner<span class="text-indigo-400 transition-colors group-hover:text-indigo-300">/&gt;</span>
                     </span>
                 </a>
                 <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
@@ -122,8 +120,8 @@
                         <span class="text-slate-600">|</span>
                         <span id="btn-fr" class="lang-inactive" onclick="setLanguage('fr')">FR</span>
                     </div>
-                    <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2" data-i18n="nav-cv">
-                        <i class="fas fa-file-pdf"></i> Resume
+                    <a href="mgr_resume_eng.pdf" id="cv-link" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2">
+                        <i class="fas fa-file-pdf"></i> <span data-i18n="nav-cv">Resume</span>
                     </a>
                 </div>
                 <button class="md:hidden text-2xl text-slate-300 hover:text-white" onclick="toggleMenu()">
@@ -136,7 +134,9 @@
             <a href="#experience" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-exp">Experience</a>
             <a href="#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
             <a href="#projects" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-projects">Projects</a>
-            <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()" data-i18n="nav-cv">Resume</a>
+            <a href="mgr_resume_eng.pdf" id="cv-link-mobile" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()">
+                <span data-i18n="nav-cv">Resume</span>
+            </a>
         </div>
     </nav>
 
@@ -208,47 +208,47 @@
 
     <section id="experience" class="py-24 px-6 bg-black/20">
         <div class="max-w-4xl mx-auto">
-           <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center" data-aos="fade-up" data-i18n="exp-title">My <span class="text-gradient">Journey</span></h2>
-           <div class="space-y-8 pl-4 border-l border-white/10 ml-4 md:ml-0">
-               <div class="relative pl-8" data-aos="fade-left">
-                   <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                   <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
-                       <span class="text-xs font-mono px-2 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20 w-fit">2025 - 2028</span>
-                       <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-appr">Apprenticeship</span>
-                   </div>
-                   <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
-                       <span data-i18n="exp-pos-sfr">SSI Engineer (Apprentice)</span>
-                       <a href="projects.html#sfr-projects" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
-                   </h3>
-                   <h4 class="text-lg text-slate-300 mb-2">SFR Business</h4>
-                   <p class="text-slate-400 text-sm max-w-2xl" data-i18n="exp-desc-sfr">
-                       Focus on <strong>IT Governance</strong>, Risk Analysis, and internal <strong>AI Development</strong>. Created high-performance network utilities in Go.
-                   </p>
-               </div>
-               <div class="relative pl-8" data-aos="fade-left" data-aos-delay="100">
-                   <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-pink-500 rounded-full"></div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center" data-aos="fade-up" data-i18n="exp-title">My <span class="text-gradient">Journey</span></h2>
+            <div class="space-y-8 pl-4 border-l border-white/10 ml-4 md:ml-0">
+                <div class="relative pl-8" data-aos="fade-left">
+                    <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
                     <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
-                       <span class="text-xs font-mono px-2 py-1 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20 w-fit">2025</span>
-                       <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-intl">International Exchange</span>
-                   </div>
-                   <h3 class="text-xl font-bold text-white" data-i18n="exp-pos-chula">Chulalongkorn University (Thailand)</h3>
-                   <p class="text-slate-400 text-sm mt-2 max-w-2xl" data-i18n="exp-desc-chula">Exchange semester in Bangkok focusing on advanced Cybersecurity and Cloud Computing.</p>
-               </div>
+                        <span class="text-xs font-mono px-2 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20 w-fit">2025 - 2028</span>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-appr">Apprenticeship</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
+                        <span data-i18n="exp-pos-sfr">SSI Engineer (Apprentice)</span>
+                        <a href="projects.html#sfr-projects" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
+                    </h3>
+                    <h4 class="text-lg text-slate-300 mb-2">SFR Business</h4>
+                    <p class="text-slate-400 text-sm max-w-2xl" data-i18n="exp-desc-sfr">
+                        Focus on <strong>IT Governance</strong>, Risk Analysis, and internal <strong>AI Development</strong>. Created high-performance network utilities in Go.
+                    </p>
+                </div>
+                <div class="relative pl-8" data-aos="fade-left" data-aos-delay="100">
+                    <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-pink-500 rounded-full"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
+                        <span class="text-xs font-mono px-2 py-1 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20 w-fit">2025</span>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-intl">International Exchange</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white" data-i18n="exp-pos-chula">Chulalongkorn University (Thailand)</h3>
+                    <p class="text-slate-400 text-sm mt-2 max-w-2xl" data-i18n="exp-desc-chula">Exchange semester in Bangkok focusing on advanced Cybersecurity and Cloud Computing.</p>
+                </div>
                 <div class="relative pl-8" data-aos="fade-left" data-aos-delay="200">
-                   <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-indigo-500 rounded-full"></div>
+                    <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-indigo-500 rounded-full"></div>
                     <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
-                       <span class="text-xs font-mono px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 w-fit">2023 - 2028</span>
-                       <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-edu">Education</span>
-                   </div>
-                   <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
-                       EPITA - School of Engineering & CS
-                       <a href="projects.html#academic-projects" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
-                   </h3>
-                   <p class="text-slate-400 text-sm mt-2 max-w-2xl" data-i18n="exp-desc-epita">Specializing in Cybersecurity with a focus on systems and networks.</p>
-               </div>
-           </div>
-       </div>
-   </section>
+                        <span class="text-xs font-mono px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 w-fit">2023 - 2028</span>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-edu">Education</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
+                        EPITA - School of Engineering & CS
+                        <a href="projects.html#academic-projects" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
+                    </h3>
+                    <p class="text-slate-400 text-sm mt-2 max-w-2xl" data-i18n="exp-desc-epita">Specializing in Cybersecurity with a focus on systems and networks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="skills" class="py-24 px-6">
         <div class="max-w-6xl mx-auto">
@@ -344,7 +344,7 @@
                             <p class="text-xs text-slate-300 font-semibold uppercase tracking-widest flex items-center gap-2">
                                 <i class="fas fa-microchip text-indigo-400"></i> <span data-i18n="ocr-core">Technical Core:</span>
                             </p>
-                            <ul class="text-xs text-slate-500 list-disc pl-5 space-y-1" id="ocr-list">
+                            <ul class="text-xs text-slate-500 list-disc pl-5 space-y-1">
                                 <li data-i18n="ocr-l1"><strong>96%+ C Implementation:</strong> High-performance code with optimized Makefile management.</li>
                                 <li data-i18n="ocr-l2"><strong>Computer Vision:</strong> Custom preprocessing pipeline for grayscale conversion and grid straightening.</li>
                                 <li data-i18n="ocr-l3"><strong>Neural Network:</strong> Built-from-scratch AI engine for identifying characters in the grid.</li>
@@ -356,7 +356,6 @@
                         </a>
                     </div>
                 </div>
-                
                 <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-48 bg-slate-800 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -373,7 +372,7 @@
                             <p class="text-xs text-slate-300 font-semibold uppercase tracking-widest flex items-center gap-2">
                                 <i class="fas fa-check-circle text-emerald-400"></i> <span data-i18n="mazic-core">Technical Excellence:</span>
                             </p>
-                            <ul class="text-xs text-slate-500 list-disc pl-5 space-y-1" id="mazic-list">
+                            <ul class="text-xs text-slate-500 list-disc pl-5 space-y-1">
                                 <li data-i18n="mazic-l1">Full Python implementation (93%) with strict dependency management (Poetry).</li>
                                 <li data-i18n="mazic-l2">Clean Architecture: Segregated modules for assets, source, and documentation.</li>
                                 <li data-i18n="mazic-l3">Governance: Adherence to Conventional Commits and Google-style docstrings.</li>
@@ -463,10 +462,10 @@
         const translations = {
             en: {
                 "nav-about": "About",
-                "nav-experience": "Experience",
+                "nav-exp": "Experience",
                 "nav-skills": "Skills",
                 "nav-projects": "Projects",
-                "nav-cv": "<i class='fas fa-file-pdf'></i> Resume",
+                "nav-cv": "Resume",
                 "hero-welcome": "👋 Hello, welcome to my portfolio",
                 "hero-name": "I am Matthieu Greiner",
                 "hero-title": "Cybersecurity Engineer.",
@@ -528,16 +527,16 @@
                 "hob-title-ctf": "CTF & Competitions",
                 "hob-desc-ctf": "Keeping an eye on cybersecurity competitions and CTF events, sharpening offensive and defensive skills beyond the classroom.",
                 "contact-chat": "Want to chat about security, music, or code?",
-                "btn-email": "Send me an email",
+                "btn-email": "<i class='far fa-envelope'></i> Send me an email",
                 "footer-built": "Built with",
                 "footer-and": "and C code. Hosted on"
             },
             fr: {
                 "nav-about": "À propos",
-                "nav-experience": "Parcours",
+                "nav-exp": "Parcours",
                 "nav-skills": "Compétences",
                 "nav-projects": "Projets",
-                "nav-cv": "<i class='fas fa-file-pdf'></i> Mon CV",
+                "nav-cv": "Mon CV",
                 "hero-welcome": "👋 Bonjour, bienvenue sur mon portfolio",
                 "hero-name": "Je suis Matthieu Greiner",
                 "hero-title": "Ingénieur Cybersécurité.",
@@ -599,7 +598,7 @@
                 "hob-title-ctf": "CTF & Concours",
                 "hob-desc-ctf": "Veille active sur les compétitions de cybersécurité et les CTF, pour affiner les compétences offensives et défensives au-delà du cursus.",
                 "contact-chat": "Envie de discuter cyber, musique ou code ?",
-                "btn-email": "M'envoyer un email",
+                "btn-email": "<i class='far fa-envelope'></i> M'envoyer un email",
                 "footer-built": "Conçu avec",
                 "footer-and": "et du code C. Hébergé sur"
             }
@@ -617,6 +616,13 @@
             });
 
             document.documentElement.lang = lang;
+
+            const cvHref = lang === 'fr' ? 'mgr_resume_fr.pdf' : 'mgr_resume_eng.pdf';
+            const cvLink = document.getElementById('cv-link');
+            const cvLinkMobile = document.getElementById('cv-link-mobile');
+            if (cvLink) cvLink.href = cvHref;
+            if (cvLinkMobile) cvLinkMobile.href = cvHref;
+
             AOS.refresh();
         }
     </script>
