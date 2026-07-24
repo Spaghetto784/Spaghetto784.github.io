@@ -2,7 +2,7 @@
 
 Personal portfolio website designed to showcase my journey as a Cybersecurity Engineering student at EPITA and SFR Business. This project gathers my skills, professional experiences, and technical projects in a modern interface.
 
-**Live version:** [https://spaghetto784.github.io](https://spaghetto784.github.io)
+**Live version:** [https://spaghetto784.github.io](matthieugreiner.com)
 
 ## Technologies
 
