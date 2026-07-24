@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="responsive-enhancements.css">
     <script>
         tailwind.config = {
             theme: {
@@ -101,7 +102,7 @@
                         <span class="text-slate-600">|</span>
                         <span id="btn-fr" class="lang-inactive" onclick="setLanguage('fr')">FR</span>
                     </div>
-                    <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2" data-i18n="nav-cv">
+                    <a href="mgr_resume_eng.pdf" id="cv-link" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2" data-i18n="nav-cv">
                         <i class="fas fa-file-pdf"></i> Resume
                     </a>
                 </div>
@@ -115,7 +116,7 @@
             <a href="index.html#experience" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-exp">Experience</a>
             <a href="index.html#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
             <a href="index.html#projects" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-projects">Projects</a>
-            <a href="CV_Matthieu_Greiner.pdf" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()" data-i18n="nav-cv">Resume</a>
+            <a href="mgr_resume_eng.pdf" id="cv-link-mobile" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()" data-i18n="nav-cv">Resume</a>
         </div>
     </nav>
 
@@ -486,5 +487,6 @@
             AOS.refresh();
         }
     </script>
+    <script src="responsive-enhancements.js"></script>
 </body>
 </html>

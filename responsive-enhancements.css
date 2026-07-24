@@ -1,0 +1,208 @@
+:root {
+    --page-gutter: clamp(1.125rem, 4vw, 1.5rem);
+    --section-space: clamp(4.5rem, 9vw, 6rem);
+    --nav-height: 4.5rem;
+}
+
+html {
+    scroll-padding-top: calc(var(--nav-height) + 1rem);
+    overflow-x: clip;
+}
+
+body {
+    overflow-x: clip;
+    min-width: 320px;
+}
+
+a, button, [onclick] {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+[onclick]:focus-visible {
+    outline: 2px solid #a5b4fc;
+    outline-offset: 4px;
+    border-radius: 0.5rem;
+}
+
+#navbar > div:first-child {
+    background: rgba(15, 23, 42, 0.78) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(18px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(135%) !important;
+}
+
+#navbar.nav-scrolled > div:first-child {
+    background: rgba(15, 23, 42, 0.94) !important;
+    box-shadow: 0 14px 40px -24px rgba(0, 0, 0, 0.9);
+}
+
+#mobile-menu {
+    max-height: calc(100dvh - var(--nav-height));
+    overflow-y: auto;
+    background: rgba(15, 23, 42, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+#mobile-menu a {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    padding-inline: 0.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#mobile-menu a:last-child {
+    border-bottom: 0;
+}
+
+.glass-card {
+    isolation: isolate;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .glass-card:hover {
+        transform: translateY(-4px);
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        --nav-height: 4.125rem;
+    }
+
+    body {
+        background-attachment: scroll;
+        background-size: 160% 65rem, 150% 60rem, 180% 70rem;
+    }
+
+    #navbar .max-w-6xl {
+        padding-inline: var(--page-gutter);
+        padding-block: 0.75rem;
+    }
+
+    #navbar a.group {
+        gap: 0.625rem;
+        font-size: 1.125rem;
+    }
+
+    #navbar a.group > div {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+    #navbar button[onclick="toggleMenu()"] {
+        display: inline-grid;
+        width: 2.75rem;
+        height: 2.75rem;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.045);
+    }
+
+    header#home {
+        min-height: 100svh;
+        padding-top: calc(var(--nav-height) + 2rem);
+        padding-bottom: 3rem;
+    }
+
+    header#home > div.text-center {
+        padding-inline: var(--page-gutter);
+    }
+
+    header#home h1 {
+        font-size: clamp(2.55rem, 12vw, 4rem);
+        line-height: 1.04;
+        letter-spacing: -0.04em;
+    }
+
+    header#home p {
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    header#home .flex-col > a {
+        min-height: 3.25rem;
+        width: 100%;
+    }
+
+    header#home > a.absolute {
+        display: none;
+    }
+
+    section {
+        scroll-margin-top: calc(var(--nav-height) + 0.75rem);
+    }
+
+    section.py-24,
+    section.py-16 {
+        padding-top: var(--section-space);
+        padding-bottom: var(--section-space);
+    }
+
+    section.px-6,
+    div.px-6 {
+        padding-left: var(--page-gutter);
+        padding-right: var(--page-gutter);
+    }
+
+    .glass-card {
+        border-radius: 1rem;
+    }
+
+    .glass-card.p-8 {
+        padding: 1.25rem;
+    }
+
+    .glass-card.p-6 {
+        padding: 1.125rem;
+    }
+
+    .project-number {
+        font-size: 3rem;
+        right: 0.75rem;
+        opacity: 0.85;
+    }
+
+    footer {
+        padding-inline: var(--page-gutter);
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 380px) {
+    #navbar a.group > span {
+        max-width: 9rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .glass-card.p-8,
+    .glass-card.p-6 {
+        padding: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
