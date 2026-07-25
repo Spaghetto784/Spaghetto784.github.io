@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matthieu Greiner | Cybersecurity Engineer Portfolio</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <meta name="description" content="Portfolio of Matthieu Greiner, Cybersecurity Engineering student at EPITA and Apprentice SSI Engineer at SFR Business. Specialized in Technical Governance and AI.">
-    <meta name="keywords" content="Matthieu Greiner, Cybersecurity, EPITA, SFR Business, Governance, Engineer, Portfolio, C, Python">
+    <link rel="icon" type="image/png" href="favicon-512.png">
+    <meta name="description" content="Matthieu Greiner — EPITA cybersecurity engineering student building secure cloud infrastructure, security automation, and DevSecOps workflows.">
+    <meta name="keywords" content="Matthieu Greiner, DevSecOps, Cybersecurity, EPITA, SecureFlow, Security Automation, Cloud Security, Portfolio">
     <meta name="author" content="Matthieu Greiner">
     <meta property="og:title" content="Matthieu Greiner | Cybersecurity Engineer">
-    <meta property="og:description" content="Engineering student at EPITA specializing in Cybersecurity and Technical Governance.">
+    <meta property="og:description" content="DevSecOps and security engineering portfolio: secure cloud infrastructure, automation, and security-focused software delivery.">
     <meta property="og:url" content="https://spaghetto784.github.io">
     <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +17,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="responsive-enhancements.css">
-    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
     <script>
         tailwind.config = {
             theme: {
@@ -97,6 +96,14 @@
             transform: translateY(-1px);
         }
         .more-btn i { font-size: 0.55rem; }
+        .case-study-card { position: relative; overflow: hidden; }
+        .case-study-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .3s ease; pointer-events: none; background: radial-gradient(circle at 100% 0, rgba(99,102,241,.18), transparent 38%); }
+        .case-study-card:hover::before { opacity: 1; }
+        .case-study-card > * { position: relative; }
+        .signal-dot { width: .5rem; height: .5rem; border-radius: 9999px; background: #34d399; box-shadow: 0 0 0 .28rem rgba(52,211,153,.12); }
+        .pipeline-step { position: relative; min-width: 0; flex: 1; padding: .75rem .5rem; border: 1px solid rgba(255,255,255,.08); border-radius: .75rem; background: rgba(15,23,42,.42); text-align: center; font-size: .67rem; line-height: 1.25; color: #94a3b8; }
+        .pipeline-step i { display: block; margin-bottom: .4rem; color: #a5b4fc; font-size: .9rem; }
+        .case-tag { display: inline-flex; align-items: center; border: 1px solid rgba(129,140,248,.25); border-radius: 9999px; padding: .28rem .65rem; background: rgba(99,102,241,.08); color: #c7d2fe; font: 600 .67rem/1 'Space Grotesk', sans-serif; letter-spacing: .04em; }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
@@ -106,7 +113,7 @@
             <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
                 <a href="#" class="group flex items-center gap-3 font-display font-bold text-2xl tracking-tight transition-colors hover:text-white">
                     <div class="relative w-10 h-10 shrink-0 rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.3)] group-hover:border-indigo-400 transition-all">
-                        <img src="profile.jpeg" alt="Matthieu Greiner" class="w-full h-full object-cover scale-[1.7] object-[center_15%]">
+                        <img src="profile.webp" alt="Matthieu Greiner" width="720" height="1080" class="w-full h-full object-cover scale-[1.7] object-[center_15%]">
                     </div>
                     <span>
                         <span class="text-indigo-400 transition-colors group-hover:text-indigo-300">&lt;</span>M. Greiner<span class="text-indigo-400 transition-colors group-hover:text-indigo-300">/&gt;</span>
@@ -150,10 +157,10 @@
             </div>
             <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight">
                 <span data-i18n="hero-name">I am Matthieu Greiner</span> <br>
-                <span class="text-gradient" data-i18n="hero-title">Cybersecurity Engineer.</span>
+                <span class="text-gradient" data-i18n="hero-title">DevSecOps & Security Engineer.</span>
             </h1>
             <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed" data-i18n="hero-desc">
-                Engineering student at EPITA specializing in Cybersecurity. Bridging <span class="text-white font-medium">technical depth</span> and <span class="text-white font-medium">security engineering</span>, I am targeting <strong class="text-indigo-400">SecOps & DevSecOps</strong> roles — with a long-term goal of working in the US.
+                Engineering student at EPITA building <span class="text-white font-medium">secure cloud infrastructure</span>, <span class="text-white font-medium">security automation</span>, and <strong class="text-indigo-400">DevSecOps</strong> workflows.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#projects" class="px-8 py-3.5 bg-white text-dark font-bold rounded-full hover:bg-slate-200 transition-all shadow-lg shadow-white/10 flex items-center justify-center gap-2" data-i18n="hero-btn-work">
@@ -182,7 +189,7 @@
                     <div class="space-y-4 text-slate-400 leading-relaxed">
                         <p data-i18n="about-p1">Pursuing my Master's at <strong>EPITA</strong>, majoring in Cybersecurity.</p>
                         <p data-i18n="about-p2">Passionate about low-level programming, systems security and infrastructure — from kernel internals to cloud-native environments.</p>
-                        <p data-i18n="about-p3">Currently building hands-on security engineering experience through apprenticeships at <strong>SFR Business</strong> and <strong>intuitem</strong>, with a long-term goal of breaking into the US security market.</p>
+                        <p data-i18n="about-p3">Building hands-on security engineering experience through my apprenticeship at <strong>SFR Business</strong>, then joining <strong>intuitem</strong> in September 2026.</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
@@ -225,7 +232,7 @@
                     </h3>
                     <h4 class="text-lg text-slate-300 mb-2">intuitem · Vélizy</h4>
                     <p class="text-slate-400 text-sm max-w-2xl" data-i18n="exp-desc-intuitem">
-                        Contributing to <strong>CISO Assistant</strong>, the world's #1 open-source GRC platform. Full-stack development with Django & Svelte, DevSecOps, Kubernetes, and multi-cloud infrastructure.
+                        Starting in September 2026, joining the team behind <strong>CISO Assistant</strong>, the open-source GRC platform, to work across full-stack engineering and DevSecOps.
                     </p>
                 </div>
 
@@ -349,63 +356,48 @@
                     View GitHub <i class="fas fa-arrow-right text-sm"></i>
                 </a>
             </div>
-            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col" data-aos="fade-up">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform">
-                            <span class="text-5xl font-bold text-white/10 font-display">OCR</span>
+            <div class="grid lg:grid-cols-2 gap-6">
+                <article class="glass-card case-study-card rounded-2xl p-6 md:p-8 flex flex-col" data-aos="fade-up">
+                    <div class="flex justify-between gap-4 items-start mb-6">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3"><span class="signal-dot"></span><span class="text-xs uppercase tracking-[.18em] text-emerald-300" data-i18n="case-live">Public project</span></div>
+                            <h3 class="font-display text-2xl font-bold text-white">SecureFlow</h3>
                         </div>
-                        <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono text-indigo-300 border border-indigo-500/30">C / AI / Computer Vision</div>
+                        <span class="case-tag">DevSecOps</span>
                     </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400">OCR Word Search Solver</h3>
-                        <p class="text-slate-400 text-sm mb-4 flex-1 italic leading-relaxed" data-i18n="ocr-p1">
-                            A robust software suite developed to solve word search puzzles directly from images. It bridges low-level system programming with advanced character recognition and grid-solving logic.
-                        </p>
-                        <div class="space-y-2 mb-6">
-                            <p class="text-xs text-slate-300 font-semibold uppercase tracking-widest flex items-center gap-2">
-                                <i class="fas fa-microchip text-indigo-400"></i> <span data-i18n="ocr-core">Technical Core:</span>
-                            </p>
-                            <ul class="text-xs text-slate-500 list-disc pl-5 space-y-1">
-                                <li data-i18n="ocr-l1"><strong>96%+ C Implementation:</strong> High-performance code with optimized Makefile management.</li>
-                                <li data-i18n="ocr-l2"><strong>Computer Vision:</strong> Custom preprocessing pipeline for grayscale conversion and grid straightening.</li>
-                                <li data-i18n="ocr-l3"><strong>Neural Network:</strong> Built-from-scratch AI engine for identifying characters in the grid.</li>
-                                <li data-i18n="ocr-l4"><strong>GUI Integration:</strong> Developed an interactive interface using GTK 3.0 and SDL for image loading and visualization.</li>
-                            </ul>
-                        </div>
-                        <a href="https://github.com/Spaghetto784/OCR---Projet-S3" target="_blank" class="text-sm font-medium text-white flex items-center gap-2 mt-auto">
-                            <i class="fab fa-github"></i> <span data-i18n="btn-source">Source Code</span>
-                        </a>
+                    <p class="text-slate-400 leading-relaxed text-sm mb-6" data-i18n="secureflow-summary">A production-inspired platform that makes secure delivery visible: an authenticated API, dashboard, database, containers, and automated security checks in one workflow.</p>
+                    <div class="grid grid-cols-5 gap-2 mb-6" aria-label="SecureFlow architecture">
+                        <div class="pipeline-step"><i class="fas fa-code"></i>React</div><div class="pipeline-step"><i class="fas fa-server"></i>FastAPI</div><div class="pipeline-step"><i class="fas fa-database"></i>Postgres</div><div class="pipeline-step"><i class="fab fa-docker"></i>Docker</div><div class="pipeline-step"><i class="fas fa-shield-halved"></i>CI scans</div>
                     </div>
-                </div>
-                <div class="glass-card rounded-2xl overflow-hidden group h-full flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-slate-900 flex items-center justify-center group-hover:scale-105 transition-transform">
-                            <span class="text-5xl font-bold text-white/10 font-display">MAZIC</span>
-                        </div>
-                        <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono text-purple-300 border border-purple-500/30">Python / Professional Dev Workflow</div>
+                    <div class="border-t border-white/10 pt-5 mt-auto">
+                        <p class="text-xs uppercase tracking-widest text-slate-500 mb-3" data-i18n="case-evidence">Evidence</p>
+                        <div class="flex flex-wrap gap-2 text-xs"><span class="case-tag">Semgrep</span><span class="case-tag">Gitleaks</span><span class="case-tag">Trivy</span><span class="case-tag">JWT + Argon2</span></div>
+                        <a href="https://github.com/Spaghetto784/SecureFlow" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-white hover:text-indigo-300 transition-colors"><i class="fab fa-github"></i><span data-i18n="case-view-source">View source & architecture</span><i class="fas fa-arrow-right text-xs"></i></a>
                     </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-purple-400">Mazic</h3>
-                        <p class="text-slate-400 text-sm mb-4 flex-1 italic leading-relaxed" data-i18n="mazic-p1">
-                            A cooperative game where mages traverse a magical labyrinth infested by shadow creatures to recover artifacts of power. Trapped souls haunt the halls, ready to prevent newcomers from escaping.
-                        </p>
-                        <div class="space-y-2 mb-6">
-                            <p class="text-xs text-slate-300 font-semibold uppercase tracking-widest flex items-center gap-2">
-                                <i class="fas fa-check-circle text-emerald-400"></i> <span data-i18n="mazic-core">Technical Excellence:</span>
-                            </p>
-                            <ul class="text-xs text-slate-500 list-disc pl-5 space-y-1">
-                                <li data-i18n="mazic-l1">Full Python implementation (93%) with strict dependency management (Poetry).</li>
-                                <li data-i18n="mazic-l2">Clean Architecture: Segregated modules for assets, source, and documentation.</li>
-                                <li data-i18n="mazic-l3">Governance: Adherence to Conventional Commits and Google-style docstrings.</li>
-                                <li data-i18n="mazic-l4">Quality: Integrated logging system and automated documentation (Pdoc3).</li>
-                            </ul>
-                        </div>
-                        <a href="https://github.com/Spaghetto784/Mazic" target="_blank" class="text-sm font-medium text-white flex items-center gap-2 mt-auto">
-                            <i class="fab fa-github"></i> <span data-i18n="btn-view">View Project</span>
-                        </a>
+                </article>
+                <article class="glass-card case-study-card rounded-2xl p-6 md:p-8 flex flex-col" data-aos="fade-up" data-aos-delay="80">
+                    <div class="flex justify-between gap-4 items-start mb-6">
+                        <div><div class="flex items-center gap-3 mb-3"><i class="fas fa-lock text-amber-300"></i><span class="text-xs uppercase tracking-[.18em] text-amber-200" data-i18n="case-internal">Professional work · details limited</span></div><h3 class="font-display text-2xl font-bold text-white">CyberTool</h3></div>
+                        <span class="case-tag">Go</span>
                     </div>
-                </div>
+                    <p class="text-slate-400 leading-relaxed text-sm mb-6" data-i18n="cybertool-summary">Internal security tooling built during my SFR Business apprenticeship to reduce repetitive operational work and support governance workflows.</p>
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-gears text-indigo-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="cybertool-s1">Automation</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-file-shield text-indigo-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="cybertool-s2">GRC support</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-chart-line text-indigo-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="cybertool-s3">Reporting</p></div>
+                    </div>
+                    <div class="border-t border-white/10 pt-5 mt-auto"><p class="text-xs uppercase tracking-widest text-slate-500 mb-3" data-i18n="case-context">Context</p><p class="text-sm text-slate-400" data-i18n="cybertool-context">The work is not public by design. This card focuses on the engineering scope without exposing internal systems or data.</p></div>
+                </article>
+                <article class="glass-card case-study-card rounded-2xl p-6 md:p-8 flex flex-col" data-aos="fade-up" data-aos-delay="120">
+                    <div class="flex justify-between gap-4 items-start mb-6"><div><div class="flex items-center gap-3 mb-3"><span class="signal-dot"></span><span class="text-xs uppercase tracking-[.18em] text-emerald-300" data-i18n="case-live">Public project</span></div><h3 class="font-display text-2xl font-bold text-white">wlkom-rootkit</h3></div><span class="case-tag">Linux kernel</span></div>
+                    <p class="text-slate-400 leading-relaxed text-sm mb-6" data-i18n="rootkit-summary">An EPITA SYS2 educational Linux kernel module project, built in an isolated two-VM lab to explore low-level systems, persistence concepts, and secure client/server communication.</p>
+                    <div class="grid grid-cols-3 gap-3 mb-6"><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fab fa-linux text-red-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="rootkit-s1">Kernel module</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-network-wired text-red-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="rootkit-s2">Private VM lab</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-terminal text-red-300 mb-3"></i><p class="text-xs text-slate-300">C + Python</p></div></div>
+                    <div class="border-t border-white/10 pt-5 mt-auto"><p class="text-xs uppercase tracking-widest text-slate-500 mb-3" data-i18n="case-evidence">Evidence</p><div class="flex flex-wrap gap-2 text-xs"><span class="case-tag" data-i18n="rootkit-tag1">QEMU isolation</span><span class="case-tag" data-i18n="rootkit-tag2">TCP protocol</span><span class="case-tag">Argon2id</span></div><a href="https://github.com/spaghetto1234/wlkom-rootkit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-white hover:text-red-300 transition-colors"><i class="fab fa-github"></i><span data-i18n="case-view-source">View source & architecture</span><i class="fas fa-arrow-right text-xs"></i></a></div>
+                </article>
+                <article class="glass-card case-study-card rounded-2xl p-6 md:p-8 flex flex-col" data-aos="fade-up" data-aos-delay="160">
+                    <div class="flex justify-between gap-4 items-start mb-6"><div><div class="flex items-center gap-3 mb-3"><i class="fas fa-calendar-plus text-violet-300"></i><span class="text-xs uppercase tracking-[.18em] text-violet-200" data-i18n="case-next">Starting September 2026</span></div><h3 class="font-display text-2xl font-bold text-white">CISO Assistant</h3></div><span class="case-tag">Open source GRC</span></div>
+                    <p class="text-slate-400 leading-relaxed text-sm mb-6" data-i18n="ciso-summary">Joining intuitem to contribute to CISO Assistant, an open-source GRC platform, at the crossroads of product engineering, cloud infrastructure, and security.</p>
+                    <div class="grid grid-cols-3 gap-3 mb-6"><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-code-branch text-violet-300 mb-3"></i><p class="text-xs text-slate-300">Django + Svelte</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-cloud text-violet-300 mb-3"></i><p class="text-xs text-slate-300">Multi-cloud</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-dharmachakra text-violet-300 mb-3"></i><p class="text-xs text-slate-300">Kubernetes</p></div></div>
+                    <div class="border-t border-white/10 pt-5 mt-auto"><p class="text-xs uppercase tracking-widest text-slate-500 mb-3" data-i18n="case-status">Status</p><p class="text-sm text-slate-400" data-i18n="ciso-status">This is an upcoming apprenticeship. I’ll add concrete contributions once the work begins.</p></div>
+                </article>
             </div>
         </div>
     </section>
@@ -490,13 +482,13 @@
                 "nav-cv": "Resume",
                 "hero-welcome": "👋 Hello, welcome to my portfolio",
                 "hero-name": "I am Matthieu Greiner",
-                "hero-title": "Cybersecurity Engineer.",
-                "hero-desc": "Engineering student at EPITA specializing in Cybersecurity. Bridging <span class='text-white font-medium'>technical depth</span> and <span class='text-white font-medium'>security engineering</span>, I am targeting <strong class='text-indigo-400'>SecOps & DevSecOps</strong> roles — with a long-term goal of working in the US.",
+                "hero-title": "DevSecOps & Security Engineer.",
+                "hero-desc": "Engineering student at EPITA building <span class='text-white font-medium'>secure cloud infrastructure</span>, <span class='text-white font-medium'>security automation</span>, and <strong class='text-indigo-400'>DevSecOps</strong> workflows.",
                 "hero-btn-work": "<i class='fab fa-github'></i> View Work",
                 "about-title": "About <span class='text-indigo-400'>Me</span>",
                 "about-p1": "Pursuing my Master's at <strong>EPITA</strong>, majoring in Cybersecurity.",
                 "about-p2": "Passionate about low-level programming, systems security and infrastructure — from kernel internals to cloud-native environments.",
-                "about-p3": "Currently building hands-on security engineering experience through apprenticeships at <strong>SFR Business</strong> and <strong>intuitem</strong>, with a long-term goal of breaking into the US security market.",
+                "about-p3": "Building hands-on security engineering experience through my apprenticeship at <strong>SFR Business</strong>, then joining <strong>intuitem</strong> in September 2026.",
                 "stat-cyber": "Cybersecurity",
                 "stat-intl": "Intl. Exchange",
                 "stat-goal": "Long-term SecOps Goal",
@@ -505,7 +497,7 @@
                 "exp-type-intl": "International Exchange",
                 "exp-type-edu": "Education",
                 "exp-pos-intuitem": "DevSecOps Engineer (Apprentice)",
-                "exp-desc-intuitem": "Contributing to <strong>CISO Assistant</strong>, the world's #1 open-source GRC platform. Full-stack development with Django & Svelte, DevSecOps, Kubernetes, and multi-cloud infrastructure.",
+                "exp-desc-intuitem": "Starting in September 2026, joining the team behind <strong>CISO Assistant</strong>, the open-source GRC platform, to work across full-stack engineering and DevSecOps.",
                 "exp-pos-sfr": "SSI Engineer (Apprentice)",
                 "exp-desc-sfr": "IT Governance, Risk Analysis, and internal AI development. Built security tooling in Go, automated GRC workflows, and contributed to NIS2/DORA compliance efforts.",
                 "exp-pos-chula": "Chulalongkorn University (Thailand)",
@@ -523,6 +515,29 @@
                 "proj-title": "Featured <span class='text-indigo-400'>Projects</span>",
                 "proj-subtitle": "Selection of academic and personal work.",
                 "proj-btn-all": "View GitHub <i class='fas fa-arrow-right text-sm'></i>",
+                "case-live": "Public project",
+                "case-internal": "Professional work · details limited",
+                "case-next": "Starting September 2026",
+                "case-evidence": "Evidence",
+                "case-context": "Context",
+                "case-status": "Status",
+                "case-view-source": "View source & architecture",
+                "secureflow-summary": "A production-inspired platform that makes secure delivery visible: an authenticated API, dashboard, database, containers, and automated security checks in one workflow.",
+                "cybertool-summary": "Internal security tooling built during my SFR Business apprenticeship to reduce repetitive operational work and support governance workflows.",
+                "cybertool-s1": "Automation",
+                "cybertool-s2": "GRC support",
+                "cybertool-s3": "Reporting",
+                "cybertool-context": "The work is not public by design. This card focuses on the engineering scope without exposing internal systems or data.",
+                "rootkit-summary": "An EPITA SYS2 educational Linux kernel module project, built in an isolated two-VM lab to explore low-level systems, persistence concepts, and secure client/server communication.",
+                "rootkit-s1": "Kernel module",
+                "rootkit-s2": "Private VM lab",
+                "rootkit-tag1": "QEMU isolation",
+                "rootkit-tag2": "TCP protocol",
+                "budgify-summary": "A privacy-first personal finance app that keeps sensitive data and adaptive categorization on-device.",
+                "budgify-local": "On-device",
+                "budgify-tag": "Local ML",
+                "ciso-summary": "Joining intuitem to contribute to CISO Assistant, an open-source GRC platform, at the crossroads of product engineering, cloud infrastructure, and security.",
+                "ciso-status": "This is an upcoming apprenticeship. I’ll add concrete contributions once the work begins.",
                 "ocr-p1": "A robust software suite developed to solve word search puzzles directly from images. It bridges low-level system programming with advanced character recognition and grid-solving logic.",
                 "ocr-core": "Technical Core:",
                 "ocr-l1": "<strong>96%+ C Implementation:</strong> High-performance code with optimized Makefile management.",
@@ -563,22 +578,22 @@
                 "nav-cv": "Mon CV",
                 "hero-welcome": "👋 Bonjour, bienvenue sur mon portfolio",
                 "hero-name": "Je suis Matthieu Greiner",
-                "hero-title": "Ingénieur Cybersécurité.",
-                "hero-desc": "Étudiant ingénieur à l'EPITA spécialisé en Cybersécurité. Combinant <span class='text-white font-medium'>profondeur technique</span> et <span class='text-white font-medium'>ingénierie de la sécurité</span>, je vise des postes <strong class='text-indigo-400'>SecOps & DevSecOps</strong> — avec un objectif à long terme de travailler aux États-Unis.",
+                "hero-title": "Ingénieur DevSecOps & Sécurité.",
+                "hero-desc": "Étudiant ingénieur à l'EPITA construisant des <span class='text-white font-medium'>infrastructures cloud sécurisées</span>, de l'<span class='text-white font-medium'>automatisation de sécurité</span> et des workflows <strong class='text-indigo-400'>DevSecOps</strong>.",
                 "hero-btn-work": "<i class='fab fa-github'></i> Voir mes travaux",
                 "about-title": "À propos de <span class='text-indigo-400'>moi</span>",
                 "about-p1": "Actuellement en Master à l'<strong>EPITA</strong>, majeur Cybersécurité.",
                 "about-p2": "Passionné par la programmation bas-niveau, la sécurité système et les infrastructures — des internals kernel aux environnements cloud-native.",
-                "about-p3": "Je construis une expérience concrète en ingénierie de la sécurité via mes alternances chez <strong>SFR Business</strong> et <strong>intuitem</strong>, avec un objectif à long terme de m'imposer sur le marché de la sécurité aux États-Unis.",
+                "about-p3": "Je construis une expérience concrète en ingénierie de la sécurité chez <strong>SFR Business</strong>, avant de rejoindre <strong>intuitem</strong> en septembre 2026.",
                 "stat-cyber": "Cybersécurité",
                 "stat-intl": "Échange Intl.",
-                "stat-goal": "Objectif SecOps US",
+                "stat-goal": "Objectif SecOps long terme",
                 "exp-title": "Mon <span class='text-gradient'>Parcours</span>",
                 "exp-type-appr": "Alternance",
                 "exp-type-intl": "Échange International",
                 "exp-type-edu": "Éducation",
                 "exp-pos-intuitem": "Ingénieur DevSecOps (Apprenti)",
-                "exp-desc-intuitem": "Contribution à <strong>CISO Assistant</strong>, la plateforme GRC open-source #1 au monde. Développement full-stack Django & Svelte, DevSecOps, Kubernetes et infrastructure multi-cloud.",
+                "exp-desc-intuitem": "À partir de septembre 2026, intégration de l'équipe derrière <strong>CISO Assistant</strong>, plateforme GRC open-source, pour travailler entre développement full-stack et DevSecOps.",
                 "exp-pos-sfr": "Ingénieur SSI (Apprenti)",
                 "exp-desc-sfr": "Gouvernance IT, analyse de risques et développement IA interne. Outillage sécurité en Go, automatisation des workflows GRC, contribution à la conformité NIS2/DORA.",
                 "exp-pos-chula": "Université Chulalongkorn (Thaïlande)",
@@ -596,6 +611,29 @@
                 "proj-title": "Projets <span class='text-indigo-400'>Phare</span>",
                 "proj-subtitle": "Sélection de travaux académiques et personnels.",
                 "proj-btn-all": "Voir mon GitHub <i class='fas fa-arrow-right text-sm'></i>",
+                "case-live": "Projet public",
+                "case-internal": "Expérience pro · détails limités",
+                "case-next": "À partir de septembre 2026",
+                "case-evidence": "Preuves techniques",
+                "case-context": "Contexte",
+                "case-status": "Statut",
+                "case-view-source": "Voir le code & l'architecture",
+                "secureflow-summary": "Une plateforme inspirée de la production qui rend visible la livraison sécurisée : API authentifiée, dashboard, base de données, conteneurs et contrôles automatisés dans un même workflow.",
+                "cybertool-summary": "Outillage sécurité interne construit pendant mon alternance chez SFR Business pour réduire les tâches opérationnelles répétitives et soutenir les workflows de gouvernance.",
+                "cybertool-s1": "Automatisation",
+                "cybertool-s2": "Support GRC",
+                "cybertool-s3": "Reporting",
+                "cybertool-context": "Ce travail n'est pas public par nature. Cette carte présente le périmètre d'ingénierie sans exposer de systèmes ou de données internes.",
+                "rootkit-summary": "Un projet pédagogique EPITA SYS2 autour d'un module kernel Linux, construit dans un laboratoire isolé à deux VM pour explorer les systèmes bas niveau, les concepts de persistance et la communication client/serveur sécurisée.",
+                "rootkit-s1": "Module kernel",
+                "rootkit-s2": "Lab VM privé",
+                "rootkit-tag1": "Isolation QEMU",
+                "rootkit-tag2": "Protocole TCP",
+                "budgify-summary": "Une application de finances personnelles centrée sur la confidentialité, qui conserve les données sensibles et la catégorisation adaptative sur l'appareil.",
+                "budgify-local": "Sur l'appareil",
+                "budgify-tag": "ML local",
+                "ciso-summary": "Je rejoins intuitem pour contribuer à CISO Assistant, plateforme GRC open-source, au croisement du produit, de l'infrastructure cloud et de la sécurité.",
+                "ciso-status": "Cette alternance arrive prochainement. J'ajouterai des contributions concrètes lorsque le travail aura commencé.",
                 "ocr-p1": "Une suite logicielle robuste développée pour résoudre des mots fléchés directement à partir d'images. Elle lie la programmation système bas-niveau avec la reconnaissance de caractères avancée.",
                 "ocr-core": "Cœur Technique :",
                 "ocr-l1": "<strong>Implémentation C (96%+) :</strong> Code haute performance avec gestion optimisée via Makefile.",
