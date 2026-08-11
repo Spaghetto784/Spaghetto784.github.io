@@ -119,33 +119,37 @@
                         <span class="text-indigo-400 transition-colors group-hover:text-indigo-300">&lt;</span>M. Greiner<span class="text-indigo-400 transition-colors group-hover:text-indigo-300">/&gt;</span>
                     </span>
                 </a>
-                <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <div class="hidden lg:flex items-center space-x-5 text-sm font-medium text-slate-300">
                     <a href="#about" class="hover:text-white transition-colors" data-i18n="nav-about">About</a>
                     <a href="#experience" class="hover:text-white transition-colors" data-i18n="nav-exp">Experience</a>
                     <a href="#skills" class="hover:text-white transition-colors" data-i18n="nav-skills">Skills</a>
                     <a href="#projects" class="hover:text-white transition-colors" data-i18n="nav-projects">Projects</a>
+                    <a href="now.html" class="hover:text-white transition-colors" data-i18n="nav-now">Now</a>
                     <div class="glass-card !bg-white/5 !border-white/10 px-3 py-1 rounded-full flex items-center gap-2 lang-toggle">
                         <span id="btn-en" class="lang-active" onclick="setLanguage('en')">EN</span>
                         <span class="text-slate-600">|</span>
                         <span id="btn-fr" class="lang-inactive" onclick="setLanguage('fr')">FR</span>
                     </div>
-                    <a href="mgr_resume_eng.pdf" id="cv-link" target="_blank" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2">
-                        <i class="fas fa-file-pdf"></i> <span data-i18n="nav-cv">Resume</span>
+                    <a href="mgr_resume_eng.pdf" id="cv-link" target="_blank" rel="noopener noreferrer" aria-label="Resume" class="w-9 h-9 inline-flex items-center justify-center rounded-full border border-white/10 text-slate-300 hover:text-white hover:border-indigo-400/50 transition-colors"><i class="fas fa-file-pdf"></i></a>
+                    <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2">
+                        <i class="far fa-calendar-check"></i> <span data-i18n="nav-book">Book a chat</span>
                     </a>
                 </div>
-                <button class="md:hidden text-2xl text-slate-300 hover:text-white" onclick="toggleMenu()">
+                <button class="lg:hidden text-2xl text-slate-300 hover:text-white" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-card border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full glass-card border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
             <a href="#about" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-about">About</a>
             <a href="#experience" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-exp">Experience</a>
             <a href="#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
             <a href="#projects" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-projects">Projects</a>
+            <a href="now.html" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-now">Now</a>
             <a href="mgr_resume_eng.pdf" id="cv-link-mobile" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()">
                 <span data-i18n="nav-cv">Resume</span>
             </a>
+            <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" data-i18n="nav-book">Book a chat</a>
         </div>
     </nav>
 
@@ -450,15 +454,18 @@
             </div>
             <div class="mt-16 text-center">
                 <p class="text-slate-400 mb-6" data-i18n="contact-chat">Want to chat about security, music, or code?</p>
-                <a href="mailto:greinermatthieu635@gmail.com" class="inline-flex items-center gap-3 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:text-white transition-all" data-i18n="btn-email">
-                    <i class="far fa-envelope"></i> Send me an email
-                </a>
+                <p class="text-sm text-slate-500 mb-5"><i class="fas fa-location-dot text-indigo-400 mr-2"></i><span data-i18n="contact-timezone">Paris, France · UTC+2</span></p>
+                <div class="flex flex-col sm:flex-row justify-center gap-3">
+                    <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full text-white transition-all shadow-lg shadow-indigo-500/20" data-i18n="btn-book"><i class="far fa-calendar-check"></i> Book a chat</a>
+                    <a href="mailto:greinermatthieu635@gmail.com" class="inline-flex items-center justify-center gap-3 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:text-white transition-all" data-i18n="btn-email"><i class="far fa-envelope"></i> Send me an email</a>
+                    <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:text-white transition-all"><i class="fab fa-linkedin text-blue-400"></i> LinkedIn</a>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="py-8 text-center text-slate-600 text-sm border-t border-white/5 bg-black/40">
-        <p>© 2026 Matthieu Greiner. <span data-i18n="footer-built">Built with</span> <i class="fas fa-heart text-red-500 mx-1"></i> <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" class="hover:text-white transition-colors underline underline-offset-4 decoration-indigo-500/50">GitHub Pages</a>.</p>
+        <p>© 2026 Matthieu Greiner. <span data-i18n="footer-built">Built with</span> <i class="fas fa-heart text-red-500 mx-1"></i> <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline underline-offset-4 decoration-indigo-500/50">GitHub Pages</a> · <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline underline-offset-4 decoration-indigo-500/50">LinkedIn</a>.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -479,7 +486,9 @@
                 "nav-exp": "Experience",
                 "nav-skills": "Skills",
                 "nav-projects": "Projects",
+                "nav-now": "Now",
                 "nav-cv": "Resume",
+                "nav-book": "Book a chat",
                 "hero-welcome": "👋 Hello, welcome to my portfolio",
                 "hero-name": "I am Matthieu Greiner",
                 "hero-title": "DevSecOps & Security Engineer.",
@@ -566,6 +575,8 @@
                 "hob-title-ctf": "CTF & Competitions",
                 "hob-desc-ctf": "Keeping an eye on cybersecurity competitions and CTF events, sharpening offensive and defensive skills beyond the classroom.",
                 "contact-chat": "Want to chat about security, music, or code?",
+                "contact-timezone": "Paris, France · UTC+2",
+                "btn-book": "<i class='far fa-calendar-check'></i> Book a chat",
                 "btn-email": "<i class='far fa-envelope'></i> Send me an email",
                 "footer-built": "Built with",
                 "footer-and": "and C code. Hosted on"
@@ -575,7 +586,9 @@
                 "nav-exp": "Parcours",
                 "nav-skills": "Compétences",
                 "nav-projects": "Projets",
+                "nav-now": "Maintenant",
                 "nav-cv": "Mon CV",
+                "nav-book": "Réserver un échange",
                 "hero-welcome": "👋 Bonjour, bienvenue sur mon portfolio",
                 "hero-name": "Je suis Matthieu Greiner",
                 "hero-title": "Ingénieur DevSecOps & Sécurité.",
@@ -662,6 +675,8 @@
                 "hob-title-ctf": "CTF & Concours",
                 "hob-desc-ctf": "Veille active sur les compétitions de cybersécurité et les CTF, pour affiner les compétences offensives et défensives au-delà du cursus.",
                 "contact-chat": "Envie de discuter cyber, musique ou code ?",
+                "contact-timezone": "Paris, France · UTC+2",
+                "btn-book": "<i class='far fa-calendar-check'></i> Réserver un échange",
                 "btn-email": "<i class='far fa-envelope'></i> M'envoyer un email",
                 "footer-built": "Conçu avec",
                 "footer-and": "et du code C. Hébergé sur"

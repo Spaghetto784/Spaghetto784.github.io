@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now | Matthieu Greiner</title>
+    <meta name="description" content="What Matthieu Greiner is currently building, learning, and preparing for.">
+    <link rel="icon" type="image/png" href="favicon-512.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="responsive-enhancements.css">
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],display:['Space Grotesk','sans-serif']},colors:{accent:'#6366f1',dark:'#0f172a'}}}}</script>
+    <style>
+        body { background-color:#0f172a; background-image:radial-gradient(at 0% 0%,rgba(99,102,241,.15) 0,transparent 50%),radial-gradient(at 100% 100%,rgba(56,189,248,.12) 0,transparent 50%); background-attachment:fixed; color:#e2e8f0; }
+        .glass-card { background:rgba(255,255,255,.05); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.1); transition:all .3s ease; }
+        .glass-card:hover { border-color:rgba(99,102,241,.5); transform:translateY(-4px); }
+        .text-gradient { background:linear-gradient(to right,#818cf8,#c084fc,#38bdf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .now-line { position:relative; padding-left:2rem; }
+        .now-line::before { content:''; position:absolute; left:.25rem; top:.4rem; bottom:-2rem; width:1px; background:rgba(255,255,255,.1); }
+        .now-line:last-child::before { display:none; }
+        .now-dot { position:absolute; left:0; top:.25rem; width:.65rem; height:.65rem; border-radius:9999px; background:#818cf8; box-shadow:0 0 0 .32rem rgba(129,140,248,.12); }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+    <nav class="fixed w-full z-50 top-0" id="navbar">
+        <div class="glass-card !border-x-0 !border-t-0 !rounded-none !bg-slate-900/80">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="index.html" class="group flex items-center gap-3 font-display font-bold text-2xl tracking-tight hover:text-white">
+                    <div class="relative w-10 h-10 shrink-0 rounded-full overflow-hidden border-2 border-indigo-500/30"><img src="profile.webp" alt="Matthieu Greiner" width="720" height="1080" class="w-full h-full object-cover scale-[1.7] object-[center_15%]"></div>
+                    <span><span class="text-indigo-400">&lt;</span>M. Greiner<span class="text-indigo-400">/&gt;</span></span>
+                </a>
+                <div class="hidden md:flex items-center gap-5 text-sm font-medium text-slate-300">
+                    <a href="index.html" class="hover:text-white transition-colors">Portfolio</a>
+                    <a href="now.html" class="text-white">Now</a>
+                    <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
+                    <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30"><i class="far fa-calendar-check mr-2"></i>Book a chat</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-6 pt-36 pb-20">
+        <div class="mb-14">
+            <p class="text-indigo-300 text-sm font-medium uppercase tracking-[.22em] mb-4">Updated · August 2026</p>
+            <h1 class="font-display text-5xl md:text-6xl font-bold mb-5">What I’m <span class="text-gradient">doing now.</span></h1>
+            <p class="text-slate-400 text-lg leading-relaxed max-w-2xl">A living snapshot of the work, learning, and projects that currently have my attention.</p>
+        </div>
+
+        <section class="glass-card rounded-2xl p-7 md:p-9 mb-8">
+            <div class="flex items-center gap-3 mb-6"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_0_5px_rgba(52,211,153,.12)]"></span><span class="text-sm text-emerald-300 font-medium">Current focus</span></div>
+            <div class="space-y-8">
+                <div class="now-line"><span class="now-dot"></span><h2 class="font-display text-xl font-bold text-white mb-2">SecureFlow</h2><p class="text-slate-400 leading-relaxed">Evolving a production-inspired DevSecOps platform around secure CI/CD, containerized services, and security findings that are useful to developers.</p></div>
+                <div class="now-line"><span class="now-dot"></span><h2 class="font-display text-xl font-bold text-white mb-2">Preparing for intuitem</h2><p class="text-slate-400 leading-relaxed">Starting a DevSecOps apprenticeship in September, with CISO Assistant, cloud infrastructure, Kubernetes, and full-stack engineering as key areas of focus.</p></div>
+                <div class="now-line"><span class="now-dot"></span><h2 class="font-display text-xl font-bold text-white mb-2">Learning in public</h2><p class="text-slate-400 leading-relaxed">Deepening my Linux, network security, cloud, and automation skills through hands-on projects and technical experimentation.</p></div>
+            </div>
+        </section>
+
+        <section class="grid sm:grid-cols-2 gap-5 mb-12">
+            <a href="https://github.com/Spaghetto784/SecureFlow" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 group"><i class="fab fa-github text-indigo-300 text-xl mb-4"></i><h2 class="font-display text-lg font-bold text-white mb-2">Follow SecureFlow</h2><p class="text-sm text-slate-400">See the current architecture and source.</p></a>
+            <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 group"><i class="far fa-calendar-check text-indigo-300 text-xl mb-4"></i><h2 class="font-display text-lg font-bold text-white mb-2">Book a chat</h2><p class="text-sm text-slate-400">Paris, France · UTC+2.</p></a>
+        </section>
+
+        <div class="text-center"><a href="index.html" class="text-indigo-300 hover:text-white transition-colors"><i class="fas fa-arrow-left mr-2 text-xs"></i>Back to portfolio</a></div>
+    </main>
+</body>
+</html>
