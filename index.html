@@ -716,6 +716,7 @@
         };
 
         function setLanguage(lang) {
+            try { localStorage.setItem('portfolioLanguage', lang); } catch (error) { /* Storage can be unavailable in private contexts. */ }
             document.getElementById('btn-en').className = lang === 'en' ? 'lang-active' : 'lang-inactive';
             document.getElementById('btn-fr').className = lang === 'fr' ? 'lang-active' : 'lang-inactive';
 
@@ -736,6 +737,8 @@
 
             AOS.refresh();
         }
+
+        try { setLanguage(localStorage.getItem('portfolioLanguage') || 'en'); } catch (error) { setLanguage('en'); }
     </script>
     <script src="responsive-enhancements.js"></script>
 </body>
