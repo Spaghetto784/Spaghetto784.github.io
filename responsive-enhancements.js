@@ -49,7 +49,7 @@
             icon.classList.toggle('fa-bars', !isOpen);
             icon.classList.toggle('fa-xmark', isOpen);
         }
-        document.body.style.overflow = isOpen && window.innerWidth < 768 ? 'hidden' : '';
+        document.body.style.overflow = isOpen && window.innerWidth < 1280 ? 'hidden' : '';
     };
 
     const originalToggleMenu = window.toggleMenu;
@@ -77,7 +77,7 @@
     });
 
     window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) closeMenu();
+        if (window.innerWidth >= 1280) closeMenu();
     }, { passive: true });
 
     const updateNavbar = () => {

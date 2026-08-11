@@ -110,7 +110,7 @@
 
     <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
         <div class="glass-card !bg-opacity-80 !border-0 !backdrop-blur-md border-b border-white/10">
-            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative">
                 <a href="#" class="group flex items-center gap-3 font-display font-bold text-2xl tracking-tight transition-colors hover:text-white">
                     <div class="relative w-10 h-10 shrink-0 rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.3)] group-hover:border-indigo-400 transition-all">
                         <img src="profile.webp" alt="Matthieu Greiner" width="720" height="1080" class="w-full h-full object-cover scale-[1.7] object-[center_15%]">
@@ -119,12 +119,14 @@
                         <span class="text-indigo-400 transition-colors group-hover:text-indigo-300">&lt;</span>M. Greiner<span class="text-indigo-400 transition-colors group-hover:text-indigo-300">/&gt;</span>
                     </span>
                 </a>
-                <div class="hidden lg:flex items-center space-x-5 text-sm font-medium text-slate-300">
+                <div class="hidden xl:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6 text-sm font-medium text-slate-300">
                     <a href="#about" class="hover:text-white transition-colors" data-i18n="nav-about">About</a>
                     <a href="#experience" class="hover:text-white transition-colors" data-i18n="nav-exp">Experience</a>
                     <a href="#skills" class="hover:text-white transition-colors" data-i18n="nav-skills">Skills</a>
                     <a href="#projects" class="hover:text-white transition-colors" data-i18n="nav-projects">Projects</a>
                     <a href="now.html" class="hover:text-white transition-colors" data-i18n="nav-now">Now</a>
+                </div>
+                <div class="hidden xl:flex items-center gap-3 text-sm font-medium text-slate-300">
                     <div class="glass-card !bg-white/5 !border-white/10 px-3 py-1 rounded-full flex items-center gap-2 lang-toggle">
                         <span id="btn-en" class="lang-active" onclick="setLanguage('en')">EN</span>
                         <span class="text-slate-600">|</span>
@@ -135,12 +137,12 @@
                         <i class="far fa-calendar-check"></i> <span data-i18n="nav-book">Book a chat</span>
                     </a>
                 </div>
-                <button class="lg:hidden text-2xl text-slate-300 hover:text-white" onclick="toggleMenu()">
+                <button class="xl:hidden text-2xl text-slate-300 hover:text-white" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full glass-card border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
+        <div id="mobile-menu" class="hidden xl:hidden absolute top-full left-0 w-full glass-card border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
             <a href="#about" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-about">About</a>
             <a href="#experience" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-exp">Experience</a>
             <a href="#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
