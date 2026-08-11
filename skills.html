@@ -23,28 +23,13 @@
         .skill-card { min-height:15.5rem; display:flex; flex-direction:column; }
         .skill-card p { line-height:1.55; }
         .section-orb { position:absolute; width:15rem; height:15rem; border-radius:999px; filter:blur(76px); opacity:.15; pointer-events:none; }
-        .lang-toggle { font-family:'Space Grotesk',sans-serif; font-size:.75rem; letter-spacing:.08em; }
-        .lang-toggle button { color:#64748b; transition:color .2s ease; }
-        .lang-toggle button:hover, .lang-toggle button.lang-active { color:#fff; }
     </style>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
     <nav class="fixed w-full z-50 top-0" id="navbar">
         <div class="glass-card !border-x-0 !border-t-0 !rounded-none !bg-slate-900/80">
-            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="index.html" class="group flex items-center gap-3 font-display font-bold text-2xl tracking-tight hover:text-white transition-colors">
-                    <div class="relative w-10 h-10 shrink-0 rounded-full overflow-hidden border-2 border-indigo-500/30"><img src="profile.webp" alt="Matthieu Greiner" width="720" height="1080" class="w-full h-full object-cover scale-[1.7] object-[center_15%]"></div>
-                    <span><span class="text-indigo-400">&lt;</span>M. Greiner<span class="text-indigo-400">/&gt;</span></span>
-                </a>
-                <div class="hidden md:flex items-center gap-5 text-sm font-medium text-slate-300">
-                    <a href="index.html" class="hover:text-white transition-colors" id="nav-portfolio">Portfolio</a>
-                    <a href="now.html" class="hover:text-white transition-colors" id="nav-now">Now</a>
-                    <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
-                    <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30"><i class="far fa-calendar-check mr-2"></i><span id="nav-book">Book a chat</span></a>
-                </div>
-                <div class="glass-card px-2.5 py-1.5 rounded-full flex items-center gap-2 lang-toggle ml-4" aria-label="Language selector">
-                    <button type="button" id="btn-en" class="lang-active" aria-pressed="true">EN</button><span class="text-slate-600">|</span><button type="button" id="btn-fr" aria-pressed="false">FR</button>
-                </div>
+            <div class="max-w-6xl mx-auto px-6 py-3 flex justify-end">
+                <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-full transition-all shadow-lg shadow-indigo-500/30"><i class="far fa-calendar-check mr-2"></i><span id="nav-book">Book a chat</span></a>
             </div>
         </div>
     </nav>
@@ -135,16 +120,14 @@
             const t = content[lang] || content.en;
             try { localStorage.setItem('portfolioLanguage', lang); } catch (error) { /* no-op */ }
             document.documentElement.lang = lang;
-            document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
-            document.getElementById('btn-fr').classList.toggle('lang-active', lang === 'fr');
-            document.getElementById('btn-en').setAttribute('aria-pressed', String(lang === 'en'));
-            document.getElementById('btn-fr').setAttribute('aria-pressed', String(lang === 'fr'));
+            document.getElementById('btn-en')?.classList.toggle('lang-active', lang === 'en');
+            document.getElementById('btn-fr')?.classList.toggle('lang-active', lang === 'fr');
+            document.getElementById('btn-en')?.setAttribute('aria-pressed', String(lang === 'en'));
+            document.getElementById('btn-fr')?.setAttribute('aria-pressed', String(lang === 'fr'));
             setText('nav-portfolio', t.navPortfolio); setText('nav-now', t.navNow); setText('nav-book', t.navBook); setText('back-link', t.back); setText('hero-kicker', t.kicker); setText('hero-title', t.title, true); setText('hero-copy', t.hero); setText('cta-kicker', t.ctaKicker); setText('cta-title', t.ctaTitle); setText('cta-copy', t.cta); setText('cta-book', t.ctaBook);
             document.querySelectorAll('section[aria-labelledby]').forEach((section, index) => { const [eyebrow, title] = t.sections[index]; section.querySelector('p').textContent = eyebrow; section.querySelector('h2').textContent = title; });
             document.querySelectorAll('.skill-card').forEach((card, index) => { const [type, title, context, description] = t.cards[index]; card.querySelector('.skill-type').textContent = type; card.querySelector('h3').textContent = title; const paragraphs = card.querySelectorAll('p'); paragraphs[0].textContent = context; paragraphs[1].textContent = description; });
         }
-        document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
-        document.getElementById('btn-fr').addEventListener('click', () => setLanguage('fr'));
         let initialLanguage = 'en'; try { initialLanguage = localStorage.getItem('portfolioLanguage') || 'en'; } catch (error) { /* no-op */ } setLanguage(initialLanguage);
     </script>
 </body>
