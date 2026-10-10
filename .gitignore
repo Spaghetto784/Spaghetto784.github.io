@@ -1,1 +1,4 @@
 .superdesign/tmp/
+
+.DS_Store
+graphify-out/
