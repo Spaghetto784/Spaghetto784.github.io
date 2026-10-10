@@ -1,137 +1,380 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Technical Arsenal | Matthieu Greiner</title>
-    <meta name="description" content="Matthieu Greiner's technical arsenal: DevSecOps, systems security, software engineering and GRC.">
+    <meta name="description" content="Matthieu Greiner’s technical arsenal: DevSecOps, systems security, malware research, software engineering and GRC.">
+    <meta name="author" content="Matthieu Greiner">
+    <meta name="theme-color" content="#0f172a">
     <link rel="icon" type="image/png" href="favicon-512.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="responsive-enhancements.css">
     <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] }, colors: { accent: '#6366f1', dark: '#0f172a' } } } }
+        document.documentElement.classList.add('js');
+        try {
+            var stored = localStorage.getItem('portfolioLanguage');
+            if (stored === 'fr' || (!stored && (navigator.language || '').toLowerCase().indexOf('fr') === 0)) document.documentElement.classList.add('fr-pending');
+        } catch (e) {}
     </script>
-    <style>
-        body { background-color:#0f172a; background-image:radial-gradient(at 0% 0%,rgba(99,102,241,.15) 0,transparent 50%),radial-gradient(at 100% 0%,rgba(168,85,247,.14) 0,transparent 50%),radial-gradient(at 100% 100%,rgba(56,189,248,.12) 0,transparent 50%); background-attachment:fixed; color:#e2e8f0; }
-        .glass-card { background:rgba(255,255,255,.05); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.1); transition:all .3s ease; }
-        .glass-card:hover { border-color:rgba(129,140,248,.55); transform:translateY(-4px); box-shadow:0 16px 36px -20px rgba(0,0,0,.9); }
-        .text-gradient { background:linear-gradient(to right,#818cf8,#c084fc,#38bdf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        .skill-icon { width:3.25rem; height:3.25rem; display:grid; place-items:center; border-radius:1rem; font-size:1.4rem; flex-shrink:0; }
-        .skill-type { display:inline-flex; align-items:center; border:1px solid rgba(255,255,255,.11); background:rgba(255,255,255,.045); border-radius:999px; padding:.28rem .6rem; color:#94a3b8; font:600 .63rem/1 'Space Grotesk',sans-serif; letter-spacing:.08em; text-transform:uppercase; }
-        .skill-card { min-height:15.5rem; display:flex; flex-direction:column; }
-        .skill-card p { line-height:1.55; }
-        .section-orb { position:absolute; width:15rem; height:15rem; border-radius:999px; filter:blur(76px); opacity:.15; pointer-events:none; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@500..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="site.css">
 </head>
-<body class="antialiased selection:bg-indigo-500 selection:text-white">
-    <nav class="fixed w-full z-50 top-0" id="navbar">
-        <div class="glass-card !border-x-0 !border-t-0 !rounded-none !bg-slate-900/80">
-            <div class="max-w-6xl mx-auto px-6 py-3 flex justify-end">
-                <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-full transition-all shadow-lg shadow-indigo-500/30"><i class="far fa-calendar-check mr-2"></i><span id="nav-book">Book a chat</span></a>
+<body data-page="skills">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <nav class="nav" aria-label="Primary">
+        <div class="container nav-inner">
+            <a class="brand" href="index.html" aria-label="Matthieu Greiner">
+                <span class="avatar"><img src="profile.webp" alt="" width="720" height="1080"></span>
+                <span class="brand-name"><b>&lt;</b>M. Greiner<b>/&gt;</b></span>
+            </a>
+            <div class="nav-links">
+                <span class="nav-pill" aria-hidden="true"></span>
+                <a href="index.html#about" data-nav="about" data-i18n="nav-about">About</a>
+                <a href="index.html#experience" data-nav="experience" data-i18n="nav-exp">Experience</a>
+                <a href="skills.html" data-nav="skills" data-i18n="nav-skills">Skills</a>
+                <a href="projects.html" data-nav="projects" data-i18n="nav-projects">Projects</a>
+                <a href="now.html" data-nav="now" data-i18n="nav-now">Now</a>
+            </div>
+            <div class="nav-actions">
+                <div class="lang" role="group" aria-label="Language" data-i18n-attr="aria-label:nav-lang">
+                    <span class="lang-thumb" aria-hidden="true"></span>
+                    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+                    <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+                </div>
+                <a class="icon-btn nav-wide" data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume" data-i18n-attr="aria-label:nav-cv"><i class="fas fa-file-pdf"></i></a>
+                <a class="btn btn-accent btn-sm nav-wide" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="nav-book">Book a chat</span></a>
+                <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-i18n-attr="aria-label:nav-menu"><span></span><span></span></button>
             </div>
         </div>
     </nav>
 
-    <main class="overflow-hidden">
-        <header class="max-w-6xl mx-auto px-6 pt-36 pb-20 md:pt-44 md:pb-28">
-            <a href="index.html#skills" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-indigo-300 transition-colors mb-9"><i class="fas fa-arrow-left text-xs"></i><span id="back-link">Back to portfolio</span></a>
-            <div class="max-w-3xl">
-                <p class="text-indigo-300 text-xs font-display font-bold tracking-[.2em] uppercase mb-5" id="hero-kicker">Technical Arsenal</p>
-                <h1 class="font-display text-5xl md:text-7xl font-bold leading-[.98] tracking-tight mb-7" id="hero-title">The stack behind <span class="text-gradient">the security.</span></h1>
-                <p class="text-slate-400 text-lg md:text-xl leading-relaxed" id="hero-copy">A practical map of the languages, systems and governance methods I use — from low-level engineering and automation to security-by-design and GRC work.</p>
+    <div class="menu" id="menu" aria-label="Menu" data-i18n-attr="aria-label:nav-menu">
+        <a href="index.html#about" data-nav="about"><span data-i18n="nav-about">About</span><i class="fas fa-chevron-right"></i></a>
+        <a href="index.html#experience" data-nav="experience"><span data-i18n="nav-exp">Experience</span><i class="fas fa-chevron-right"></i></a>
+        <a href="skills.html" data-nav="skills"><span data-i18n="nav-skills">Skills</span><i class="fas fa-chevron-right"></i></a>
+        <a href="projects.html" data-nav="projects"><span data-i18n="nav-projects">Projects</span><i class="fas fa-chevron-right"></i></a>
+        <a href="now.html" data-nav="now"><span data-i18n="nav-now">Now</span><i class="fas fa-chevron-right"></i></a>
+        <a data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer"><span data-i18n="nav-resume">Resume</span><i class="fas fa-arrow-up-right-from-square"></i></a>
+        <div class="menu-sep"></div>
+        <a class="btn btn-accent" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="nav-book">Book a chat</span></a>
+    </div>
+
+    <main id="main">
+        <header class="container page-head">
+            <a class="back-link" href="index.html#skills"><i class="fas fa-arrow-left"></i><span data-i18n="back-skills">Back to portfolio</span></a>
+            <div style="max-width: 48rem">
+                <p class="eyebrow" data-i18n="sk-eyebrow">Technical arsenal</p>
+                <h1 class="page-title" data-i18n="sk-title">The stack behind <span class="grad">the security.</span></h1>
+                <p class="lead" data-i18n="sk-lead">A practical map of the languages, systems and governance methods I use — from low-level engineering and automation to security-by-design, malware research and GRC.</p>
             </div>
+            <nav class="jump" aria-label="Sections"><a class="c-cyan" href="#devsecops" data-i18n="sec-devsecops-t">DevSecOps &amp; Automation</a><a class="c-violet" href="#systems" data-i18n="sec-systems-t">Security &amp; Systems</a><a class="c-red" href="#malware" data-i18n="sec-malware-t">Malware Research</a><a class="c-emerald" href="#software" data-i18n="sec-software-t">Software &amp; Web</a><a class="c-indigo" href="#grc" data-i18n="sec-grc-t">Governance, Risk &amp; Compliance</a></nav>
         </header>
 
-        <div class="max-w-6xl mx-auto px-6 pb-24 space-y-24 md:space-y-32">
-            <section class="relative" aria-labelledby="devsecops-title">
-                <div class="section-orb bg-cyan-400 right-0 top-0"></div>
-                <div class="flex items-start gap-4 mb-9">
-                    <div class="skill-icon bg-cyan-500/10 text-cyan-300"><i class="fas fa-cloud"></i></div>
-                    <div><p class="text-cyan-300 text-xs font-display font-bold uppercase tracking-[.16em] mb-1">Build, ship, automate</p><h2 id="devsecops-title" class="font-display text-3xl font-bold text-white">DevSecOps &amp; Automation</h2></div>
+        <div class="container" style="padding-top: 1rem">
+            <section class="skill-section c-cyan" id="devsecops" aria-labelledby="devsecops-title">
+                <div class="skill-section-head reveal">
+                    <span class="ico"><i class="fas fa-cloud"></i></span>
+                    <div><p class="eyebrow" data-i18n="sec-devsecops-e">Build, ship, automate</p><h2 id="devsecops-title" data-i18n="sec-devsecops-t">DevSecOps &amp; Automation</h2></div>
                 </div>
-                <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-blue-500/10 text-blue-300"><i class="fab fa-docker"></i></div><span class="skill-type">Containers</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Docker</h3><p class="text-xs text-cyan-300 uppercase tracking-wider mb-3">SecureFlow</p><p class="text-sm text-slate-400">Containerized services and a production-inspired secure delivery workflow.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-slate-200/10 text-slate-100"><i class="fab fa-github"></i></div><span class="skill-type">Workflow</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Git &amp; GitHub</h3><p class="text-xs text-cyan-300 uppercase tracking-wider mb-3">Collaboration</p><p class="text-sm text-slate-400">Source control, readable project history and public technical documentation.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-indigo-500/10 text-indigo-300"><i class="fas fa-shield-halved"></i></div><span class="skill-type">Security</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Secure CI/CD</h3><p class="text-xs text-cyan-300 uppercase tracking-wider mb-3">SecureFlow</p><p class="text-sm text-slate-400">Automated security checks made visible alongside the delivery workflow.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-emerald-500/10 text-emerald-300"><i class="fas fa-file-excel"></i></div><span class="skill-type">Automation</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Excel &amp; VBA</h3><p class="text-xs text-cyan-300 uppercase tracking-wider mb-3">Security reporting</p><p class="text-sm text-slate-400">KPI dashboards, data consolidation and recurring governance deliverables.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-sky-500/10 text-sky-300"><i class="fas fa-dharmachakra"></i></div><span class="skill-type">Orchestration</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Kubernetes</h3><p class="text-xs text-cyan-300 uppercase tracking-wider mb-3">CISO Assistant</p><p class="text-sm text-slate-400">Deploying and operating containerized services across multi-cloud environments at intuitem.</p></article>
-                </div>
-            </section>
-
-            <section class="relative" aria-labelledby="systems-title">
-                <div class="section-orb bg-violet-500 left-0 top-10"></div>
-                <div class="flex items-start gap-4 mb-9"><div class="skill-icon bg-violet-500/10 text-violet-300"><i class="fas fa-terminal"></i></div><div><p class="text-violet-300 text-xs font-display font-bold uppercase tracking-[.16em] mb-1">Understand the foundations</p><h2 id="systems-title" class="font-display text-3xl font-bold text-white">Security &amp; Systems</h2></div></div>
-                <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-white/10 text-white"><i class="fab fa-linux"></i></div><span class="skill-type">OS</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Linux &amp; Bash</h3><p class="text-xs text-violet-300 uppercase tracking-wider mb-3">Daily learning</p><p class="text-sm text-slate-400">Systems exploration, network tooling and practical security experimentation.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-blue-500/10 text-blue-300"><span class="font-display font-bold text-xl">C</span></div><span class="skill-type">Low-level</span></div><h3 class="font-display text-lg font-bold text-white mb-2">C Programming</h3><p class="text-xs text-violet-300 uppercase tracking-wider mb-3">EPITA systems</p><p class="text-sm text-slate-400">System programming, performance-aware code and kernel-oriented coursework.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-red-500/10 text-red-300"><i class="fas fa-network-wired"></i></div><span class="skill-type">Network</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Network Security</h3><p class="text-xs text-violet-300 uppercase tracking-wider mb-3">Security engineering</p><p class="text-sm text-slate-400">DNS, TLS, HTTP headers and exposed-surface checks through internal tooling.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-orange-500/10 text-orange-300"><i class="fas fa-microscope"></i></div><span class="skill-type">Lab work</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Kernel Concepts</h3><p class="text-xs text-violet-300 uppercase tracking-wider mb-3">Isolated VM lab</p><p class="text-sm text-slate-400">Educational Linux-kernel work for defensive understanding of system behaviour.</p></article>
-                </div>
-            </section>
-
-            <section class="relative" aria-labelledby="software-title">
-                <div class="section-orb bg-emerald-400 right-0 top-10"></div>
-                <div class="flex items-start gap-4 mb-9"><div class="skill-icon bg-emerald-500/10 text-emerald-300"><i class="fas fa-code"></i></div><div><p class="text-emerald-300 text-xs font-display font-bold uppercase tracking-[.16em] mb-1">Make useful things</p><h2 id="software-title" class="font-display text-3xl font-bold text-white">Software &amp; Web</h2></div></div>
-                <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-yellow-500/10 text-yellow-300"><i class="fab fa-python"></i></div><span class="skill-type">Software</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Python</h3><p class="text-xs text-emerald-300 uppercase tracking-wider mb-3">Team project</p><p class="text-sm text-slate-400">Built a cooperative game with Poetry, logging, documentation and clean project structure.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-cyan-500/10 text-cyan-300"><span class="font-display font-bold text-lg">Go</span></div><span class="skill-type">Security tool</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Golang</h3><p class="text-xs text-emerald-300 uppercase tracking-wider mb-3">CyberTool</p><p class="text-sm text-slate-400">Concurrent internal utility for DNS, TLS, HTTP response and security-header checks.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-orange-500/10 text-orange-300"><i class="fab fa-swift"></i></div><span class="skill-type">iOS</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Swift &amp; SwiftUI</h3><p class="text-xs text-emerald-300 uppercase tracking-wider mb-3">Budgify</p><p class="text-sm text-slate-400">Privacy-first mobile app with local data, device authentication and on-device learning.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-pink-500/10 text-pink-300"><i class="fas fa-window-maximize"></i></div><span class="skill-type">Product</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Web Interfaces</h3><p class="text-xs text-emerald-300 uppercase tracking-wider mb-3">Portfolio &amp; projects</p><p class="text-sm text-slate-400">Responsive interfaces, accessible interaction patterns and technical storytelling.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-emerald-600/10 text-emerald-400"><i class="fab fa-python"></i></div><span class="skill-type">Backend</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Django</h3><p class="text-xs text-emerald-300 uppercase tracking-wider mb-3">CISO Assistant</p><p class="text-sm text-slate-400">Backend engineering on an open-source GRC platform at intuitem.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-orange-600/10 text-orange-400"><i class="fas fa-fire"></i></div><span class="skill-type">Frontend</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Svelte</h3><p class="text-xs text-emerald-300 uppercase tracking-wider mb-3">CISO Assistant</p><p class="text-sm text-slate-400">Frontend features and UI work on the CISO Assistant product at intuitem.</p></article>
-                </div>
-            </section>
-
-            <section class="relative" aria-labelledby="grc-title">
-                <div class="section-orb bg-indigo-500 left-1/3 top-0"></div>
-                <div class="flex items-start gap-4 mb-9"><div class="skill-icon bg-indigo-500/10 text-indigo-300"><i class="fas fa-shield-heart"></i></div><div><p class="text-indigo-300 text-xs font-display font-bold uppercase tracking-[.16em] mb-1">Connect risk to reality</p><h2 id="grc-title" class="font-display text-3xl font-bold text-white">Governance, Risk &amp; Compliance</h2></div></div>
-                <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-emerald-500/10 text-emerald-300"><i class="fas fa-shield-halved"></i></div><span class="skill-type">Certified</span></div><h3 class="font-display text-lg font-bold text-white mb-2">EBIOS RM</h3><p class="text-xs text-indigo-300 uppercase tracking-wider mb-3">Risk management</p><p class="text-sm text-slate-400">ANSSI methodology for structured risk analysis and security decision support.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-indigo-500/10 text-indigo-300"><i class="fas fa-file-shield"></i></div><span class="skill-type">ISMS</span></div><h3 class="font-display text-lg font-bold text-white mb-2">ISO 27001</h3><p class="text-xs text-indigo-300 uppercase tracking-wider mb-3">GRC foundations</p><p class="text-sm text-slate-400">Security policies, risk treatment, evidence and continuous-improvement thinking.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-cyan-500/10 text-cyan-300"><i class="fas fa-scale-balanced"></i></div><span class="skill-type">Regulation</span></div><h3 class="font-display text-lg font-bold text-white mb-2">NIS2 &amp; DORA</h3><p class="text-xs text-indigo-300 uppercase tracking-wider mb-3">Readiness support</p><p class="text-sm text-slate-400">Contributed to compliance topics, reporting material and remediation follow-up.</p></article>
-                    <article class="skill-card glass-card rounded-2xl p-6"><div class="flex justify-between gap-4 mb-5"><div class="skill-icon bg-violet-500/10 text-violet-300"><i class="fas fa-people-arrows"></i></div><span class="skill-type">Third-party</span></div><h3 class="font-display text-lg font-bold text-white mb-2">Supplier Security</h3><p class="text-xs text-indigo-300 uppercase tracking-wider mb-3">Assessment support</p><p class="text-sm text-slate-400">Security questionnaires, contractual topics and practical vendor-risk follow-up.</p></article>
+                <div class="skill-grid" data-stagger>
+                    <article class="glass skill-card spot c-blue">
+                        <div class="skill-card-top"><span class="ico"><i class="fab fa-docker"></i></span><span class="skill-type" data-i18n="devsecops-0-type">Containers</span></div>
+                        <h3 data-i18n="devsecops-0-title">Docker</h3>
+                        <p class="ctx" data-i18n="devsecops-0-ctx">SecureFlow</p>
+                        <p data-i18n="devsecops-0-desc">Containerized services and a production-inspired secure delivery workflow.</p>
+                    </article>
+                    <article class="glass skill-card spot c-slate">
+                        <div class="skill-card-top"><span class="ico"><i class="fab fa-github"></i></span><span class="skill-type" data-i18n="devsecops-1-type">Workflow</span></div>
+                        <h3 data-i18n="devsecops-1-title">Git &amp; GitHub</h3>
+                        <p class="ctx" data-i18n="devsecops-1-ctx">Collaboration</p>
+                        <p data-i18n="devsecops-1-desc">Source control, readable project history and public technical documentation.</p>
+                    </article>
+                    <article class="glass skill-card spot c-indigo">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-shield-halved"></i></span><span class="skill-type" data-i18n="devsecops-2-type">Security</span></div>
+                        <h3 data-i18n="devsecops-2-title">Secure CI/CD</h3>
+                        <p class="ctx" data-i18n="devsecops-2-ctx">SecureFlow</p>
+                        <p data-i18n="devsecops-2-desc">Automated security checks made visible alongside the delivery workflow.</p>
+                    </article>
+                    <article class="glass skill-card spot c-emerald">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-file-excel"></i></span><span class="skill-type" data-i18n="devsecops-3-type">Automation</span></div>
+                        <h3 data-i18n="devsecops-3-title">Excel &amp; VBA</h3>
+                        <p class="ctx" data-i18n="devsecops-3-ctx">Security reporting</p>
+                        <p data-i18n="devsecops-3-desc">KPI dashboards, data consolidation and recurring governance deliverables.</p>
+                    </article>
+                    <article class="glass skill-card spot c-sky">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-dharmachakra"></i></span><span class="skill-type" data-i18n="devsecops-4-type">Orchestration</span></div>
+                        <h3 data-i18n="devsecops-4-title">Kubernetes</h3>
+                        <p class="ctx" data-i18n="devsecops-4-ctx">CISO Assistant</p>
+                        <p data-i18n="devsecops-4-desc">Deploying and operating containerized services across multi-cloud environments at intuitem.</p>
+                    </article>
                 </div>
             </section>
 
-            <section class="glass-card rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-transparent to-cyan-500/10 pointer-events-none"></div>
-                <div class="relative max-w-2xl mx-auto"><p class="text-indigo-300 text-xs font-display font-bold uppercase tracking-[.18em] mb-4" id="cta-kicker">Let’s connect</p><h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4" id="cta-title">Building something at the crossroads of security and software?</h2><p class="text-slate-400 mb-7" id="cta-copy">I’m always happy to exchange about engineering, GRC, DevSecOps or a project worth making safer.</p><a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-full transition-all shadow-lg shadow-indigo-500/30"><i class="far fa-calendar-check"></i><span id="cta-book">Book a chat</span></a></div>
+            <section class="skill-section c-violet" id="systems" aria-labelledby="systems-title">
+                <div class="skill-section-head reveal">
+                    <span class="ico"><i class="fas fa-terminal"></i></span>
+                    <div><p class="eyebrow" data-i18n="sec-systems-e">Understand the foundations</p><h2 id="systems-title" data-i18n="sec-systems-t">Security &amp; Systems</h2></div>
+                </div>
+                <div class="skill-grid" data-stagger>
+                    <article class="glass skill-card spot c-slate">
+                        <div class="skill-card-top"><span class="ico"><i class="fab fa-linux"></i></span><span class="skill-type" data-i18n="systems-0-type">OS</span></div>
+                        <h3 data-i18n="systems-0-title">Linux &amp; Bash</h3>
+                        <p class="ctx" data-i18n="systems-0-ctx">Daily learning</p>
+                        <p data-i18n="systems-0-desc">Systems exploration, network tooling and practical security experimentation.</p>
+                    </article>
+                    <article class="glass skill-card spot c-blue">
+                        <div class="skill-card-top"><span class="ico"><span class="glyph">C</span></span><span class="skill-type" data-i18n="systems-1-type">Low-level</span></div>
+                        <h3 data-i18n="systems-1-title">C Programming</h3>
+                        <p class="ctx" data-i18n="systems-1-ctx">EPITA systems</p>
+                        <p data-i18n="systems-1-desc">System programming, performance-aware code and kernel-oriented coursework.</p>
+                    </article>
+                    <article class="glass skill-card spot c-red">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-network-wired"></i></span><span class="skill-type" data-i18n="systems-2-type">Network</span></div>
+                        <h3 data-i18n="systems-2-title">Network Security</h3>
+                        <p class="ctx" data-i18n="systems-2-ctx">Security engineering</p>
+                        <p data-i18n="systems-2-desc">DNS, TLS, HTTP headers and exposed-surface checks through internal tooling.</p>
+                    </article>
+                    <article class="glass skill-card spot c-orange">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-microscope"></i></span><span class="skill-type" data-i18n="systems-3-type">Lab work</span></div>
+                        <h3 data-i18n="systems-3-title">Kernel Concepts</h3>
+                        <p class="ctx" data-i18n="systems-3-ctx">Isolated VM lab</p>
+                        <p data-i18n="systems-3-desc">Educational Linux-kernel work for defensive understanding of system behaviour.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="skill-section c-red" id="malware" aria-labelledby="malware-title">
+                <div class="skill-section-head reveal">
+                    <span class="ico"><i class="fas fa-virus"></i></span>
+                    <div><p class="eyebrow" data-i18n="sec-malware-e">Study how threats hide</p><h2 id="malware-title" data-i18n="sec-malware-t">Malware Research</h2></div>
+                </div>
+                <div class="skill-grid" data-stagger>
+                    <article class="glass skill-card spot c-cyan">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-microchip"></i></span><span class="skill-type" data-i18n="malware-0-type">DBI</span></div>
+                        <h3 data-i18n="malware-0-title">Intel Pin</h3>
+                        <p class="ctx" data-i18n="malware-0-ctx">Student researcher</p>
+                        <p data-i18n="malware-0-desc">Dynamic binary instrumentation to observe how Windows x64 malware behaves at runtime.</p>
+                    </article>
+                    <article class="glass skill-card spot c-red">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-virus"></i></span><span class="skill-type" data-i18n="malware-1-type">Windows x64</span></div>
+                        <h3 data-i18n="malware-1-title">Malware Analysis</h3>
+                        <p class="ctx" data-i18n="malware-1-ctx">Recent samples</p>
+                        <p data-i18n="malware-1-desc">Analysis of recent malware samples to understand their behavior and how they avoid detection.</p>
+                    </article>
+                    <article class="glass skill-card spot c-violet">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-eye-slash"></i></span><span class="skill-type" data-i18n="malware-2-type">Research</span></div>
+                        <h3 data-i18n="malware-2-title">Evasion Techniques</h3>
+                        <p class="ctx" data-i18n="malware-2-ctx">Over time</p>
+                        <p data-i18n="malware-2-desc">Tracking how techniques for escaping detection evolve over time.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="skill-section c-emerald" id="software" aria-labelledby="software-title">
+                <div class="skill-section-head reveal">
+                    <span class="ico"><i class="fas fa-code"></i></span>
+                    <div><p class="eyebrow" data-i18n="sec-software-e">Make useful things</p><h2 id="software-title" data-i18n="sec-software-t">Software &amp; Web</h2></div>
+                </div>
+                <div class="skill-grid" data-stagger>
+                    <article class="glass skill-card spot c-amber">
+                        <div class="skill-card-top"><span class="ico"><i class="fab fa-python"></i></span><span class="skill-type" data-i18n="software-0-type">Software</span></div>
+                        <h3 data-i18n="software-0-title">Python</h3>
+                        <p class="ctx" data-i18n="software-0-ctx">Team project</p>
+                        <p data-i18n="software-0-desc">Built a cooperative game with Poetry, logging, documentation and clean project structure.</p>
+                    </article>
+                    <article class="glass skill-card spot c-cyan">
+                        <div class="skill-card-top"><span class="ico"><span class="glyph">Go</span></span><span class="skill-type" data-i18n="software-1-type">Security tool</span></div>
+                        <h3 data-i18n="software-1-title">Golang</h3>
+                        <p class="ctx" data-i18n="software-1-ctx">CyberTool</p>
+                        <p data-i18n="software-1-desc">Concurrent internal utility for DNS, TLS, HTTP response and security-header checks.</p>
+                    </article>
+                    <article class="glass skill-card spot c-orange">
+                        <div class="skill-card-top"><span class="ico"><i class="fab fa-swift"></i></span><span class="skill-type" data-i18n="software-2-type">iOS</span></div>
+                        <h3 data-i18n="software-2-title">Swift &amp; SwiftUI</h3>
+                        <p class="ctx" data-i18n="software-2-ctx">Budgify</p>
+                        <p data-i18n="software-2-desc">Privacy-first mobile app with local data, device authentication and on-device learning.</p>
+                    </article>
+                    <article class="glass skill-card spot c-pink">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-window-maximize"></i></span><span class="skill-type" data-i18n="software-3-type">Product</span></div>
+                        <h3 data-i18n="software-3-title">Web Interfaces</h3>
+                        <p class="ctx" data-i18n="software-3-ctx">Portfolio &amp; projects</p>
+                        <p data-i18n="software-3-desc">Responsive interfaces, accessible interaction patterns and technical storytelling.</p>
+                    </article>
+                    <article class="glass skill-card spot c-emerald">
+                        <div class="skill-card-top"><span class="ico"><i class="fab fa-python"></i></span><span class="skill-type" data-i18n="software-4-type">Backend</span></div>
+                        <h3 data-i18n="software-4-title">Django</h3>
+                        <p class="ctx" data-i18n="software-4-ctx">CISO Assistant</p>
+                        <p data-i18n="software-4-desc">Backend engineering on an open-source GRC platform at intuitem.</p>
+                    </article>
+                    <article class="glass skill-card spot c-orange">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-fire"></i></span><span class="skill-type" data-i18n="software-5-type">Frontend</span></div>
+                        <h3 data-i18n="software-5-title">Svelte</h3>
+                        <p class="ctx" data-i18n="software-5-ctx">CISO Assistant</p>
+                        <p data-i18n="software-5-desc">Frontend features and UI work on the CISO Assistant product at intuitem.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="skill-section c-indigo" id="grc" aria-labelledby="grc-title">
+                <div class="skill-section-head reveal">
+                    <span class="ico"><i class="fas fa-shield-heart"></i></span>
+                    <div><p class="eyebrow" data-i18n="sec-grc-e">Connect risk to reality</p><h2 id="grc-title" data-i18n="sec-grc-t">Governance, Risk &amp; Compliance</h2></div>
+                </div>
+                <div class="skill-grid" data-stagger>
+                    <article class="glass skill-card spot c-emerald">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-shield-halved"></i></span><span class="skill-type" data-i18n="grc-0-type">Certified</span></div>
+                        <h3 data-i18n="grc-0-title">EBIOS RM</h3>
+                        <p class="ctx" data-i18n="grc-0-ctx">Risk management</p>
+                        <p data-i18n="grc-0-desc">ANSSI methodology for structured risk analysis and security decision support.</p>
+                    </article>
+                    <article class="glass skill-card spot c-indigo">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-file-shield"></i></span><span class="skill-type" data-i18n="grc-1-type">ISMS</span></div>
+                        <h3 data-i18n="grc-1-title">ISO 27001</h3>
+                        <p class="ctx" data-i18n="grc-1-ctx">GRC foundations</p>
+                        <p data-i18n="grc-1-desc">Security policies, risk treatment, evidence and continuous-improvement thinking.</p>
+                    </article>
+                    <article class="glass skill-card spot c-cyan">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-scale-balanced"></i></span><span class="skill-type" data-i18n="grc-2-type">Regulation</span></div>
+                        <h3 data-i18n="grc-2-title">NIS2 &amp; DORA</h3>
+                        <p class="ctx" data-i18n="grc-2-ctx">Readiness support</p>
+                        <p data-i18n="grc-2-desc">Contributed to compliance topics, reporting material and remediation follow-up.</p>
+                    </article>
+                    <article class="glass skill-card spot c-violet">
+                        <div class="skill-card-top"><span class="ico"><i class="fas fa-people-arrows"></i></span><span class="skill-type" data-i18n="grc-3-type">Third-party</span></div>
+                        <h3 data-i18n="grc-3-title">Supplier Security</h3>
+                        <p class="ctx" data-i18n="grc-3-ctx">Assessment support</p>
+                        <p data-i18n="grc-3-desc">Security questionnaires, contractual topics and practical vendor-risk follow-up.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="glass cta-banner reveal">
+                <span class="eyebrow" data-i18n="sk-cta-eyebrow">Let’s connect</span>
+                <h2 data-i18n="sk-cta-title">Building something at the crossroads of security and software?</h2>
+                <p class="lead" style="max-width: 36rem; margin: 1.1rem auto 2rem" data-i18n="sk-cta-copy">I’m always happy to exchange about engineering, GRC, DevSecOps, malware research or a project worth making safer.</p>
+                <div class="hero-cta"><a class="btn btn-primary" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="btn-book">Book a chat</span></a></div>
             </section>
         </div>
     </main>
+
+    <footer class="footer">
+        <p>© 2026 Matthieu Greiner. <span data-i18n="footer-built">Built with</span> <i class="fas fa-heart" aria-hidden="true"></i> <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a> · <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+    </footer>
+
+    <script src="site.js"></script>
     <script>
-        const content = {
-            en: {
-                navPortfolio:'Portfolio', navNow:'Now', navBook:'Book a chat', back:'Back to portfolio', kicker:'Technical Arsenal',
-                title:'The stack behind <span class="text-gradient">the security.</span>', hero:'A practical map of the languages, systems and governance methods I use — from low-level engineering and automation to security-by-design and GRC work.',
-                ctaKicker:'Let’s connect', ctaTitle:'Building something at the crossroads of security and software?', cta:'I’m always happy to exchange about engineering, GRC, DevSecOps or a project worth making safer.', ctaBook:'Book a chat',
-                sections:[['Build, ship, automate','DevSecOps & Automation'],['Understand the foundations','Security & Systems'],['Make useful things','Software & Web'],['Connect risk to reality','Governance, Risk & Compliance']],
-                cards:[['Containers','Docker','SecureFlow','Containerized services and a production-inspired secure delivery workflow.'],['Workflow','Git & GitHub','Collaboration','Source control, readable project history and public technical documentation.'],['Security','Secure CI/CD','SecureFlow','Automated security checks made visible alongside the delivery workflow.'],['Automation','Excel & VBA','Security reporting','KPI dashboards, data consolidation and recurring governance deliverables.'],['Orchestration','Kubernetes','CISO Assistant','Deploying and operating containerized services across multi-cloud environments at intuitem.'],['OS','Linux & Bash','Daily learning','Systems exploration, network tooling and practical security experimentation.'],['Low-level','C Programming','EPITA systems','System programming, performance-aware code and kernel-oriented coursework.'],['Network','Network Security','Security engineering','DNS, TLS, HTTP headers and exposed-surface checks through internal tooling.'],['Lab work','Kernel Concepts','Isolated VM lab','Educational Linux-kernel work for defensive understanding of system behaviour.'],['Software','Python','Team project','Built a cooperative game with Poetry, logging, documentation and clean project structure.'],['Security tool','Golang','CyberTool','Concurrent internal utility for DNS, TLS, HTTP response and security-header checks.'],['iOS','Swift & SwiftUI','Budgify','Privacy-first mobile app with local data, device authentication and on-device learning.'],['Product','Web Interfaces','Portfolio & projects','Responsive interfaces, accessible interaction patterns and technical storytelling.'],['Backend','Django','CISO Assistant','Backend engineering on an open-source GRC platform at intuitem.'],['Frontend','Svelte','CISO Assistant','Frontend features and UI work on the CISO Assistant product at intuitem.'],['Certified','EBIOS RM','Risk management','ANSSI methodology for structured risk analysis and security decision support.'],['ISMS','ISO 27001','GRC foundations','Security policies, risk treatment, evidence and continuous-improvement thinking.'],['Regulation','NIS2 & DORA','Readiness support','Contributed to compliance topics, reporting material and remediation follow-up.'],['Third-party','Supplier Security','Assessment support','Security questionnaires, contractual topics and practical vendor-risk follow-up.']]
-            },
-            fr: {
-                navPortfolio:'Portfolio', navNow:'Maintenant', navBook:'Réserver un échange', back:'Retour au portfolio', kicker:'Arsenal technique',
-                title:'La stack derrière <span class="text-gradient">la sécurité.</span>', hero:'Une vue concrète des langages, systèmes et méthodes de gouvernance que j’utilise — de l’ingénierie bas niveau et l’automatisation au security-by-design et à la GRC.',
-                ctaKicker:'Échangeons', ctaTitle:'Un projet au croisement de la sécurité et du logiciel ?', cta:'Je suis toujours partant pour échanger autour de l’ingénierie, la GRC, le DevSecOps ou un projet à rendre plus sûr.', ctaBook:'Réserver un échange',
-                sections:[['Construire, livrer, automatiser','DevSecOps & Automatisation'],['Comprendre les fondations','Sécurité & Systèmes'],['Créer des produits utiles','Logiciel & Web'],['Relier le risque au terrain','Gouvernance, Risques & Conformité']],
-                cards:[['Conteneurs','Docker','SecureFlow','Services conteneurisés et workflow de livraison sécurisée inspiré de la production.'],['Workflow','Git & GitHub','Collaboration','Gestion de versions, historique de projet lisible et documentation technique publique.'],['Sécurité','CI/CD sécurisé','SecureFlow','Contrôles de sécurité automatisés et visibles dans le workflow de livraison.'],['Automatisation','Excel & VBA','Reporting sécurité','Dashboards KPI, consolidation de données et livrables de gouvernance récurrents.'],['Orchestration','Kubernetes','CISO Assistant','Déploiement et exploitation de services conteneurisés en multi-cloud chez intuitem.'],['OS','Linux & Bash','Apprentissage quotidien','Exploration système, outils réseau et expérimentations sécurité pratiques.'],['Bas niveau','Programmation C','Systèmes EPITA','Programmation système, code attentif aux performances et cursus orienté kernel.'],['Réseau','Sécurité réseau','Ingénierie sécurité','Vérifications DNS, TLS, en-têtes HTTP et surface exposée via un outil interne.'],['Travail en labo','Concepts kernel','Lab VM isolé','Travail pédagogique Linux-kernel pour comprendre le comportement système de manière défensive.'],['Logiciel','Python','Projet en équipe','Jeu coopératif avec Poetry, logs, documentation et structure de projet propre.'],['Outil sécurité','Golang','CyberTool','Outil interne concurrent pour vérifier DNS, TLS, réponses HTTP et en-têtes de sécurité.'],['iOS','Swift & SwiftUI','Budgify','Application mobile privacy-first avec données locales, authentification appareil et apprentissage embarqué.'],['Produit','Interfaces web','Portfolio & projets','Interfaces responsives, interactions accessibles et présentation technique claire.'],['Backend','Django','CISO Assistant','Développement backend sur une plateforme GRC open-source chez intuitem.'],['Frontend','Svelte','CISO Assistant','Fonctionnalités frontend et travail d’interface sur le produit CISO Assistant chez intuitem.'],['Certifié','EBIOS RM','Gestion des risques','Méthode ANSSI pour une analyse de risques structurée et l’aide à la décision sécurité.'],['SMSI','ISO 27001','Fondamentaux GRC','Politiques de sécurité, traitement des risques, preuves et amélioration continue.'],['Réglementation','NIS2 & DORA','Support de conformité','Contribution aux sujets conformité, supports de reporting et suivi de remédiation.'],['Tiers','Sécurité fournisseurs','Support d’évaluation','Questionnaires sécurité, sujets contractuels et suivi pratique du risque fournisseur.']]
-            }
-        };
-        const setText = (id, value, html = false) => { const node = document.getElementById(id); if (node) node[html ? 'innerHTML' : 'textContent'] = value; };
-        function setLanguage(lang) {
-            const t = content[lang] || content.en;
-            try { localStorage.setItem('portfolioLanguage', lang); } catch (error) { /* no-op */ }
-            document.documentElement.lang = lang;
-            document.getElementById('btn-en')?.classList.toggle('lang-active', lang === 'en');
-            document.getElementById('btn-fr')?.classList.toggle('lang-active', lang === 'fr');
-            document.getElementById('btn-en')?.setAttribute('aria-pressed', String(lang === 'en'));
-            document.getElementById('btn-fr')?.setAttribute('aria-pressed', String(lang === 'fr'));
-            setText('nav-portfolio', t.navPortfolio); setText('nav-now', t.navNow); setText('nav-book', t.navBook); setText('back-link', t.back); setText('hero-kicker', t.kicker); setText('hero-title', t.title, true); setText('hero-copy', t.hero); setText('cta-kicker', t.ctaKicker); setText('cta-title', t.ctaTitle); setText('cta-copy', t.cta); setText('cta-book', t.ctaBook);
-            document.querySelectorAll('section[aria-labelledby]').forEach((section, index) => { const [eyebrow, title] = t.sections[index]; section.querySelector('p').textContent = eyebrow; section.querySelector('h2').textContent = title; });
-            document.querySelectorAll('.skill-card').forEach((card, index) => { const [type, title, context, description] = t.cards[index]; card.querySelector('.skill-type').textContent = type; card.querySelector('h3').textContent = title; const paragraphs = card.querySelectorAll('p'); paragraphs[0].textContent = context; paragraphs[1].textContent = description; });
-        }
-        let initialLanguage = 'en'; try { initialLanguage = localStorage.getItem('portfolioLanguage') || 'en'; } catch (error) { /* no-op */ } setLanguage(initialLanguage);
+        Site.i18n.register({
+            "__title": "Arsenal technique | Matthieu Greiner",
+            "__description": "L’arsenal technique de Matthieu Greiner : DevSecOps, sécurité des systèmes, recherche malware, ingénierie logicielle et GRC.",
+            "sk-eyebrow": "Arsenal technique",
+            "sk-title": "La stack derrière <span class=\"grad\">la sécurité.</span>",
+            "sk-lead": "Une vue concrète des langages, systèmes et méthodes de gouvernance que j’utilise — de l’ingénierie bas niveau et l’automatisation au security-by-design, à la recherche malware et à la GRC.",
+            "sk-cta-eyebrow": "Échangeons",
+            "sk-cta-title": "Un projet au croisement de la sécurité et du logiciel ?",
+            "sk-cta-copy": "Je suis toujours partant pour échanger autour de l’ingénierie, de la GRC, du DevSecOps, de la recherche malware ou d’un projet à rendre plus sûr.",
+            "back-skills": "Retour au portfolio",
+            "sec-devsecops-e": "Construire, livrer, automatiser",
+            "sec-devsecops-t": "DevSecOps &amp; Automatisation",
+            "devsecops-0-type": "Conteneurs",
+            "devsecops-0-title": "Docker",
+            "devsecops-0-ctx": "SecureFlow",
+            "devsecops-0-desc": "Services conteneurisés et workflow de livraison sécurisée inspiré de la production.",
+            "devsecops-1-type": "Workflow",
+            "devsecops-1-title": "Git &amp; GitHub",
+            "devsecops-1-ctx": "Collaboration",
+            "devsecops-1-desc": "Gestion de versions, historique de projet lisible et documentation technique publique.",
+            "devsecops-2-type": "Sécurité",
+            "devsecops-2-title": "CI/CD sécurisé",
+            "devsecops-2-ctx": "SecureFlow",
+            "devsecops-2-desc": "Contrôles de sécurité automatisés et visibles dans le workflow de livraison.",
+            "devsecops-3-type": "Automatisation",
+            "devsecops-3-title": "Excel &amp; VBA",
+            "devsecops-3-ctx": "Reporting sécurité",
+            "devsecops-3-desc": "Dashboards KPI, consolidation de données et livrables de gouvernance récurrents.",
+            "devsecops-4-type": "Orchestration",
+            "devsecops-4-title": "Kubernetes",
+            "devsecops-4-ctx": "CISO Assistant",
+            "devsecops-4-desc": "Déploiement et exploitation de services conteneurisés en multi-cloud chez intuitem.",
+            "sec-systems-e": "Comprendre les fondations",
+            "sec-systems-t": "Sécurité &amp; Systèmes",
+            "systems-0-type": "OS",
+            "systems-0-title": "Linux &amp; Bash",
+            "systems-0-ctx": "Apprentissage quotidien",
+            "systems-0-desc": "Exploration système, outils réseau et expérimentations sécurité pratiques.",
+            "systems-1-type": "Bas niveau",
+            "systems-1-title": "Programmation C",
+            "systems-1-ctx": "Systèmes EPITA",
+            "systems-1-desc": "Programmation système, code attentif aux performances et cursus orienté kernel.",
+            "systems-2-type": "Réseau",
+            "systems-2-title": "Sécurité réseau",
+            "systems-2-ctx": "Ingénierie sécurité",
+            "systems-2-desc": "Vérifications DNS, TLS, en-têtes HTTP et surface exposée via un outil interne.",
+            "systems-3-type": "Travail en labo",
+            "systems-3-title": "Concepts kernel",
+            "systems-3-ctx": "Lab VM isolé",
+            "systems-3-desc": "Travail pédagogique Linux-kernel pour comprendre le comportement système de manière défensive.",
+            "sec-malware-e": "Comprendre comment les menaces se cachent",
+            "sec-malware-t": "Recherche malware",
+            "malware-0-type": "DBI",
+            "malware-0-title": "Intel Pin",
+            "malware-0-ctx": "Chercheur étudiant",
+            "malware-0-desc": "Instrumentation binaire dynamique pour observer le comportement des malwares Windows x64 à l’exécution.",
+            "malware-1-type": "Windows x64",
+            "malware-1-title": "Analyse de malwares",
+            "malware-1-ctx": "Échantillons récents",
+            "malware-1-desc": "Analyse d’échantillons récents de malwares pour comprendre leur comportement et la façon dont ils évitent la détection.",
+            "malware-2-type": "Recherche",
+            "malware-2-title": "Techniques d’évasion",
+            "malware-2-ctx": "Dans le temps",
+            "malware-2-desc": "Suivi de l’évolution, dans le temps, des techniques pour échapper à la détection.",
+            "sec-software-e": "Créer des produits utiles",
+            "sec-software-t": "Logiciel &amp; Web",
+            "software-0-type": "Logiciel",
+            "software-0-title": "Python",
+            "software-0-ctx": "Projet en équipe",
+            "software-0-desc": "Jeu coopératif avec Poetry, logs, documentation et structure de projet propre.",
+            "software-1-type": "Outil sécurité",
+            "software-1-title": "Golang",
+            "software-1-ctx": "CyberTool",
+            "software-1-desc": "Outil interne concurrent pour vérifier DNS, TLS, réponses HTTP et en-têtes de sécurité.",
+            "software-2-type": "iOS",
+            "software-2-title": "Swift &amp; SwiftUI",
+            "software-2-ctx": "Budgify",
+            "software-2-desc": "Application mobile privacy-first avec données locales, authentification appareil et apprentissage embarqué.",
+            "software-3-type": "Produit",
+            "software-3-title": "Interfaces web",
+            "software-3-ctx": "Portfolio &amp; projets",
+            "software-3-desc": "Interfaces responsives, interactions accessibles et présentation technique claire.",
+            "software-4-type": "Backend",
+            "software-4-title": "Django",
+            "software-4-ctx": "CISO Assistant",
+            "software-4-desc": "Développement backend sur une plateforme GRC open-source chez intuitem.",
+            "software-5-type": "Frontend",
+            "software-5-title": "Svelte",
+            "software-5-ctx": "CISO Assistant",
+            "software-5-desc": "Fonctionnalités frontend et travail d’interface sur le produit CISO Assistant chez intuitem.",
+            "sec-grc-e": "Relier le risque au terrain",
+            "sec-grc-t": "Gouvernance, Risques &amp; Conformité",
+            "grc-0-type": "Certifié",
+            "grc-0-title": "EBIOS RM",
+            "grc-0-ctx": "Gestion des risques",
+            "grc-0-desc": "Méthode ANSSI pour une analyse de risques structurée et l’aide à la décision sécurité.",
+            "grc-1-type": "SMSI",
+            "grc-1-title": "ISO 27001",
+            "grc-1-ctx": "Fondamentaux GRC",
+            "grc-1-desc": "Politiques de sécurité, traitement des risques, preuves et amélioration continue.",
+            "grc-2-type": "Réglementation",
+            "grc-2-title": "NIS2 &amp; DORA",
+            "grc-2-ctx": "Support de conformité",
+            "grc-2-desc": "Contribution aux sujets conformité, supports de reporting et suivi de remédiation.",
+            "grc-3-type": "Tiers",
+            "grc-3-title": "Sécurité fournisseurs",
+            "grc-3-ctx": "Support d’évaluation",
+            "grc-3-desc": "Questionnaires sécurité, sujets contractuels et suivi pratique du risque fournisseur."
+});
     </script>
 </body>
 </html>

@@ -6,13 +6,16 @@ Personal portfolio website designed to showcase my journey as a Cybersecurity En
 
 ## Technologies
 
-This project is built as a static Single Page Application (SPA) without complex build processes.
+This project is a static website with no build step and no framework.
 
-- **HTML5**: Semantic structure.
-- **Tailwind CSS**: Utility-first CSS framework (via CDN).
-- **JavaScript**: Vanilla JS for mobile navigation and interactions.
-- **AOS (Animate On Scroll)**: Library for scroll animations.
-- **FontAwesome**: Icon set.
+- **HTML5**: Semantic structure, one file per page (`index`, `now`, `skills`, `projects`, `intuitem`).
+- **`site.css`**: Hand-written design system (tokens, glass materials, components, reduced-motion / transparency / contrast support).
+- **`site.js`**: Vanilla JS runtime: spring physics, FR/EN i18n, navigation, scroll effects and the research sheet.
+- **Inter + Space Grotesk** (Google Fonts) and **Font Awesome** icons.
+
+### Translations
+
+English lives in the markup; French lives in each page's `Site.i18n.register({...})` dictionary, keyed by `data-i18n`. Shared strings (navigation, footer) are registered in `site.js`. In the browser console, `Site.i18n.missing()` lists any key without a French translation.
 
 ## Installation
 

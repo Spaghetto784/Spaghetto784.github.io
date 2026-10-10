@@ -1,73 +1,140 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Now | Matthieu Greiner</title>
     <meta name="description" content="What Matthieu Greiner is currently building, learning, and preparing for.">
+    <meta name="author" content="Matthieu Greiner">
+    <meta name="theme-color" content="#0f172a">
     <link rel="icon" type="image/png" href="favicon-512.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.documentElement.classList.add('js');
+        try {
+            var stored = localStorage.getItem('portfolioLanguage');
+            if (stored === 'fr' || (!stored && (navigator.language || '').toLowerCase().indexOf('fr') === 0)) document.documentElement.classList.add('fr-pending');
+        } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@500..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="responsive-enhancements.css">
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],display:['Space Grotesk','sans-serif']},colors:{accent:'#6366f1',dark:'#0f172a'}}}}</script>
-    <style>
-        body { background-color:#0f172a; background-image:radial-gradient(at 0% 0%,rgba(99,102,241,.15) 0,transparent 50%),radial-gradient(at 100% 100%,rgba(56,189,248,.12) 0,transparent 50%); background-attachment:fixed; color:#e2e8f0; }
-        .glass-card { background:rgba(255,255,255,.05); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.1); transition:all .3s ease; }
-        .glass-card:hover { border-color:rgba(99,102,241,.5); transform:translateY(-4px); }
-        .text-gradient { background:linear-gradient(to right,#818cf8,#c084fc,#38bdf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-        .now-line { position:relative; padding-left:2rem; }
-        .now-line::before { content:''; position:absolute; left:.25rem; top:.4rem; bottom:-2rem; width:1px; background:rgba(255,255,255,.1); }
-        .now-line:last-child::before { display:none; }
-        .now-dot { position:absolute; left:0; top:.25rem; width:.65rem; height:.65rem; border-radius:9999px; background:#818cf8; box-shadow:0 0 0 .32rem rgba(129,140,248,.12); }
-    </style>
+    <link rel="stylesheet" href="site.css">
 </head>
-<body class="antialiased selection:bg-indigo-500 selection:text-white">
-    <nav class="fixed w-full z-50 top-0" id="navbar">
-        <div class="glass-card !border-x-0 !border-t-0 !rounded-none !bg-slate-900/80">
-            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="index.html" class="group flex items-center gap-3 font-display font-bold text-2xl tracking-tight hover:text-white">
-                    <div class="relative w-10 h-10 shrink-0 rounded-full overflow-hidden border-2 border-indigo-500/30"><img src="profile.webp" alt="Matthieu Greiner" width="720" height="1080" class="w-full h-full object-cover scale-[1.7] object-[center_15%]"></div>
-                    <span><span class="text-indigo-400">&lt;</span>M. Greiner<span class="text-indigo-400">/&gt;</span></span>
-                </a>
-                <div class="hidden md:flex items-center gap-5 text-sm font-medium text-slate-300">
-                    <a href="index.html" class="hover:text-white transition-colors">Portfolio</a>
-                    <a href="now.html" class="text-white">Now</a>
-                    <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
-                    <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30"><i class="far fa-calendar-check mr-2"></i>Book a chat</a>
+<body data-page="now">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <nav class="nav" aria-label="Primary">
+        <div class="container nav-inner">
+            <a class="brand" href="index.html" aria-label="Matthieu Greiner">
+                <span class="avatar"><img src="profile.webp" alt="" width="720" height="1080"></span>
+                <span class="brand-name"><b>&lt;</b>M. Greiner<b>/&gt;</b></span>
+            </a>
+            <div class="nav-links">
+                <span class="nav-pill" aria-hidden="true"></span>
+                <a href="index.html#about" data-nav="about" data-i18n="nav-about">About</a>
+                <a href="index.html#experience" data-nav="experience" data-i18n="nav-exp">Experience</a>
+                <a href="skills.html" data-nav="skills" data-i18n="nav-skills">Skills</a>
+                <a href="projects.html" data-nav="projects" data-i18n="nav-projects">Projects</a>
+                <a href="now.html" data-nav="now" data-i18n="nav-now">Now</a>
+            </div>
+            <div class="nav-actions">
+                <div class="lang" role="group" aria-label="Language" data-i18n-attr="aria-label:nav-lang">
+                    <span class="lang-thumb" aria-hidden="true"></span>
+                    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+                    <button type="button" data-lang="fr" aria-pressed="false">FR</button>
                 </div>
+                <a class="icon-btn nav-wide" data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume" data-i18n-attr="aria-label:nav-cv"><i class="fas fa-file-pdf"></i></a>
+                <a class="btn btn-accent btn-sm nav-wide" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="nav-book">Book a chat</span></a>
+                <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-i18n-attr="aria-label:nav-menu"><span></span><span></span></button>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-3xl mx-auto px-6 pt-36 pb-20">
-        <div class="mb-14">
-            <p class="text-indigo-300 text-sm font-medium uppercase tracking-[.22em] mb-4">Updated · September 2026</p>
-            <h1 class="font-display text-5xl md:text-6xl font-bold mb-5">What I’m <span class="text-gradient">doing now.</span></h1>
-            <p class="text-slate-400 text-lg leading-relaxed max-w-2xl">A living snapshot of the work, learning, and projects that currently have my attention.</p>
+    <div class="menu" id="menu" aria-label="Menu" data-i18n-attr="aria-label:nav-menu">
+        <a href="index.html#about" data-nav="about"><span data-i18n="nav-about">About</span><i class="fas fa-chevron-right"></i></a>
+        <a href="index.html#experience" data-nav="experience"><span data-i18n="nav-exp">Experience</span><i class="fas fa-chevron-right"></i></a>
+        <a href="skills.html" data-nav="skills"><span data-i18n="nav-skills">Skills</span><i class="fas fa-chevron-right"></i></a>
+        <a href="projects.html" data-nav="projects"><span data-i18n="nav-projects">Projects</span><i class="fas fa-chevron-right"></i></a>
+        <a href="now.html" data-nav="now"><span data-i18n="nav-now">Now</span><i class="fas fa-chevron-right"></i></a>
+        <a data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer"><span data-i18n="nav-resume">Resume</span><i class="fas fa-arrow-up-right-from-square"></i></a>
+        <div class="menu-sep"></div>
+        <a class="btn btn-accent" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="nav-book">Book a chat</span></a>
+    </div>
+
+    <main id="main">
+        <div class="container container-narrow page-head">
+            <p class="eyebrow" data-i18n="now-updated">Updated · October 2026</p>
+            <h1 class="page-title" data-i18n="now-title">What I’m <span class="grad">doing now.</span></h1>
+            <p class="lead" data-i18n="now-lead">A living snapshot of the work, learning and projects that currently have my attention.</p>
         </div>
 
-        <section class="glass-card rounded-2xl p-7 md:p-9 mb-8">
-            <div class="flex items-center gap-3 mb-6"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_0_5px_rgba(52,211,153,.12)]"></span><span class="text-sm text-emerald-300 font-medium">Current focus</span></div>
-            <div class="space-y-8">
-                <div class="now-line"><span class="now-dot"></span><h2 class="font-display text-xl font-bold text-white mb-2">DevSecOps apprenticeship at intuitem</h2><p class="text-slate-400 leading-relaxed">Started in September 2026, contributing to <a href="https://github.com/intuitem/ciso-assistant-community" target="_blank" rel="noopener noreferrer" class="text-indigo-300 hover:text-white underline underline-offset-2">CISO Assistant</a>, the open-source GRC platform, alongside cloud infrastructure, Kubernetes, and full-stack engineering work.</p></div>
-                <div class="now-line"><span class="now-dot"></span><h2 class="font-display text-xl font-bold text-white mb-2">Learning in public</h2><p class="text-slate-400 leading-relaxed">Deepening my Linux, network security, cloud, and automation skills through hands-on projects and technical experimentation.</p></div>
+        <div class="container container-narrow" style="padding-bottom: clamp(4rem, 9vw, 7rem)">
+            <section class="glass now-card spot c-emerald reveal">
+                <div class="now-status"><span class="dot"></span><span data-i18n="now-focus">Current focus</span></div>
+                <div class="now-list">
+                    <div class="now-line c-indigo">
+                        <span class="dot"></span>
+                        <h3 data-i18n="now-intuitem-t">DevSecOps apprenticeship at intuitem</h3>
+                        <p data-i18n="now-intuitem-d">Started in September 2026, contributing to <a href="https://github.com/intuitem/ciso-assistant-community" target="_blank" rel="noopener noreferrer">CISO Assistant</a>, the open-source GRC platform: building features, keeping changes aligned with the CI/CD and answering customers on the Jira support desk.</p>
+                    </div>
+                    <div class="now-line c-cyan">
+                        <span class="dot"></span>
+                        <h3 data-i18n="now-research-t">Student researcher at the LRE</h3>
+                        <p data-i18n="now-research-d">Since 7 October 2026, studying malware evasion techniques at the EPITA Research Lab with dynamic binary instrumentation (Intel Pin) on Windows x64 malware. It runs until graduation, with a paper to publish. <a href="index.html#experience">Read the brief →</a></p>
+                    </div>
+                    <div class="now-line c-indigo">
+                        <span class="dot"></span>
+                        <h3 data-i18n="now-learning-t">Learning in public</h3>
+                        <p data-i18n="now-learning-d">Deepening my Linux, network security, cloud and automation skills through hands-on projects and technical experimentation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="glass now-card spot c-slate reveal" style="margin-top: 1.25rem">
+                <div class="now-status" style="color: #cbd5e1"><span class="dot" style="--c:#94a3b8"></span><span data-i18n="now-wrapped">Recently wrapped up</span></div>
+                <div class="now-list">
+                    <div class="now-line">
+                        <span class="dot" style="--c:#94a3b8"></span>
+                        <h3>SecureFlow</h3>
+                        <p data-i18n="now-sf-d">Finished building a production-inspired DevSecOps platform around secure CI/CD, containerized services and developer-friendly security findings, before joining intuitem. <a href="https://github.com/Spaghetto784/SecureFlow" target="_blank" rel="noopener noreferrer">View the repo →</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="link-cards" data-stagger>
+                <a class="glass link-card lift spot" href="https://github.com/intuitem/ciso-assistant-community" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><h3>CISO Assistant</h3><p data-i18n="now-card-ciso-d">The open-source GRC platform I now contribute to at intuitem.</p></a>
+                <a class="glass link-card lift spot" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><h3 data-i18n="btn-book">Book a chat</h3><p data-i18n="now-card-book-d">Paris, France · UTC+2.</p></a>
             </div>
-        </section>
 
-        <section class="glass-card rounded-2xl p-7 md:p-9 mb-8">
-            <div class="flex items-center gap-3 mb-6"><span class="w-2.5 h-2.5 rounded-full bg-slate-400 shadow-[0_0_0_5px_rgba(148,163,184,.12)]"></span><span class="text-sm text-slate-300 font-medium">Recently wrapped up</span></div>
-            <div class="space-y-8">
-                <div class="now-line"><span class="now-dot" style="background:#94a3b8;box-shadow:0 0 0 .32rem rgba(148,163,184,.12)"></span><h2 class="font-display text-xl font-bold text-white mb-2">SecureFlow</h2><p class="text-slate-400 leading-relaxed">Finished building a production-inspired DevSecOps platform around secure CI/CD, containerized services, and developer-friendly security findings, before joining intuitem. <a href="https://github.com/Spaghetto784/SecureFlow" target="_blank" rel="noopener noreferrer" class="text-indigo-300 hover:text-white underline underline-offset-2">View the repo →</a></p></div>
-            </div>
-        </section>
-
-        <section class="grid sm:grid-cols-2 gap-5 mb-12">
-            <a href="https://github.com/intuitem/ciso-assistant-community" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 group"><i class="fab fa-github text-indigo-300 text-xl mb-4"></i><h2 class="font-display text-lg font-bold text-white mb-2">CISO Assistant</h2><p class="text-sm text-slate-400">The open-source GRC platform I now contribute to at intuitem.</p></a>
-            <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 group"><i class="far fa-calendar-check text-indigo-300 text-xl mb-4"></i><h2 class="font-display text-lg font-bold text-white mb-2">Book a chat</h2><p class="text-sm text-slate-400">Paris, France · UTC+2.</p></a>
-        </section>
-
-        <div class="text-center"><a href="index.html" class="text-indigo-300 hover:text-white transition-colors"><i class="fas fa-arrow-left mr-2 text-xs"></i>Back to portfolio</a></div>
+            <p style="margin-top: 3rem; text-align: center"><a class="back-link" style="margin: 0" href="index.html"><i class="fas fa-arrow-left"></i><span data-i18n="back-home">Back to portfolio</span></a></p>
+        </div>
     </main>
+
+    <footer class="footer">
+        <p>© 2026 Matthieu Greiner. <span data-i18n="footer-built">Built with</span> <i class="fas fa-heart" aria-hidden="true"></i> <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a> · <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+    </footer>
+
+    <script src="site.js"></script>
+    <script>
+        Site.i18n.register({
+            "__title": "Maintenant | Matthieu Greiner",
+            "__description": "Ce sur quoi Matthieu Greiner travaille, apprend et se prépare actuellement.",
+            "now-updated": "Mis à jour · octobre 2026",
+            "now-title": "Ce que je fais <span class=\"grad\">maintenant.</span>",
+            "now-lead": "Un instantané vivant du travail, de l’apprentissage et des projets qui retiennent actuellement mon attention.",
+            "now-focus": "Focus actuel",
+            "now-intuitem-t": "Alternance DevSecOps chez intuitem",
+            "now-intuitem-d": "Démarrée en septembre 2026, je contribue à <a href=\"https://github.com/intuitem/ciso-assistant-community\" target=\"_blank\" rel=\"noopener noreferrer\">CISO Assistant</a>, la plateforme GRC open-source : développement de features, respect de la CI/CD et réponses aux clients sur le support Jira.",
+            "now-research-t": "Chercheur étudiant au LRE",
+            "now-research-d": "Depuis le 7 octobre 2026, j’étudie les techniques d’évasion des malwares au laboratoire de recherche de l’EPITA, par instrumentation binaire dynamique (Intel Pin) sur des malwares Windows x64. Cela dure jusqu’au diplôme, avec un article à publier. <a href=\"index.html#experience\">Lire le sujet →</a>",
+            "now-learning-t": "Apprendre en public",
+            "now-learning-d": "Approfondir mes compétences Linux, sécurité réseau, cloud et automatisation à travers des projets concrets et de l’expérimentation technique.",
+            "now-wrapped": "Récemment terminé",
+            "now-sf-d": "Fin de la construction d’une plateforme DevSecOps inspirée de la production, autour d’une CI/CD sécurisée, de services conteneurisés et de résultats de sécurité utiles aux développeurs, avant de rejoindre intuitem. <a href=\"https://github.com/Spaghetto784/SecureFlow\" target=\"_blank\" rel=\"noopener noreferrer\">Voir le dépôt →</a>",
+            "now-card-ciso-d": "La plateforme GRC open-source à laquelle je contribue désormais chez intuitem.",
+            "now-card-book-d": "Paris, France · UTC+2."
+});
+    </script>
 </body>
 </html>

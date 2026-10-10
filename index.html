@@ -1,751 +1,547 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Matthieu Greiner | Cybersecurity Engineer Portfolio</title>
-    <link rel="icon" type="image/png" href="favicon-512.png">
-    <meta name="description" content="Matthieu Greiner — EPITA cybersecurity engineering student building secure cloud infrastructure, security automation, and DevSecOps workflows.">
-    <meta name="keywords" content="Matthieu Greiner, DevSecOps, Cybersecurity, EPITA, SecureFlow, Security Automation, Cloud Security, Portfolio">
+    <meta name="description" content="Matthieu Greiner — EPITA cybersecurity engineering student, DevSecOps apprentice at intuitem and student researcher on malware evasion.">
+    <meta name="keywords" content="Matthieu Greiner, DevSecOps, Cybersecurity, EPITA, CISO Assistant, SecureFlow, Malware analysis, Intel Pin, Portfolio">
     <meta name="author" content="Matthieu Greiner">
+    <meta name="theme-color" content="#0f172a">
     <meta property="og:title" content="Matthieu Greiner | Cybersecurity Engineer">
-    <meta property="og:description" content="DevSecOps and security engineering portfolio: secure cloud infrastructure, automation, and security-focused software delivery.">
+    <meta property="og:description" content="DevSecOps and security engineering portfolio: secure cloud infrastructure, automation, malware research and security-focused software delivery.">
     <meta property="og:url" content="https://spaghetto784.github.io">
     <meta property="og:type" content="website">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="responsive-enhancements.css">
+    <link rel="icon" type="image/png" href="favicon-512.png">
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    colors: {
-                        accent: '#6366f1',
-                        dark: '#0f172a',
-                        glass: 'rgba(255, 255, 255, 0.05)',
-                        glassBorder: 'rgba(255, 255, 255, 0.1)',
-                    }
-                }
-            }
-        }
+        document.documentElement.classList.add('js');
+        try {
+            var stored = localStorage.getItem('portfolioLanguage');
+            if (stored === 'fr' || (!stored && (navigator.language || '').toLowerCase().indexOf('fr') === 0)) document.documentElement.classList.add('fr-pending');
+        } catch (e) {}
     </script>
-    <style>
-        body {
-            background-color: #0f172a;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.15) 0px, transparent 50%);
-            background-attachment: fixed;
-            color: #e2e8f0;
-        }
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glassBorder);
-            transition: all 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.5);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-        }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        .text-gradient {
-            background: linear-gradient(to right, #818cf8, #c084fc, #38bdf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .lang-toggle { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; letter-spacing: 1px; }
-        .lang-active { color: white !important; font-weight: bold; }
-        .lang-inactive { color: #64748b !important; cursor: pointer; }
-        .lang-inactive:hover { color: #cbd5e1 !important; }
-        .more-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.65rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #818cf8;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 9999px;
-            padding: 2px 10px;
-            background: rgba(99, 102, 241, 0.08);
-            transition: all 0.2s ease;
-            text-decoration: none;
-            vertical-align: middle;
-            position: relative;
-            top: -1px;
-        }
-        .more-btn:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: rgba(99, 102, 241, 0.6);
-            color: #a5b4fc;
-            transform: translateY(-1px);
-        }
-        .more-btn i { font-size: 0.55rem; }
-        .case-study-card { position: relative; overflow: hidden; }
-        .case-study-card::before { content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .3s ease; pointer-events: none; background: radial-gradient(circle at 100% 0, rgba(99,102,241,.18), transparent 38%); }
-        .case-study-card:hover::before { opacity: 1; }
-        .case-study-card > * { position: relative; }
-        .signal-dot { width: .5rem; height: .5rem; border-radius: 9999px; background: #34d399; box-shadow: 0 0 0 .28rem rgba(52,211,153,.12); }
-        .pipeline-step { position: relative; min-width: 0; flex: 1; padding: .75rem .5rem; border: 1px solid rgba(255,255,255,.08); border-radius: .75rem; background: rgba(15,23,42,.42); text-align: center; font-size: .67rem; line-height: 1.25; color: #94a3b8; }
-        .pipeline-step i { display: block; margin-bottom: .4rem; color: #a5b4fc; font-size: .9rem; }
-        .case-tag { display: inline-flex; align-items: center; border: 1px solid rgba(129,140,248,.25); border-radius: 9999px; padding: .28rem .65rem; background: rgba(99,102,241,.08); color: #c7d2fe; font: 600 .67rem/1 'Space Grotesk', sans-serif; letter-spacing: .04em; }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@500..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="site.css">
 </head>
-<body class="antialiased selection:bg-indigo-500 selection:text-white">
+<body data-page="home">
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
-        <div class="glass-card !bg-opacity-80 !border-0 !backdrop-blur-md border-b border-white/10">
-            <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative">
-                <a href="#" class="group flex items-center gap-3 font-display font-bold text-2xl tracking-tight transition-colors hover:text-white">
-                    <div class="relative w-10 h-10 shrink-0 rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.3)] group-hover:border-indigo-400 transition-all">
-                        <img src="profile.webp" alt="Matthieu Greiner" width="720" height="1080" class="w-full h-full object-cover scale-[1.7] object-[center_15%]">
-                    </div>
-                    <span>
-                        <span class="text-indigo-400 transition-colors group-hover:text-indigo-300">&lt;</span>M. Greiner<span class="text-indigo-400 transition-colors group-hover:text-indigo-300">/&gt;</span>
-                    </span>
-                </a>
-                <div class="hidden xl:flex absolute left-1/2 -translate-x-1/2 items-center space-x-6 text-sm font-medium text-slate-300">
-                    <a href="#about" class="hover:text-white transition-colors" data-i18n="nav-about">About</a>
-                    <a href="#experience" class="hover:text-white transition-colors" data-i18n="nav-exp">Experience</a>
-                    <a href="#skills" class="hover:text-white transition-colors" data-i18n="nav-skills">Skills</a>
-                    <a href="#projects" class="hover:text-white transition-colors" data-i18n="nav-projects">Projects</a>
-                    <a href="now.html" class="hover:text-white transition-colors" data-i18n="nav-now">Now</a>
-                </div>
-                <div class="hidden xl:flex items-center gap-3 text-sm font-medium text-slate-300">
-                    <div class="glass-card !bg-white/5 !border-white/10 px-3 py-1 rounded-full flex items-center gap-2 lang-toggle">
-                        <span id="btn-en" class="lang-active" onclick="setLanguage('en')">EN</span>
-                        <span class="text-slate-600">|</span>
-                        <span id="btn-fr" class="lang-inactive" onclick="setLanguage('fr')">FR</span>
-                    </div>
-                    <a href="mgr_resume_eng.pdf" id="cv-link" target="_blank" rel="noopener noreferrer" aria-label="Resume" class="w-9 h-9 inline-flex items-center justify-center rounded-full border border-white/10 text-slate-300 hover:text-white hover:border-indigo-400/50 transition-colors"><i class="fas fa-file-pdf"></i></a>
-                    <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full transition-all shadow-lg shadow-indigo-500/30 flex items-center gap-2">
-                        <i class="far fa-calendar-check"></i> <span data-i18n="nav-book">Book a chat</span>
-                    </a>
-                </div>
-                <button class="xl:hidden text-2xl text-slate-300 hover:text-white" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden xl:hidden absolute top-full left-0 w-full glass-card border-t border-white/10 p-6 flex flex-col space-y-4 shadow-2xl">
-            <a href="#about" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-about">About</a>
-            <a href="#experience" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-exp">Experience</a>
-            <a href="#skills" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-skills">Skills</a>
-            <a href="#projects" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-projects">Projects</a>
-            <a href="now.html" class="text-lg font-medium text-slate-300 hover:text-white" onclick="toggleMenu()" data-i18n="nav-now">Now</a>
-            <a href="mgr_resume_eng.pdf" id="cv-link-mobile" target="_blank" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" onclick="toggleMenu()">
-                <span data-i18n="nav-cv">Resume</span>
+    <nav class="nav" aria-label="Primary">
+        <div class="container nav-inner">
+            <a class="brand" href="#home" aria-label="Matthieu Greiner">
+                <span class="avatar"><img src="profile.webp" alt="" width="720" height="1080"></span>
+                <span class="brand-name"><b>&lt;</b>M. Greiner<b>/&gt;</b></span>
             </a>
-            <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="text-lg font-medium text-indigo-400 hover:text-indigo-300" data-i18n="nav-book">Book a chat</a>
+            <div class="nav-links">
+                <span class="nav-pill" aria-hidden="true"></span>
+                <a href="#about" data-nav="about" data-i18n="nav-about">About</a>
+                <a href="#experience" data-nav="experience" data-i18n="nav-exp">Experience</a>
+                <a href="#skills" data-nav="skills" data-i18n="nav-skills">Skills</a>
+                <a href="#projects" data-nav="projects" data-i18n="nav-projects">Projects</a>
+                <a href="now.html" data-nav="now" data-i18n="nav-now">Now</a>
+            </div>
+            <div class="nav-actions">
+                <div class="lang" role="group" aria-label="Language" data-i18n-attr="aria-label:nav-lang">
+                    <span class="lang-thumb" aria-hidden="true"></span>
+                    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+                    <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+                </div>
+                <a class="icon-btn nav-wide" data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume" data-i18n-attr="aria-label:nav-cv"><i class="fas fa-file-pdf"></i></a>
+                <a class="btn btn-accent btn-sm nav-wide" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="nav-book">Book a chat</span></a>
+                <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-i18n-attr="aria-label:nav-menu"><span></span><span></span></button>
+            </div>
         </div>
     </nav>
 
-    <header class="min-h-screen flex items-center justify-center relative pt-20" id="home">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[100px] -z-10"></div>
-        <div class="text-center px-6 max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
-            <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-sm font-medium" data-i18n="hero-welcome">
-                👋 Hello, welcome to my portfolio
-            </div>
-            <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                <span data-i18n="hero-name">I am Matthieu Greiner</span> <br>
-                <span class="text-gradient" data-i18n="hero-title">DevSecOps & Security Engineer.</span>
-            </h1>
-            <p class="text-slate-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed" data-i18n="hero-desc">
-                Engineering student at EPITA building <span class="text-white font-medium">secure cloud infrastructure</span>, <span class="text-white font-medium">security automation</span>, and <strong class="text-indigo-400">DevSecOps</strong> workflows.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#projects" class="px-8 py-3.5 bg-white text-dark font-bold rounded-full hover:bg-slate-200 transition-all shadow-lg shadow-white/10 flex items-center justify-center gap-2" data-i18n="hero-btn-work">
-                    <i class="fab fa-github"></i> View Work
-                </a>
-                <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" class="px-8 py-3.5 glass-card text-white font-medium rounded-full hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-            </div>
-            <div class="mt-12 flex justify-center gap-6 text-2xl text-slate-400">
-                <a href="https://github.com/Spaghetto784" target="_blank" class="hover:text-white hover:-translate-y-1 transition-all duration-300"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" class="hover:text-blue-400 hover:-translate-y-1 transition-all duration-300"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:greinermatthieu635@gmail.com" class="hover:text-emerald-400 hover:-translate-y-1 transition-all duration-300"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-        <a href="#about" class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-500 hover:text-white transition-colors">
-            <i class="fas fa-chevron-down text-xl"></i>
-        </a>
-    </header>
+    <div class="menu" id="menu" aria-label="Menu" data-i18n-attr="aria-label:nav-menu">
+        <a href="#about" data-nav="about"><span data-i18n="nav-about">About</span><i class="fas fa-chevron-right"></i></a>
+        <a href="#experience" data-nav="experience"><span data-i18n="nav-exp">Experience</span><i class="fas fa-chevron-right"></i></a>
+        <a href="#skills" data-nav="skills"><span data-i18n="nav-skills">Skills</span><i class="fas fa-chevron-right"></i></a>
+        <a href="#projects" data-nav="projects"><span data-i18n="nav-projects">Projects</span><i class="fas fa-chevron-right"></i></a>
+        <a href="now.html" data-nav="now"><span data-i18n="nav-now">Now</span><i class="fas fa-chevron-right"></i></a>
+        <a data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer"><span data-i18n="nav-resume">Resume</span><i class="fas fa-arrow-up-right-from-square"></i></a>
+        <div class="menu-sep"></div>
+        <a class="btn btn-accent" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="nav-book">Book a chat</span></a>
+    </div>
 
-    <section id="about" class="py-24 px-6 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-right">
-                    <h2 class="font-display text-3xl md:text-4xl font-bold mb-6" data-i18n="about-title">About <span class="text-indigo-400">Me</span></h2>
-                    <div class="space-y-4 text-slate-400 leading-relaxed">
-                        <p data-i18n="about-p1">Pursuing my Master's at <strong>EPITA</strong>, majoring in Cybersecurity.</p>
+    <main id="main">
+        <section class="hero" id="home">
+            <div class="hero-inner">
+                <a class="status-chip" href="now.html" data-enter style="--i:0">
+                    <span class="dot"></span>
+                    <span data-i18n="hero-status">Now · DevSecOps apprentice at intuitem</span>
+                    <span class="go"><i class="fas fa-arrow-right"></i></span>
+                </a>
+                <h1 class="hero-title" data-enter style="--i:1">
+                    Matthieu Greiner
+                    <span class="grad" data-i18n="hero-title">DevSecOps &amp; security engineer.</span>
+                </h1>
+                <p class="hero-lead" data-enter style="--i:2" data-i18n="hero-lead">Engineering student at EPITA building <strong>secure cloud infrastructure</strong>, <strong>security automation</strong> and <strong>DevSecOps</strong> workflows — and researching how malware evades detection.</p>
+                <div class="hero-cta" data-enter style="--i:3">
+                    <a class="btn btn-primary" href="#projects"><i class="fab fa-github"></i><span data-i18n="hero-btn-work">View work</span></a>
+                    <a class="btn btn-glass" href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i>LinkedIn</a>
+                </div>
+                <div class="social" data-enter style="--i:4">
+                    <a href="https://github.com/Spaghetto784" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:greinermatthieu635@gmail.com" aria-label="Email" data-i18n-attr="aria-label:aria-email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <a class="scroll-cue" href="#about" aria-label="Scroll" data-i18n-attr="aria-label:aria-scroll"><i class="fas fa-chevron-down"></i></a>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container about-grid">
+                <div class="reveal">
+                    <span class="eyebrow" data-i18n="about-eyebrow">About</span>
+                    <h2 data-i18n="about-title">Security, from the kernel to the cloud.</h2>
+                    <div class="about-copy">
+                        <p data-i18n="about-p1">Pursuing my Master’s at <strong>EPITA</strong>, majoring in Cybersecurity.</p>
                         <p data-i18n="about-p2">Passionate about low-level programming, systems security and infrastructure — from kernel internals to cloud-native environments.</p>
-                        <p data-i18n="about-p3">Building hands-on security engineering experience through my apprenticeship at <strong>SFR Business</strong>, then joining <strong>intuitem</strong> in September 2026.</p>
+                        <p data-i18n="about-p3">Building hands-on experience through apprenticeships at <strong>SFR Business</strong> and now <strong>intuitem</strong>, while exploring malware evasion as a <strong>student researcher</strong>.</p>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
-                    <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:bg-indigo-500/10">
-                        <i class="fas fa-shield-halved text-3xl text-indigo-400 mb-3 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-2xl font-bold text-white">EPITA</span>
-                        <span class="text-sm text-slate-500" data-i18n="stat-cyber">Cybersecurity</span>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:bg-purple-500/10">
-                        <i class="fas fa-globe-asia text-3xl text-purple-400 mb-3 group-hover:scale-110 transition-transform"></i>
-                        <span class="text-2xl font-bold text-white">Bangkok</span>
-                        <span class="text-sm text-slate-500" data-i18n="stat-intl">Intl. Exchange</span>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl col-span-2 flex flex-row items-center justify-between px-8 group hover:bg-emerald-500/10">
-                        <div class="text-left">
-                            <span class="block text-2xl font-bold text-white">Security Engineer</span>
-                            <span class="text-sm text-slate-500" data-i18n="stat-goal">Long-term SecOps Goal</span>
+                <div class="stat-grid" data-stagger>
+                    <div class="glass stat spot c-indigo"><i class="fas fa-shield-halved"></i><strong>EPITA</strong><span data-i18n="stat-cyber">Cybersecurity</span></div>
+                    <div class="glass stat spot c-violet"><i class="fas fa-globe-asia"></i><strong>Bangkok</strong><span data-i18n="stat-intl">Intl. exchange</span></div>
+                    <div class="glass stat stat-wide spot c-cyan"><div><strong data-i18n="stat-research-t">Student Researcher</strong><span data-i18n="stat-research-d">EPITA Research Lab (LRE)</span></div><i class="fas fa-microscope"></i></div>
+                    <div class="glass stat stat-wide spot c-emerald"><div><strong>Security Engineer</strong><span data-i18n="stat-goal">Long-term SecOps goal</span></div><i class="fas fa-flag"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="experience">
+            <div class="container container-narrow">
+                <div class="section-head reveal">
+                    <span class="eyebrow" data-i18n="exp-eyebrow">Experience</span>
+                    <h2 data-i18n="exp-title">My journey.</h2>
+                </div>
+                <div class="timeline" data-stagger>
+                    <div class="timeline-progress" aria-hidden="true"></div>
+
+                    <article class="t-item c-violet">
+                        <span class="t-dot"></span>
+                        <div class="glass t-card spot">
+                            <div class="t-meta">
+                                <span class="t-date">2026 – 2028</span>
+                                <span class="t-type" data-i18n="exp-type-appr">Apprenticeship</span>
+                                <span class="kicker c-emerald"><span class="dot"></span><span data-i18n="exp-current">Current</span></span>
+                            </div>
+                            <h3 data-i18n="exp-pos-intuitem">DevSecOps Engineer (Apprentice)</h3>
+                            <p class="t-org">intuitem · Vélizy</p>
+                            <p class="t-desc" data-i18n="exp-desc-intuitem">Joined in September 2026 the team behind <strong>CISO Assistant</strong>, the open-source GRC platform: shipping features, keeping changes aligned with the CI/CD, and answering customers on the Jira support desk.</p>
+                            <div class="t-actions">
+                                <a class="more-btn" href="intuitem.html"><span data-i18n="btn-more">more</span><i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
-                        <i class="fas fa-flag text-3xl text-emerald-400 group-hover:rotate-12 transition-transform"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    </article>
 
-    <section id="experience" class="py-24 px-6 bg-black/20">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center" data-aos="fade-up" data-i18n="exp-title">My <span class="text-gradient">Journey</span></h2>
-            <div class="space-y-8 pl-4 border-l border-white/10 ml-4 md:ml-0">
-
-                <div class="relative pl-8" data-aos="fade-left">
-                    <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-violet-500 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.6)]"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
-                        <span class="text-xs font-mono px-2 py-1 rounded bg-violet-500/10 text-violet-400 border border-violet-500/20 w-fit">2026 - 2028</span>
-                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-appr">Apprenticeship</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
-                        <span data-i18n="exp-pos-intuitem">DevSecOps Engineer (Apprentice)</span>
-                        <a href="intuitem.html" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
-                    </h3>
-                    <h4 class="text-lg text-slate-300 mb-2">intuitem · Vélizy</h4>
-                    <p class="text-slate-400 text-sm max-w-2xl" data-i18n="exp-desc-intuitem">
-                        Starting in September 2026, joining the team behind <strong>CISO Assistant</strong>, the open-source GRC platform, to work across full-stack engineering and DevSecOps.
-                    </p>
-                </div>
-
-                <div class="relative pl-8" data-aos="fade-left" data-aos-delay="80">
-                    <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
-                        <span class="text-xs font-mono px-2 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/20 w-fit">2025 - 2026</span>
-                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-appr">Apprenticeship</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
-                        <span data-i18n="exp-pos-sfr">SSI Engineer (Apprentice)</span>
-                        <a href="projects.html#sfr-projects" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
-                    </h3>
-                    <h4 class="text-lg text-slate-300 mb-2">SFR Business · Paris</h4>
-                    <p class="text-slate-400 text-sm max-w-2xl" data-i18n="exp-desc-sfr">
-                        IT Governance, Risk Analysis, and internal AI development. Built security tooling in Go, automated GRC workflows, and contributed to NIS2/DORA compliance efforts.
-                    </p>
-                </div>
-
-                <div class="relative pl-8" data-aos="fade-left" data-aos-delay="160">
-                    <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-pink-500 rounded-full"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
-                        <span class="text-xs font-mono px-2 py-1 rounded bg-pink-500/10 text-pink-400 border border-pink-500/20 w-fit">2025</span>
-                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-intl">International Exchange</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white" data-i18n="exp-pos-chula">Chulalongkorn University (Thailand)</h3>
-                    <p class="text-slate-400 text-sm mt-2 max-w-2xl" data-i18n="exp-desc-chula">Exchange semester in Bangkok focusing on advanced Cybersecurity and Cloud Computing.</p>
-                </div>
-
-                <div class="relative pl-8" data-aos="fade-left" data-aos-delay="240">
-                    <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-indigo-500 rounded-full"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-1">
-                        <span class="text-xs font-mono px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 w-fit">2023 - 2028</span>
-                        <span class="text-xs text-slate-400 uppercase tracking-wider" data-i18n="exp-type-edu">Education</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white flex items-center gap-2 flex-wrap">
-                        EPITA - School of Engineering & CS
-                        <a href="projects.html#academic-projects" class="more-btn" data-i18n="btn-more">more <i class="fas fa-arrow-right"></i></a>
-                    </h3>
-                    <p class="text-slate-400 text-sm mt-2 max-w-2xl" data-i18n="exp-desc-epita">Specializing in Cybersecurity with a focus on systems and networks.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center" data-aos="fade-up" data-i18n="skills-title">Technical <span class="text-gradient">Arsenal</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-xl flex flex-col items-center gap-4 hover:bg-white/5 transition-all group" data-aos="fade-up">
-                    <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20">
-                        <span class="font-bold text-xl text-blue-500">C</span>
-                    </div>
-                    <span class="font-medium">C Programming</span>
-                </div>
-                <div class="glass-card p-6 rounded-xl flex flex-col items-center gap-4 hover:bg-white/5 transition-all group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 rounded-full bg-yellow-500/10 flex items-center justify-center group-hover:bg-yellow-500/20">
-                        <i class="fab fa-python text-2xl text-yellow-500"></i>
-                    </div>
-                    <span class="font-medium">Python</span>
-                </div>
-                <div class="glass-card p-6 rounded-xl flex flex-col items-center gap-4 hover:bg-white/5 transition-all group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20">
-                        <i class="fab fa-linux text-2xl text-white"></i>
-                    </div>
-                    <span class="font-medium">Linux / Bash</span>
-                </div>
-                <div class="glass-card p-6 rounded-xl flex flex-col items-center gap-4 hover:bg-white/5 transition-all group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center group-hover:bg-red-500/20">
-                        <i class="fas fa-network-wired text-2xl text-red-500"></i>
-                    </div>
-                    <span class="font-medium" data-i18n="skill-net">Network Security</span>
-                </div>
-            </div>
-            <div class="mt-10 text-center" data-aos="fade-up" data-aos-delay="120">
-                <a href="skills.html" class="inline-flex items-center gap-3 px-5 py-3 rounded-full glass-card text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10">
-                    <i class="fas fa-layer-group text-indigo-300"></i>
-                    <span data-i18n="skills-more">Explore the full technical arsenal</span>
-                    <i class="fas fa-arrow-right text-xs text-indigo-300"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="certifications" class="py-24 px-6 bg-black/20">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center" data-aos="fade-up" data-i18n="cert-title">Certifications & <span class="text-gradient">Methodologies</span></h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-card p-8 rounded-2xl flex items-center gap-6 group hover:border-blue-500/50" data-aos="fade-up">
-                    <div class="w-20 h-20 bg-blue-500/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-                        <i class="fas fa-ethernet text-4xl text-blue-500"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-3 mb-1">
-                            <h3 class="text-xl font-bold text-white">CompTIA Security+</h3>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 tracking-wide uppercase" data-i18n="cert-status-prep">In Prep</span>
+                    <article class="t-item c-cyan">
+                        <span class="t-dot"></span>
+                        <div class="glass t-card spot featured">
+                            <div class="t-meta">
+                                <span class="t-date" data-i18n="exp-research-date">Oct 2026 – 2028</span>
+                                <span class="t-type" data-i18n="exp-type-research">Research</span>
+                                <span class="kicker c-emerald"><span class="dot"></span><span data-i18n="exp-current">Current</span></span>
+                            </div>
+                            <h3 data-i18n="exp-pos-research">Student Researcher</h3>
+                            <p class="t-org" data-i18n="exp-org-research">EPITA Research Lab (LRE)</p>
+                            <p class="t-desc" data-i18n="exp-desc-research">Study of malware evasion techniques through dynamic binary instrumentation (<strong>Intel Pin</strong>) on Windows x64 malware. Two years, until graduation, with a paper to publish.</p>
+                            <div class="t-actions">
+                                <button class="more-btn" type="button" data-sheet-open="research-sheet" aria-haspopup="dialog"><span data-i18n="btn-research">Research brief</span><i class="fas fa-arrow-up"></i></button>
+                            </div>
                         </div>
-                        <p class="text-slate-300 font-medium mb-1" data-i18n="cert-pos-securityplus">Core Security</p>
-                        <p class="text-slate-500 text-sm" data-i18n="cert-desc-securityplus">Foundational cybersecurity concepts, operations, and risk management.</p>
-                    </div>
-                </div>
-                <div class="glass-card p-8 rounded-2xl flex items-center gap-6 group hover:border-emerald-500/50" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                        <i class="fas fa-shield-virus text-4xl text-emerald-500"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-3 mb-1">
-                            <h3 class="text-xl font-bold text-white">EBIOS RM</h3>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 tracking-wide uppercase" data-i18n="cert-status-cert">Certified</span>
-                        </div>
-                        <p class="text-slate-300 font-medium mb-1" data-i18n="cert-pos-ebios">Risk Manager</p>
-                        <p class="text-slate-500 text-sm" data-i18n="cert-desc-ebios">ANSSI standard for risk assessment and management.</p>
-                    </div>
-                </div>
-                <div class="glass-card p-8 rounded-2xl flex items-center gap-6 group hover:border-violet-500/50" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-20 h-20 bg-violet-500/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(139,92,246,0.2)]">
-                        <i class="fas fa-language text-4xl text-violet-400"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-3 mb-1">
-                            <h3 class="text-xl font-bold text-white">TOEIC</h3>
-                            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-violet-500/20 text-violet-300 border border-violet-500/30 tracking-wide uppercase" data-i18n="cert-status-planned">Planned</span>
-                        </div>
-                        <p class="text-slate-300 font-medium mb-1" data-i18n="cert-pos-toeic">English · B2 level</p>
-                        <p class="text-slate-500 text-sm" data-i18n="cert-desc-toeic">TOEIC planned during the final year of the engineering degree.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    </article>
 
-    <section id="projects" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div data-aos="fade-right">
-                    <h2 class="font-display text-3xl md:text-4xl font-bold mb-2" data-i18n="proj-title">Featured <span class="text-indigo-400">Projects</span></h2>
-                    <p class="text-slate-400" data-i18n="proj-subtitle">Selection of academic and personal work.</p>
+                    <article class="t-item c-red">
+                        <span class="t-dot"></span>
+                        <div class="glass t-card spot">
+                            <div class="t-meta">
+                                <span class="t-date">2025 – 2026</span>
+                                <span class="t-type" data-i18n="exp-type-appr">Apprenticeship</span>
+                            </div>
+                            <h3 data-i18n="exp-pos-sfr">SSI Engineer (Apprentice)</h3>
+                            <p class="t-org">SFR Business · Paris</p>
+                            <p class="t-desc" data-i18n="exp-desc-sfr">IT governance, risk analysis and internal AI development. Built security tooling in Go, automated GRC workflows and contributed to NIS2/DORA compliance efforts.</p>
+                            <div class="t-actions">
+                                <a class="more-btn" href="projects.html#sfr-projects"><span data-i18n="btn-more">more</span><i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="t-item c-pink">
+                        <span class="t-dot"></span>
+                        <div class="glass t-card spot">
+                            <div class="t-meta">
+                                <span class="t-date">2025</span>
+                                <span class="t-type" data-i18n="exp-type-intl">International exchange</span>
+                            </div>
+                            <h3 data-i18n="exp-pos-chula">Chulalongkorn University (Thailand)</h3>
+                            <p class="t-desc" data-i18n="exp-desc-chula">Exchange semester in Bangkok focusing on advanced cybersecurity and cloud computing.</p>
+                        </div>
+                    </article>
+
+                    <article class="t-item c-indigo">
+                        <span class="t-dot"></span>
+                        <div class="glass t-card spot">
+                            <div class="t-meta">
+                                <span class="t-date">2023 – 2028</span>
+                                <span class="t-type" data-i18n="exp-type-edu">Education</span>
+                            </div>
+                            <h3>EPITA — School of Engineering &amp; CS</h3>
+                            <p class="t-desc" data-i18n="exp-desc-epita">Specializing in cybersecurity with a focus on systems and networks.</p>
+                            <div class="t-actions">
+                                <a class="more-btn" href="projects.html#academic-projects"><span data-i18n="btn-more">more</span><i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <a href="https://github.com/Spaghetto784" target="_blank" class="hidden md:flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors" data-i18n="proj-btn-all">
-                    View GitHub <i class="fas fa-arrow-right text-sm"></i>
-                </a>
             </div>
-            <div class="grid lg:grid-cols-2 gap-6">
-                <article class="glass-card case-study-card rounded-2xl p-6 md:p-8 flex flex-col" data-aos="fade-up">
-                    <div class="flex justify-between gap-4 items-start mb-6">
+        </section>
+
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow" data-i18n="skills-eyebrow">Skills</span>
+                    <h2 data-i18n="skills-title">The stack behind the security.</h2>
+                    <p class="lead" data-i18n="skills-lead">Languages, systems and governance methods I use — from low-level engineering to security-by-design.</p>
+                </div>
+                <div class="bento" data-stagger>
+                    <article class="glass tile tile-xl spot c-cyan">
+                        <div class="tile-head"><span class="ico"><i class="fas fa-cloud"></i></span><h3 data-i18n="tile-devsecops-t">DevSecOps &amp; Automation</h3></div>
+                        <p data-i18n="tile-devsecops-d">Secure CI/CD, containers and orchestration — from the SecureFlow pipeline to Kubernetes at intuitem.</p>
+                        <div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Secure CI/CD</span><span class="chip">Git &amp; GitHub</span><span class="chip">Excel &amp; VBA</span></div>
+                    </article>
+                    <article class="glass tile tile-m spot c-violet">
+                        <div class="tile-head"><span class="ico"><i class="fas fa-terminal"></i></span><h3 data-i18n="tile-sys-t">Security &amp; Systems</h3></div>
+                        <p data-i18n="tile-sys-d">Linux, C, networks and kernel internals — the foundations behind the tooling.</p>
+                        <div class="chips"><span class="chip">Linux &amp; Bash</span><span class="chip">C</span><span class="chip" data-i18n="chip-net">Network security</span><span class="chip" data-i18n="chip-kernel">Kernel concepts</span></div>
+                    </article>
+                    <article class="glass tile tile-m spot c-red">
+                        <div class="tile-head"><span class="ico"><i class="fas fa-virus"></i></span><h3 data-i18n="tile-mal-t">Malware Research</h3></div>
+                        <p data-i18n="tile-mal-d">Dynamic binary instrumentation to study how malware evades detection on Windows x64.</p>
+                        <div class="chips"><span class="chip">Intel Pin</span><span class="chip">DBI</span><span class="chip">Windows x64</span><span class="chip" data-i18n="chip-evasion">Evasion</span></div>
+                    </article>
+                    <article class="glass tile tile-xl spot c-emerald">
+                        <div class="tile-head"><span class="ico"><i class="fas fa-code"></i></span><h3 data-i18n="tile-soft-t">Software &amp; Web</h3></div>
+                        <p data-i18n="tile-soft-d">Python, Go and Swift for security tooling and privacy-first apps; Django and Svelte on CISO Assistant.</p>
+                        <div class="chips"><span class="chip">Python</span><span class="chip">Golang</span><span class="chip">Swift &amp; SwiftUI</span><span class="chip">Django</span><span class="chip">Svelte</span><span class="chip" data-i18n="chip-web">Web interfaces</span></div>
+                    </article>
+                    <article class="glass tile tile-half spot c-indigo">
+                        <div class="tile-head"><span class="ico"><i class="fas fa-shield-heart"></i></span><h3 data-i18n="tile-grc-t">Governance, Risk &amp; Compliance</h3></div>
+                        <p data-i18n="tile-grc-d">Risk analysis, compliance frameworks and supplier assurance, tied back to real systems.</p>
+                        <div class="chips"><span class="chip">EBIOS RM</span><span class="chip">ISO 27001</span><span class="chip">NIS2 &amp; DORA</span><span class="chip" data-i18n="chip-supplier">Supplier security</span></div>
+                    </article>
+                    <a class="glass tile tile-half tile-cta lift spot" href="skills.html">
                         <div>
-                            <div class="flex items-center gap-3 mb-3"><span class="signal-dot"></span><span class="text-xs uppercase tracking-[.18em] text-emerald-300" data-i18n="case-live">Public project</span></div>
-                            <h3 class="font-display text-2xl font-bold text-white">SecureFlow</h3>
+                            <span class="eyebrow" data-i18n="skills-more-eyebrow">Full picture</span>
+                            <h3 data-i18n="skills-more">Explore the full technical arsenal</h3>
                         </div>
-                        <span class="case-tag">DevSecOps</span>
-                    </div>
-                    <p class="text-slate-400 leading-relaxed text-sm mb-6" data-i18n="secureflow-summary">A production-inspired platform that makes secure delivery visible: an authenticated API, dashboard, database, containers, and automated security checks in one workflow.</p>
-                    <div class="grid grid-cols-5 gap-2 mb-6" aria-label="SecureFlow architecture">
-                        <div class="pipeline-step"><i class="fas fa-code"></i>React</div><div class="pipeline-step"><i class="fas fa-server"></i>FastAPI</div><div class="pipeline-step"><i class="fas fa-database"></i>Postgres</div><div class="pipeline-step"><i class="fab fa-docker"></i>Docker</div><div class="pipeline-step"><i class="fas fa-shield-halved"></i>CI scans</div>
-                    </div>
-                    <div class="border-t border-white/10 pt-5 mt-auto">
-                        <p class="text-xs uppercase tracking-widest text-slate-500 mb-3" data-i18n="case-evidence">Evidence</p>
-                        <div class="flex flex-wrap gap-2 text-xs"><span class="case-tag">Semgrep</span><span class="case-tag">Gitleaks</span><span class="case-tag">Trivy</span><span class="case-tag">JWT + Argon2</span></div>
-                        <a href="https://github.com/Spaghetto784/SecureFlow" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-white hover:text-indigo-300 transition-colors"><i class="fab fa-github"></i><span data-i18n="case-view-source">View source & architecture</span><i class="fas fa-arrow-right text-xs"></i></a>
-                    </div>
-                </article>
-                <article class="glass-card case-study-card rounded-2xl p-6 md:p-8 flex flex-col" data-aos="fade-up" data-aos-delay="80">
-                    <div class="flex justify-between gap-4 items-start mb-6">
-                        <div><div class="flex items-center gap-3 mb-3"><i class="fas fa-lock text-amber-300"></i><span class="text-xs uppercase tracking-[.18em] text-amber-200" data-i18n="case-internal">Professional work · details limited</span></div><h3 class="font-display text-2xl font-bold text-white">CyberTool</h3></div>
-                        <span class="case-tag">Go</span>
-                    </div>
-                    <p class="text-slate-400 leading-relaxed text-sm mb-6" data-i18n="cybertool-summary">Internal security tooling built during my SFR Business apprenticeship to reduce repetitive operational work and support governance workflows.</p>
-                    <div class="grid grid-cols-3 gap-3 mb-6">
-                        <div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-gears text-indigo-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="cybertool-s1">Automation</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-file-shield text-indigo-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="cybertool-s2">GRC support</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-chart-line text-indigo-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="cybertool-s3">Reporting</p></div>
-                    </div>
-                    <div class="border-t border-white/10 pt-5 mt-auto"><p class="text-xs uppercase tracking-widest text-slate-500 mb-3" data-i18n="case-context">Context</p><p class="text-sm text-slate-400" data-i18n="cybertool-context">The work is not public by design. This card focuses on the engineering scope without exposing internal systems or data.</p></div>
-                </article>
-                <article class="glass-card case-study-card rounded-2xl p-6 md:p-8 flex flex-col" data-aos="fade-up" data-aos-delay="120">
-                    <div class="flex justify-between gap-4 items-start mb-6"><div><div class="flex items-center gap-3 mb-3"><span class="signal-dot"></span><span class="text-xs uppercase tracking-[.18em] text-emerald-300" data-i18n="case-live">Public project</span></div><h3 class="font-display text-2xl font-bold text-white">wlkom-rootkit</h3></div><span class="case-tag">Linux kernel</span></div>
-                    <p class="text-slate-400 leading-relaxed text-sm mb-6" data-i18n="rootkit-summary">An EPITA SYS2 educational Linux kernel module project, built in an isolated two-VM lab to explore low-level systems, persistence concepts, and secure client/server communication.</p>
-                    <div class="grid grid-cols-3 gap-3 mb-6"><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fab fa-linux text-red-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="rootkit-s1">Kernel module</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-network-wired text-red-300 mb-3"></i><p class="text-xs text-slate-300" data-i18n="rootkit-s2">Private VM lab</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-terminal text-red-300 mb-3"></i><p class="text-xs text-slate-300">C + Python</p></div></div>
-                    <div class="border-t border-white/10 pt-5 mt-auto"><p class="text-xs uppercase tracking-widest text-slate-500 mb-3" data-i18n="case-evidence">Evidence</p><div class="flex flex-wrap gap-2 text-xs"><span class="case-tag" data-i18n="rootkit-tag1">QEMU isolation</span><span class="case-tag" data-i18n="rootkit-tag2">TCP protocol</span><span class="case-tag">Argon2id</span></div><a href="https://github.com/spaghetto1234/wlkom-rootkit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-white hover:text-red-300 transition-colors"><i class="fab fa-github"></i><span data-i18n="case-view-source">View source & architecture</span><i class="fas fa-arrow-right text-xs"></i></a></div>
-                </article>
-                <article class="glass-card case-study-card rounded-2xl p-6 md:p-8 flex flex-col" data-aos="fade-up" data-aos-delay="160">
-                    <div class="flex justify-between gap-4 items-start mb-6"><div><div class="flex items-center gap-3 mb-3"><span class="signal-dot"></span><span class="text-xs uppercase tracking-[.18em] text-emerald-300" data-i18n="ciso-kicker">Ongoing · joined September 2026</span></div><h3 class="font-display text-2xl font-bold text-white">CISO Assistant</h3></div><span class="case-tag">Open source GRC</span></div>
-                    <p class="text-slate-400 leading-relaxed text-sm mb-6" data-i18n="ciso-summary">Contributing to CISO Assistant at intuitem, an open-source GRC platform, at the crossroads of product engineering, cloud infrastructure, and security.</p>
-                    <div class="grid grid-cols-3 gap-3 mb-6"><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-code-branch text-violet-300 mb-3"></i><p class="text-xs text-slate-300">Django + Svelte</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-cloud text-violet-300 mb-3"></i><p class="text-xs text-slate-300">Multi-cloud</p></div><div class="rounded-xl border border-white/10 bg-white/[.03] p-4"><i class="fas fa-dharmachakra text-violet-300 mb-3"></i><p class="text-xs text-slate-300">Kubernetes</p></div></div>
-                    <div class="border-t border-white/10 pt-5 mt-auto">
-                        <p class="text-xs uppercase tracking-widest text-slate-500 mb-3" data-i18n="case-evidence">Evidence</p>
-                        <div class="flex flex-wrap gap-2 text-xs"><span class="case-tag">Django</span><span class="case-tag">Svelte</span><span class="case-tag">GRC</span></div>
-                        <a href="https://github.com/intuitem/ciso-assistant-community" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-white hover:text-indigo-300 transition-colors"><i class="fab fa-github"></i><span data-i18n="ciso-view-source">View the project on GitHub</span><i class="fas fa-arrow-right text-xs"></i></a>
-                    </div>
-                </article>
+                        <span class="go" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="hobbies" class="py-24 px-6 relative">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="font-display text-3xl md:text-4xl font-bold mb-12 text-center" data-aos="fade-up" data-i18n="hobbies-title">Beyond the <span class="text-gradient">Keyboard</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-2xl text-center group" data-aos="fade-up">
-                    <div class="w-16 h-16 mx-auto bg-indigo-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-guitar text-3xl text-indigo-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="hob-title-guitar">Guitar</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="hob-desc-guitar">Passionate about music and riffs on electric guitar.</p>
+        <section class="section section-alt" id="certifications">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow" data-i18n="cert-eyebrow">Credentials</span>
+                    <h2 data-i18n="cert-title">Certifications &amp; methodologies.</h2>
                 </div>
-                <div class="glass-card p-8 rounded-2xl text-center group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 mx-auto bg-purple-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-gamepad text-3xl text-purple-400"></i>
+                <div class="cert-grid" data-stagger>
+                    <div class="glass cert spot c-blue">
+                        <span class="ico"><i class="fas fa-ethernet"></i></span>
+                        <div>
+                            <div class="cert-top"><h3>CompTIA Security+</h3><span class="badge" data-i18n="cert-status-prep">In prep</span></div>
+                            <p class="pos" data-i18n="cert-pos-securityplus">Core security</p>
+                            <p class="desc" data-i18n="cert-desc-securityplus">Foundational cybersecurity concepts, operations and risk management.</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="hob-title-gamedev">Game Dev</h3>
-                    <p class="text-slate-400 text-sm mb-4" data-i18n="hob-desc-gamedev">Developed a complete game from scratch in my first year of integrated prepa.</p>
-                    <div class="flex flex-wrap justify-center gap-2">
-                        <a href="https://github.com/CelinaMeiLin/SUPERDEVS" target="_blank" class="text-xs font-bold text-purple-400 border border-purple-500/30 rounded-full px-3 py-1 bg-purple-500/10 hover:bg-purple-500/20 transition-all" data-i18n="btn-devs">View SUPERDEVS</a>
-                        <a href="https://www.youtube.com/watch?v=8WqQ1AJO_zk" target="_blank" class="text-xs font-bold text-red-400 border border-red-500/30 rounded-full px-3 py-1 bg-red-500/10 hover:bg-red-500/20 transition-all inline-flex items-center gap-1">
-                            <i class="fab fa-youtube"></i> <span data-i18n="btn-watch">Watch Gameplay</span>
-                        </a>
+                    <div class="glass cert spot c-emerald">
+                        <span class="ico"><i class="fas fa-shield-virus"></i></span>
+                        <div>
+                            <div class="cert-top"><h3>EBIOS RM</h3><span class="badge" data-i18n="cert-status-cert">Certified</span></div>
+                            <p class="pos" data-i18n="cert-pos-ebios">Risk manager</p>
+                            <p class="desc" data-i18n="cert-desc-ebios">ANSSI standard for risk assessment and management.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="glass-card p-8 rounded-2xl text-center group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 mx-auto bg-emerald-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-laptop-code text-3xl text-emerald-400"></i>
+                    <div class="glass cert spot c-violet">
+                        <span class="ico"><i class="fas fa-language"></i></span>
+                        <div>
+                            <div class="cert-top"><h3>TOEIC</h3><span class="badge" data-i18n="cert-status-planned">Planned</span></div>
+                            <p class="pos" data-i18n="cert-pos-toeic">English · B2 level</p>
+                            <p class="desc" data-i18n="cert-desc-toeic">TOEIC planned during the final year of the engineering degree.</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="hob-title-code">Coding</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="hob-desc-code">Exploring new languages and automating daily tasks.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl text-center group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-16 h-16 mx-auto bg-orange-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-school text-3xl text-orange-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="hob-title-jpo">Open School Days</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="hob-desc-jpo">Active representative at EPITA open days and higher education fairs, presenting the school's programs to prospective students.</p>
-                </div>
-                <div class="glass-card p-8 rounded-2xl text-center group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-16 h-16 mx-auto bg-cyan-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-trophy text-3xl text-cyan-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="hob-title-ctf">CTF & Competitions</h3>
-                    <p class="text-slate-400 text-sm" data-i18n="hob-desc-ctf">Keeping an eye on cybersecurity competitions and CTF events, sharpening offensive and defensive skills beyond the classroom.</p>
                 </div>
             </div>
-            <div class="mt-16 text-center">
-                <p class="text-slate-400 mb-6" data-i18n="contact-chat">Want to chat about security, music, or code?</p>
-                <p class="text-sm text-slate-500 mb-5"><i class="fas fa-location-dot text-indigo-400 mr-2"></i><span data-i18n="contact-timezone">Paris, France · UTC+2</span></p>
-                <div class="flex flex-col sm:flex-row justify-center gap-3">
-                    <a href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full text-white transition-all shadow-lg shadow-indigo-500/20" data-i18n="btn-book"><i class="far fa-calendar-check"></i> Book a chat</a>
-                    <a href="mailto:greinermatthieu635@gmail.com" class="inline-flex items-center justify-center gap-3 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:text-white transition-all" data-i18n="btn-email"><i class="far fa-envelope"></i> Send me an email</a>
-                    <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-6 py-3 border border-slate-700 rounded-full text-slate-300 hover:text-white transition-all"><i class="fab fa-linkedin text-blue-400"></i> LinkedIn</a>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="py-8 text-center text-slate-600 text-sm border-t border-white/5 bg-black/40">
-        <p>© 2026 Matthieu Greiner. <span data-i18n="footer-built">Built with</span> <i class="fas fa-heart text-red-500 mx-1"></i> <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline underline-offset-4 decoration-indigo-500/50">GitHub Pages</a> · <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors underline underline-offset-4 decoration-indigo-500/50">LinkedIn</a>.</p>
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-head section-split reveal">
+                    <div>
+                        <span class="eyebrow" data-i18n="proj-eyebrow">Projects</span>
+                        <h2 data-i18n="proj-title">Featured projects.</h2>
+                        <p class="lead" data-i18n="proj-subtitle">A selection of academic, professional and personal work.</p>
+                    </div>
+                    <a class="link-arrow" href="https://github.com/Spaghetto784" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span data-i18n="proj-btn-all">View GitHub</span><i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="case-grid" data-stagger>
+                    <article class="glass case spot c-indigo">
+                        <div class="case-top">
+                            <div><span class="kicker c-emerald"><span class="dot"></span><span data-i18n="case-live">Public project</span></span><h3>SecureFlow</h3></div>
+                            <span class="chip">DevSecOps</span>
+                        </div>
+                        <p data-i18n="secureflow-summary">A production-inspired platform that makes secure delivery visible: an authenticated API, dashboard, database, containers and automated security checks in one workflow.</p>
+                        <div class="pipeline" aria-hidden="true">
+                            <div class="step"><i class="fas fa-code"></i>React</div><div class="step"><i class="fas fa-server"></i>FastAPI</div><div class="step"><i class="fas fa-database"></i>Postgres</div><div class="step"><i class="fab fa-docker"></i>Docker</div><div class="step"><i class="fas fa-shield-halved"></i>CI scans</div>
+                        </div>
+                        <div class="case-foot">
+                            <p class="label" data-i18n="case-evidence">Evidence</p>
+                            <div class="chips"><span class="chip">Semgrep</span><span class="chip">Gitleaks</span><span class="chip">Trivy</span><span class="chip">JWT + Argon2</span></div>
+                            <a class="link-arrow" href="https://github.com/Spaghetto784/SecureFlow" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span data-i18n="case-view-source">View source &amp; architecture</span><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="glass case spot c-indigo">
+                        <div class="case-top">
+                            <div><span class="kicker c-amber"><i class="fas fa-lock"></i><span data-i18n="case-internal">Professional work · details limited</span></span><h3>CyberTool</h3></div>
+                            <span class="chip">Go</span>
+                        </div>
+                        <p data-i18n="cybertool-summary">Internal security tooling built during my SFR Business apprenticeship to reduce repetitive operational work and support governance workflows.</p>
+                        <div class="mini-grid">
+                            <div class="mini"><i class="fas fa-gears"></i><p data-i18n="cybertool-s1">Automation</p></div>
+                            <div class="mini"><i class="fas fa-file-shield"></i><p data-i18n="cybertool-s2">GRC support</p></div>
+                            <div class="mini"><i class="fas fa-chart-line"></i><p data-i18n="cybertool-s3">Reporting</p></div>
+                        </div>
+                        <div class="case-foot">
+                            <p class="label" data-i18n="case-context">Context</p>
+                            <p class="small muted" data-i18n="cybertool-context">The work is not public by design. This card focuses on the engineering scope without exposing internal systems or data.</p>
+                        </div>
+                    </article>
+
+                    <article class="glass case spot c-red">
+                        <div class="case-top">
+                            <div><span class="kicker c-emerald"><span class="dot"></span><span data-i18n="case-live">Public project</span></span><h3>wlkom-rootkit</h3></div>
+                            <span class="chip">Linux kernel</span>
+                        </div>
+                        <p data-i18n="rootkit-summary">An EPITA SYS2 educational Linux kernel module project, built in an isolated two-VM lab to explore low-level systems, persistence concepts and secure client/server communication.</p>
+                        <div class="mini-grid">
+                            <div class="mini"><i class="fab fa-linux"></i><p data-i18n="rootkit-s1">Kernel module</p></div>
+                            <div class="mini"><i class="fas fa-network-wired"></i><p data-i18n="rootkit-s2">Private VM lab</p></div>
+                            <div class="mini"><i class="fas fa-terminal"></i><p>C + Python</p></div>
+                        </div>
+                        <div class="case-foot">
+                            <p class="label" data-i18n="case-evidence">Evidence</p>
+                            <div class="chips"><span class="chip" data-i18n="rootkit-tag1">QEMU isolation</span><span class="chip" data-i18n="rootkit-tag2">TCP protocol</span><span class="chip">Argon2id</span></div>
+                            <a class="link-arrow" href="https://github.com/spaghetto1234/wlkom-rootkit" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span data-i18n="case-view-source">View source &amp; architecture</span><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="glass case spot c-violet">
+                        <div class="case-top">
+                            <div><span class="kicker c-emerald"><span class="dot"></span><span data-i18n="ciso-kicker">Ongoing · joined September 2026</span></span><h3>CISO Assistant</h3></div>
+                            <span class="chip">Open source GRC</span>
+                        </div>
+                        <p data-i18n="ciso-summary">Contributing to CISO Assistant at intuitem, an open-source GRC platform, at the crossroads of product engineering, cloud infrastructure and security.</p>
+                        <div class="mini-grid">
+                            <div class="mini"><i class="fas fa-code-branch"></i><p>Django + Svelte</p></div>
+                            <div class="mini"><i class="fas fa-cloud"></i><p>Multi-cloud</p></div>
+                            <div class="mini"><i class="fas fa-dharmachakra"></i><p>Kubernetes</p></div>
+                        </div>
+                        <div class="case-foot">
+                            <p class="label" data-i18n="case-evidence">Evidence</p>
+                            <div class="chips"><span class="chip">Django</span><span class="chip">Svelte</span><span class="chip">GRC</span></div>
+                            <a class="link-arrow" href="https://github.com/intuitem/ciso-assistant-community" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span data-i18n="ciso-view-source">View the project on GitHub</span><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="hobbies">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow" data-i18n="hobbies-eyebrow">Life</span>
+                    <h2 data-i18n="hobbies-title">Beyond the keyboard.</h2>
+                </div>
+                <div class="hobby-grid" data-stagger>
+                    <div class="glass hobby hobby-wide spot c-indigo">
+                        <span class="ico"><i class="fas fa-guitar"></i></span>
+                        <h3 data-i18n="hob-title-guitar">Guitar</h3>
+                        <p data-i18n="hob-desc-guitar">Passionate about music and riffs on electric guitar.</p>
+                    </div>
+                    <div class="glass hobby hobby-wide spot c-violet">
+                        <span class="ico"><i class="fas fa-gamepad"></i></span>
+                        <h3 data-i18n="hob-title-gamedev">Game dev</h3>
+                        <p data-i18n="hob-desc-gamedev">Developed a complete game from scratch in my first year of integrated prépa.</p>
+                        <div class="chips">
+                            <a class="pill-link c-violet" href="https://github.com/CelinaMeiLin/SUPERDEVS" target="_blank" rel="noopener noreferrer" data-i18n="btn-devs">View SUPERDEVS</a>
+                            <a class="pill-link c-red" href="https://www.youtube.com/watch?v=8WqQ1AJO_zk" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i><span data-i18n="btn-watch">Watch gameplay</span></a>
+                        </div>
+                    </div>
+                    <div class="glass hobby spot c-emerald">
+                        <span class="ico"><i class="fas fa-laptop-code"></i></span>
+                        <h3 data-i18n="hob-title-code">Coding</h3>
+                        <p data-i18n="hob-desc-code">Exploring new languages and automating daily tasks.</p>
+                    </div>
+                    <div class="glass hobby spot c-orange">
+                        <span class="ico"><i class="fas fa-school"></i></span>
+                        <h3 data-i18n="hob-title-jpo">Open school days</h3>
+                        <p data-i18n="hob-desc-jpo">Active representative at EPITA open days and higher education fairs, presenting the school’s programs to prospective students.</p>
+                    </div>
+                    <div class="glass hobby spot c-cyan">
+                        <span class="ico"><i class="fas fa-trophy"></i></span>
+                        <h3 data-i18n="hob-title-ctf">CTF &amp; competitions</h3>
+                        <p data-i18n="hob-desc-ctf">Keeping an eye on cybersecurity competitions and CTF events, sharpening offensive and defensive skills beyond the classroom.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container container-narrow">
+                <div class="glass cta-banner reveal">
+                    <span class="eyebrow" data-i18n="contact-eyebrow">Let’s talk</span>
+                    <h2 data-i18n="contact-chat">Want to chat about security, music or code?</h2>
+                    <p class="loc"><i class="fas fa-location-dot"></i><span data-i18n="contact-timezone">Paris, France · UTC+2</span></p>
+                    <div class="hero-cta">
+                        <a class="btn btn-primary" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="btn-book">Book a chat</span></a>
+                        <a class="btn btn-glass" href="mailto:greinermatthieu635@gmail.com"><i class="far fa-envelope"></i><span data-i18n="btn-email">Send me an email</span></a>
+                        <a class="btn btn-glass" href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i>LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Matthieu Greiner. <span data-i18n="footer-built">Built with</span> <i class="fas fa-heart" aria-hidden="true"></i> <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a> · <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <div class="scrim" aria-hidden="true"></div>
+    <aside class="sheet" id="research-sheet" role="dialog" aria-modal="true" aria-labelledby="research-title">
+        <div class="sheet-head">
+            <div class="grabber" aria-hidden="true"></div>
+            <p class="eyebrow" data-i18n="sheet-eyebrow">Research topic</p>
+            <h2 id="research-title" data-i18n="sheet-title">Study of malware evasion techniques</h2>
+            <button class="icon-btn sheet-close" type="button" aria-label="Close" data-i18n-attr="aria-label:sheet-close"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="sheet-body">
+            <p class="sub" data-i18n="sheet-sub">Dynamic binary instrumentation with Intel Pin for the analysis of Windows x64 malware</p>
+            <p class="brief" data-i18n="sheet-brief">Understanding how malware escapes detection, and tracking how these techniques evolve over time, through the analysis of recent samples.</p>
+            <dl class="facts">
+                <div><dt data-i18n="fact-lab-k">Lab</dt><dd data-i18n="fact-lab-v">EPITA Research Lab (LRE)</dd></div>
+                <div><dt data-i18n="fact-start-k">Started</dt><dd data-i18n="fact-start-v">7 October 2026</dd></div>
+                <div><dt data-i18n="fact-dur-k">Duration</dt><dd data-i18n="fact-dur-v">2 years, until graduation</dd></div>
+                <div><dt data-i18n="fact-out-k">Outcome</dt><dd data-i18n="fact-out-v">Publication of a paper</dd></div>
+            </dl>
+            <div class="flow" role="list" aria-label="Research approach" data-i18n-attr="aria-label:sheet-flow">
+                <div class="flow-step c-cyan" role="listitem"><span class="ico ico-sm"><i class="fas fa-virus"></i></span><div><strong data-i18n="flow-1">Recent samples</strong><span data-i18n="flow-1d">Windows x64 malware</span></div></div>
+                <div class="flow-step c-indigo" role="listitem"><span class="ico ico-sm"><i class="fas fa-microchip"></i></span><div><strong>Intel Pin</strong><span data-i18n="flow-2d">Dynamic binary instrumentation</span></div></div>
+                <div class="flow-step c-violet" role="listitem"><span class="ico ico-sm"><i class="fas fa-eye-slash"></i></span><div><strong data-i18n="flow-3">Evasion techniques</strong><span data-i18n="flow-3d">How samples avoid detection</span></div></div>
+                <div class="flow-step c-emerald" role="listitem"><span class="ico ico-sm"><i class="fas fa-chart-line"></i></span><div><strong data-i18n="flow-4">Evolution over time</strong><span data-i18n="flow-4d">Tracking how techniques change</span></div></div>
+            </div>
+            <div class="chips c-cyan"><span class="chip">Intel Pin</span><span class="chip">DBI</span><span class="chip">Windows x64</span><span class="chip" data-i18n="chip-malware">Malware analysis</span><span class="chip" data-i18n="chip-evasion">Evasion</span></div>
+        </div>
+    </aside>
+
+    <script src="site.js"></script>
     <script>
-        AOS.init({ once: true, offset: 50, duration: 800 });
-
-        function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
-
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('shadow-lg');
-            else nav.classList.remove('shadow-lg');
+        Site.i18n.register({
+            'aria-scroll': 'Défiler vers le bas',
+            __title: 'Matthieu Greiner | Portfolio d’ingénieur cybersécurité',
+            __description: 'Matthieu Greiner — étudiant ingénieur cybersécurité à l’EPITA, apprenti DevSecOps chez intuitem et chercheur étudiant sur l’évasion des malwares.',
+            'hero-status': 'En ce moment · apprenti DevSecOps chez intuitem',
+            'hero-title': 'Ingénieur DevSecOps &amp; sécurité.',
+            'hero-lead': 'Étudiant ingénieur à l’EPITA, je construis des <strong>infrastructures cloud sécurisées</strong>, de l’<strong>automatisation de sécurité</strong> et des workflows <strong>DevSecOps</strong> — et j’étudie comment les malwares échappent à la détection.',
+            'hero-btn-work': 'Voir mes travaux',
+            'about-eyebrow': 'À propos',
+            'about-title': 'La sécurité, du noyau jusqu’au cloud.',
+            'about-p1': 'Actuellement en Master à l’<strong>EPITA</strong>, majeure Cybersécurité.',
+            'about-p2': 'Passionné par la programmation bas niveau, la sécurité système et les infrastructures — des internals du noyau aux environnements cloud-native.',
+            'about-p3': 'Je construis une expérience concrète via mes alternances chez <strong>SFR Business</strong> puis <strong>intuitem</strong>, tout en explorant l’évasion des malwares comme <strong>chercheur étudiant</strong>.',
+            'stat-cyber': 'Cybersécurité', 'stat-intl': 'Échange international',
+            'stat-research-t': 'Chercheur étudiant', 'stat-research-d': 'Laboratoire de recherche de l’EPITA (LRE)',
+            'stat-goal': 'Objectif SecOps à long terme',
+            'exp-eyebrow': 'Parcours', 'exp-title': 'Mon parcours.',
+            'exp-type-appr': 'Alternance', 'exp-type-intl': 'Échange international', 'exp-type-edu': 'Formation', 'exp-current': 'En cours',
+            'exp-pos-intuitem': 'Ingénieur DevSecOps (alternant)',
+            'exp-desc-intuitem': 'Depuis septembre 2026, j’ai rejoint l’équipe derrière <strong>CISO Assistant</strong>, la plateforme GRC open-source : développement de features, respect de la CI/CD et réponses aux clients sur le support Jira.',
+            'exp-research-date': 'oct. 2026 – 2028',
+            'exp-type-research': 'Recherche',
+            'exp-pos-research': 'Chercheur étudiant',
+            'exp-org-research': 'Laboratoire de recherche de l’EPITA (LRE)',
+            'exp-desc-research': 'Étude des techniques d’évasion des malwares par instrumentation binaire dynamique (<strong>Intel Pin</strong>) sur des malwares Windows x64. Deux ans, jusqu’au diplôme, avec un article à publier.',
+            'btn-research': 'Sujet de recherche',
+            'exp-pos-sfr': 'Ingénieur SSI (alternant)',
+            'exp-desc-sfr': 'Gouvernance IT, analyse de risques et développement IA interne. Outillage sécurité en Go, automatisation des workflows GRC et contribution à la conformité NIS2/DORA.',
+            'exp-pos-chula': 'Université Chulalongkorn (Thaïlande)',
+            'exp-desc-chula': 'Semestre d’échange à Bangkok axé sur la cybersécurité avancée et le cloud computing.',
+            'exp-desc-epita': 'Spécialisation en cybersécurité, avec un focus sur les systèmes et les réseaux.',
+            'btn-more': 'voir plus',
+            'skills-eyebrow': 'Compétences', 'skills-title': 'La stack derrière la sécurité.',
+            'skills-lead': 'Les langages, systèmes et méthodes de gouvernance que j’utilise — de l’ingénierie bas niveau au security-by-design.',
+            'tile-devsecops-t': 'DevSecOps &amp; Automatisation',
+            'tile-devsecops-d': 'CI/CD sécurisée, conteneurs et orchestration — du pipeline SecureFlow à Kubernetes chez intuitem.',
+            'tile-sys-t': 'Sécurité &amp; Systèmes',
+            'tile-sys-d': 'Linux, C, réseaux et internals du noyau — les fondations derrière les outils.',
+            'tile-mal-t': 'Recherche malware',
+            'tile-mal-d': 'Instrumentation binaire dynamique pour étudier comment les malwares échappent à la détection sous Windows x64.',
+            'tile-soft-t': 'Logiciel &amp; Web',
+            'tile-soft-d': 'Python, Go et Swift pour l’outillage sécurité et des apps privacy-first ; Django et Svelte sur CISO Assistant.',
+            'tile-grc-t': 'Gouvernance, Risques &amp; Conformité',
+            'tile-grc-d': 'Analyse de risques, référentiels de conformité et sécurité des fournisseurs, ancrés dans des systèmes réels.',
+            'chip-net': 'Sécurité réseau', 'chip-kernel': 'Concepts noyau', 'chip-evasion': 'Évasion', 'chip-web': 'Interfaces web', 'chip-supplier': 'Sécurité fournisseurs', 'chip-malware': 'Analyse de malwares',
+            'skills-more-eyebrow': 'Vue d’ensemble', 'skills-more': 'Explorer tout l’arsenal technique',
+            'cert-eyebrow': 'Parcours certifiant', 'cert-title': 'Certifications &amp; méthodologies.',
+            'cert-status-prep': 'En préparation', 'cert-status-cert': 'Certifié', 'cert-status-planned': 'Prévu',
+            'cert-pos-securityplus': 'Fondamentaux sécurité',
+            'cert-desc-securityplus': 'Fondamentaux de la cybersécurité, opérations de sécurité et gestion des risques.',
+            'cert-pos-ebios': 'Risk manager',
+            'cert-desc-ebios': 'Standard ANSSI pour l’appréciation et le traitement des risques.',
+            'cert-pos-toeic': 'Anglais · niveau B2',
+            'cert-desc-toeic': 'TOEIC prévu en dernière année du cursus ingénieur.',
+            'proj-eyebrow': 'Projets', 'proj-title': 'Projets phares.',
+            'proj-subtitle': 'Une sélection de travaux académiques, professionnels et personnels.',
+            'proj-btn-all': 'Voir mon GitHub',
+            'case-live': 'Projet public', 'case-internal': 'Expérience pro · détails limités',
+            'case-evidence': 'Preuves techniques', 'case-context': 'Contexte', 'case-view-source': 'Voir le code &amp; l’architecture',
+            'secureflow-summary': 'Une plateforme inspirée de la production qui rend visible la livraison sécurisée : API authentifiée, dashboard, base de données, conteneurs et contrôles automatisés dans un même workflow.',
+            'cybertool-summary': 'Outillage sécurité interne construit pendant mon alternance chez SFR Business pour réduire les tâches opérationnelles répétitives et soutenir les workflows de gouvernance.',
+            'cybertool-s1': 'Automatisation', 'cybertool-s2': 'Support GRC', 'cybertool-s3': 'Reporting',
+            'cybertool-context': 'Ce travail n’est pas public par nature. Cette carte présente le périmètre d’ingénierie sans exposer de systèmes ou de données internes.',
+            'rootkit-summary': 'Un projet pédagogique EPITA SYS2 autour d’un module noyau Linux, construit dans un laboratoire isolé à deux VM pour explorer les systèmes bas niveau, les concepts de persistance et la communication client/serveur sécurisée.',
+            'rootkit-s1': 'Module noyau', 'rootkit-s2': 'Lab VM privé', 'rootkit-tag1': 'Isolation QEMU', 'rootkit-tag2': 'Protocole TCP',
+            'ciso-kicker': 'En cours · depuis septembre 2026',
+            'ciso-summary': 'Je contribue à CISO Assistant chez intuitem, une plateforme GRC open-source, au croisement du produit, de l’infrastructure cloud et de la sécurité.',
+            'ciso-view-source': 'Voir le projet sur GitHub',
+            'hobbies-eyebrow': 'Hors écran', 'hobbies-title': 'Au-delà du clavier.',
+            'hob-title-guitar': 'Guitare', 'hob-desc-guitar': 'Passionné de musique et de riffs sur guitare électrique.',
+            'hob-title-gamedev': 'Jeu vidéo', 'hob-desc-gamedev': 'Développement d’un jeu complet en première année de prépa intégrée.',
+            'btn-devs': 'Voir SUPERDEVS', 'btn-watch': 'Gameplay vidéo',
+            'hob-title-code': 'Coding', 'hob-desc-code': 'Exploration de nouveaux langages et automatisation des tâches quotidiennes.',
+            'hob-title-jpo': 'Journées portes ouvertes', 'hob-desc-jpo': 'Représentant actif lors des JPO et salons de l’enseignement supérieur de l’EPITA, pour présenter les programmes de l’école aux futurs étudiants.',
+            'hob-title-ctf': 'CTF &amp; concours', 'hob-desc-ctf': 'Veille active sur les compétitions de cybersécurité et les CTF, pour affiner les compétences offensives et défensives au-delà du cursus.',
+            'contact-eyebrow': 'Échangeons', 'contact-chat': 'Envie de discuter cyber, musique ou code ?', 'contact-timezone': 'Paris, France · UTC+2',
+            'sheet-eyebrow': 'Sujet de recherche', 'sheet-title': 'Étude des techniques d’évasion des malwares',
+            'sheet-sub': 'Instrumentation binaire dynamique avec Intel Pin pour l’analyse de malwares Windows x64',
+            'sheet-brief': 'Comprendre comment les malwares échappent à la détection et suivre l’évolution de ces techniques dans le temps, à travers l’analyse d’échantillons récents.',
+            'fact-lab-k': 'Laboratoire', 'fact-lab-v': 'Laboratoire de recherche de l’EPITA (LRE)',
+            'fact-start-k': 'Début', 'fact-start-v': '7 octobre 2026',
+            'fact-dur-k': 'Durée', 'fact-dur-v': '2 ans, jusqu’au diplôme',
+            'fact-out-k': 'Objectif', 'fact-out-v': 'Publication d’un article',
+            'sheet-close': 'Fermer', 'sheet-flow': 'Approche de recherche',
+            'flow-1': 'Échantillons récents', 'flow-1d': 'Malwares Windows x64',
+            'flow-2d': 'Instrumentation binaire dynamique',
+            'flow-3': 'Techniques d’évasion', 'flow-3d': 'Comment les échantillons évitent la détection',
+            'flow-4': 'Évolution dans le temps', 'flow-4d': 'Suivre le changement des techniques'
         });
-
-        const translations = {
-            en: {
-                "nav-about": "About",
-                "nav-exp": "Experience",
-                "nav-skills": "Skills",
-                "nav-projects": "Projects",
-                "nav-now": "Now",
-                "nav-cv": "Resume",
-                "nav-book": "Book a chat",
-                "hero-welcome": "👋 Hello, welcome to my portfolio",
-                "hero-name": "I am Matthieu Greiner",
-                "hero-title": "DevSecOps & Security Engineer.",
-                "hero-desc": "Engineering student at EPITA building <span class='text-white font-medium'>secure cloud infrastructure</span>, <span class='text-white font-medium'>security automation</span>, and <strong class='text-indigo-400'>DevSecOps</strong> workflows.",
-                "hero-btn-work": "<i class='fab fa-github'></i> View Work",
-                "about-title": "About <span class='text-indigo-400'>Me</span>",
-                "about-p1": "Pursuing my Master's at <strong>EPITA</strong>, majoring in Cybersecurity.",
-                "about-p2": "Passionate about low-level programming, systems security and infrastructure — from kernel internals to cloud-native environments.",
-                "about-p3": "Building hands-on security engineering experience through my apprenticeship at <strong>SFR Business</strong>, then joining <strong>intuitem</strong> in September 2026.",
-                "stat-cyber": "Cybersecurity",
-                "stat-intl": "Intl. Exchange",
-                "stat-goal": "Long-term SecOps Goal",
-                "exp-title": "My <span class='text-gradient'>Journey</span>",
-                "exp-type-appr": "Apprenticeship",
-                "exp-type-intl": "International Exchange",
-                "exp-type-edu": "Education",
-                "exp-pos-intuitem": "DevSecOps Engineer (Apprentice)",
-                "exp-desc-intuitem": "Starting in September 2026, joining the team behind <strong>CISO Assistant</strong>, the open-source GRC platform, to work across full-stack engineering and DevSecOps.",
-                "exp-pos-sfr": "SSI Engineer (Apprentice)",
-                "exp-desc-sfr": "IT Governance, Risk Analysis, and internal AI development. Built security tooling in Go, automated GRC workflows, and contributed to NIS2/DORA compliance efforts.",
-                "exp-pos-chula": "Chulalongkorn University (Thailand)",
-                "exp-desc-chula": "Exchange semester in Bangkok focusing on advanced Cybersecurity and Cloud Computing.",
-                "exp-desc-epita": "Specializing in Cybersecurity with a focus on systems and networks.",
-                "btn-more": "more <i class='fas fa-arrow-right'></i>",
-                "skills-title": "Technical <span class='text-gradient'>Arsenal</span>",
-                "skills-more": "Explore the full technical arsenal",
-                "skill-net": "Network Security",
-                "cert-title": "Certifications & <span class='text-gradient'>Methodologies</span>",
-                "cert-status-prep": "In Prep",
-                "cert-status-cert": "Certified",
-                "cert-status-planned": "Planned",
-                "cert-pos-securityplus": "Core Security",
-                "cert-desc-securityplus": "Foundational cybersecurity concepts, operations, and risk management.",
-                "cert-pos-ebios": "Risk Manager",
-                "cert-desc-ebios": "ANSSI standard for risk assessment and management.",
-                "cert-pos-toeic": "English · B2 level",
-                "cert-desc-toeic": "TOEIC planned during the final year of the engineering degree.",
-                "proj-title": "Featured <span class='text-indigo-400'>Projects</span>",
-                "proj-subtitle": "Selection of academic and personal work.",
-                "proj-btn-all": "View GitHub <i class='fas fa-arrow-right text-sm'></i>",
-                "case-live": "Public project",
-                "case-internal": "Professional work · details limited",
-                "case-next": "Starting September 2026",
-                "case-evidence": "Evidence",
-                "case-context": "Context",
-                "case-status": "Status",
-                "case-view-source": "View source & architecture",
-                "secureflow-summary": "A production-inspired platform that makes secure delivery visible: an authenticated API, dashboard, database, containers, and automated security checks in one workflow.",
-                "cybertool-summary": "Internal security tooling built during my SFR Business apprenticeship to reduce repetitive operational work and support governance workflows.",
-                "cybertool-s1": "Automation",
-                "cybertool-s2": "GRC support",
-                "cybertool-s3": "Reporting",
-                "cybertool-context": "The work is not public by design. This card focuses on the engineering scope without exposing internal systems or data.",
-                "rootkit-summary": "An EPITA SYS2 educational Linux kernel module project, built in an isolated two-VM lab to explore low-level systems, persistence concepts, and secure client/server communication.",
-                "rootkit-s1": "Kernel module",
-                "rootkit-s2": "Private VM lab",
-                "rootkit-tag1": "QEMU isolation",
-                "rootkit-tag2": "TCP protocol",
-                "budgify-summary": "A privacy-first personal finance app that keeps sensitive data and adaptive categorization on-device.",
-                "budgify-local": "On-device",
-                "budgify-tag": "Local ML",
-                "ciso-kicker": "Ongoing · joined September 2026",
-                "ciso-summary": "Contributing to CISO Assistant at intuitem, an open-source GRC platform, at the crossroads of product engineering, cloud infrastructure, and security.",
-                "ciso-view-source": "View the project on GitHub",
-                "ocr-p1": "A robust software suite developed to solve word search puzzles directly from images. It bridges low-level system programming with advanced character recognition and grid-solving logic.",
-                "ocr-core": "Technical Core:",
-                "ocr-l1": "<strong>96%+ C Implementation:</strong> High-performance code with optimized Makefile management.",
-                "ocr-l2": "<strong>Computer Vision:</strong> Custom preprocessing pipeline for grayscale conversion and grid straightening.",
-                "ocr-l3": "<strong>Neural Network:</strong> Built-from-scratch AI engine for identifying characters in the grid.",
-                "ocr-l4": "<strong>GUI Integration:</strong> Developed an interactive interface using GTK 3.0 and SDL for image loading and visualization.",
-                "btn-source": "Source Code",
-                "mazic-p1": "A cooperative game where mages traverse a magical labyrinth infested by shadow creatures to recover artifacts of power. Trapped souls haunt the halls, ready to prevent newcomers from escaping.",
-                "mazic-core": "Technical Excellence:",
-                "mazic-l1": "Full Python implementation (93%) with strict dependency management (Poetry).",
-                "mazic-l2": "Clean Architecture: Segregated modules for assets, source, and documentation.",
-                "mazic-l3": "Governance: Adherence to Conventional Commits and Google-style docstrings.",
-                "mazic-l4": "Quality: Integrated logging system and automated documentation (Pdoc3).",
-                "btn-view": "View Project",
-                "hobbies-title": "Beyond the <span class='text-gradient'>Keyboard</span>",
-                "hob-title-guitar": "Guitar",
-                "hob-desc-guitar": "Passionate about music and riffs on electric guitar.",
-                "hob-title-gamedev": "Game Dev",
-                "hob-desc-gamedev": "Developed a complete game from scratch in my first year of integrated prepa.",
-                "btn-devs": "View SUPERDEVS",
-                "btn-watch": "Watch Gameplay",
-                "hob-title-code": "Coding",
-                "hob-desc-code": "Exploring new languages and automating daily tasks.",
-                "hob-title-jpo": "Open School Days",
-                "hob-desc-jpo": "Active representative at EPITA open days and higher education fairs, presenting the school's programs to prospective students.",
-                "hob-title-ctf": "CTF & Competitions",
-                "hob-desc-ctf": "Keeping an eye on cybersecurity competitions and CTF events, sharpening offensive and defensive skills beyond the classroom.",
-                "contact-chat": "Want to chat about security, music, or code?",
-                "contact-timezone": "Paris, France · UTC+2",
-                "btn-book": "<i class='far fa-calendar-check'></i> Book a chat",
-                "btn-email": "<i class='far fa-envelope'></i> Send me an email",
-                "footer-built": "Built with",
-                "footer-and": "and C code. Hosted on"
-            },
-            fr: {
-                "nav-about": "À propos",
-                "nav-exp": "Parcours",
-                "nav-skills": "Compétences",
-                "nav-projects": "Projets",
-                "nav-now": "Maintenant",
-                "nav-cv": "Mon CV",
-                "nav-book": "Réserver un échange",
-                "hero-welcome": "👋 Bonjour, bienvenue sur mon portfolio",
-                "hero-name": "Je suis Matthieu Greiner",
-                "hero-title": "Ingénieur DevSecOps & Sécurité.",
-                "hero-desc": "Étudiant ingénieur à l'EPITA construisant des <span class='text-white font-medium'>infrastructures cloud sécurisées</span>, de l'<span class='text-white font-medium'>automatisation de sécurité</span> et des workflows <strong class='text-indigo-400'>DevSecOps</strong>.",
-                "hero-btn-work": "<i class='fab fa-github'></i> Voir mes travaux",
-                "about-title": "À propos de <span class='text-indigo-400'>moi</span>",
-                "about-p1": "Actuellement en Master à l'<strong>EPITA</strong>, majeur Cybersécurité.",
-                "about-p2": "Passionné par la programmation bas-niveau, la sécurité système et les infrastructures — des internals kernel aux environnements cloud-native.",
-                "about-p3": "Je construis une expérience concrète en ingénierie de la sécurité chez <strong>SFR Business</strong>, avant de rejoindre <strong>intuitem</strong> en septembre 2026.",
-                "stat-cyber": "Cybersécurité",
-                "stat-intl": "Échange Intl.",
-                "stat-goal": "Objectif SecOps long terme",
-                "exp-title": "Mon <span class='text-gradient'>Parcours</span>",
-                "exp-type-appr": "Alternance",
-                "exp-type-intl": "Échange International",
-                "exp-type-edu": "Éducation",
-                "exp-pos-intuitem": "Ingénieur DevSecOps (Apprenti)",
-                "exp-desc-intuitem": "À partir de septembre 2026, intégration de l'équipe derrière <strong>CISO Assistant</strong>, plateforme GRC open-source, pour travailler entre développement full-stack et DevSecOps.",
-                "exp-pos-sfr": "Ingénieur SSI (Apprenti)",
-                "exp-desc-sfr": "Gouvernance IT, analyse de risques et développement IA interne. Outillage sécurité en Go, automatisation des workflows GRC, contribution à la conformité NIS2/DORA.",
-                "exp-pos-chula": "Université Chulalongkorn (Thaïlande)",
-                "exp-desc-chula": "Semestre d'échange à Bangkok axé sur la Cybersécurité avancée et le Cloud Computing.",
-                "exp-desc-epita": "Spécialisation en Cybersécurité avec un focus sur les systèmes et réseaux.",
-                "btn-more": "voir plus <i class='fas fa-arrow-right'></i>",
-                "skills-title": "Arsenal <span class='text-gradient'>Technique</span>",
-                "skills-more": "Explorer tout l'arsenal technique",
-                "skill-net": "Sécurité Réseau",
-                "cert-title": "Certifications & <span class='text-gradient'>Méthodologies</span>",
-                "cert-status-prep": "En prépa",
-                "cert-status-cert": "Certifié",
-                "cert-status-planned": "Prévu",
-                "cert-pos-securityplus": "Fondamentaux sécurité",
-                "cert-desc-securityplus": "Fondamentaux de la cybersécurité, opérations de sécurité et gestion des risques.",
-                "cert-pos-ebios": "Responsable de Risques",
-                "cert-desc-ebios": "Standard ANSSI pour l'appréciation et le traitement des risques.",
-                "cert-pos-toeic": "Anglais · Niveau B2",
-                "cert-desc-toeic": "TOEIC prévu en dernière année du cursus ingénieur.",
-                "proj-title": "Projets <span class='text-indigo-400'>Phare</span>",
-                "proj-subtitle": "Sélection de travaux académiques et personnels.",
-                "proj-btn-all": "Voir mon GitHub <i class='fas fa-arrow-right text-sm'></i>",
-                "case-live": "Projet public",
-                "case-internal": "Expérience pro · détails limités",
-                "case-next": "À partir de septembre 2026",
-                "case-evidence": "Preuves techniques",
-                "case-context": "Contexte",
-                "case-status": "Statut",
-                "case-view-source": "Voir le code & l'architecture",
-                "secureflow-summary": "Une plateforme inspirée de la production qui rend visible la livraison sécurisée : API authentifiée, dashboard, base de données, conteneurs et contrôles automatisés dans un même workflow.",
-                "cybertool-summary": "Outillage sécurité interne construit pendant mon alternance chez SFR Business pour réduire les tâches opérationnelles répétitives et soutenir les workflows de gouvernance.",
-                "cybertool-s1": "Automatisation",
-                "cybertool-s2": "Support GRC",
-                "cybertool-s3": "Reporting",
-                "cybertool-context": "Ce travail n'est pas public par nature. Cette carte présente le périmètre d'ingénierie sans exposer de systèmes ou de données internes.",
-                "rootkit-summary": "Un projet pédagogique EPITA SYS2 autour d'un module kernel Linux, construit dans un laboratoire isolé à deux VM pour explorer les systèmes bas niveau, les concepts de persistance et la communication client/serveur sécurisée.",
-                "rootkit-s1": "Module kernel",
-                "rootkit-s2": "Lab VM privé",
-                "rootkit-tag1": "Isolation QEMU",
-                "rootkit-tag2": "Protocole TCP",
-                "budgify-summary": "Une application de finances personnelles centrée sur la confidentialité, qui conserve les données sensibles et la catégorisation adaptative sur l'appareil.",
-                "budgify-local": "Sur l'appareil",
-                "budgify-tag": "ML local",
-                "ciso-kicker": "En cours · démarré en septembre 2026",
-                "ciso-summary": "Je contribue à CISO Assistant chez intuitem, une plateforme GRC open-source, au croisement du produit, de l'infrastructure cloud et de la sécurité.",
-                "ciso-view-source": "Voir le projet sur GitHub",
-                "ocr-p1": "Une suite logicielle robuste développée pour résoudre des mots fléchés directement à partir d'images. Elle lie la programmation système bas-niveau avec la reconnaissance de caractères avancée.",
-                "ocr-core": "Cœur Technique :",
-                "ocr-l1": "<strong>Implémentation C (96%+) :</strong> Code haute performance avec gestion optimisée via Makefile.",
-                "ocr-l2": "<strong>Vision par Ordinateur :</strong> Pipeline de prétraitement (niveaux de gris, redressement de grille).",
-                "ocr-l3": "<strong>Réseau de Neurones :</strong> Moteur IA développé de zéro pour identifier les caractères.",
-                "ocr-l4": "<strong>Intégration GUI :</strong> Interface interactive développée avec GTK 3.0 et SDL.",
-                "btn-source": "Code Source",
-                "mazic-p1": "Un jeu coopératif où des mages traversent un labyrinthe magique infesté de créatures de l'ombre pour récupérer des artefacts de puissance. Des âmes piégées hantent les lieux pour empêcher toute évasion.",
-                "mazic-core": "Excellence Technique :",
-                "mazic-l1": "Implémentation Python (93%) avec gestion de dépendances stricte (Poetry).",
-                "mazic-l2": "Architecture Propre : Modules séparés pour les assets, les sources et la doc.",
-                "mazic-l3": "Gouvernance : Respect des 'Conventional Commits' et des docstrings style Google.",
-                "mazic-l4": "Qualité : Système de logs intégré et documentation automatisée (Pdoc3).",
-                "btn-view": "Voir le Projet",
-                "hobbies-title": "Au-delà du <span class='text-gradient'>Clavier</span>",
-                "hob-title-guitar": "Guitare",
-                "hob-desc-guitar": "Passionné de musique et de riffs sur guitare électrique.",
-                "hob-title-gamedev": "Jeu Vidéo",
-                "hob-desc-gamedev": "Développement d'un jeu complet en première année de prépa intégrée.",
-                "btn-devs": "Voir SUPERDEVS",
-                "btn-watch": "Gameplay Vidéo",
-                "hob-title-code": "Coding",
-                "hob-desc-code": "Exploration de nouveaux langages et automatisation des tâches quotidiennes.",
-                "hob-title-jpo": "Journées Portes Ouvertes",
-                "hob-desc-jpo": "Représentant actif lors des JPO et salons de l'enseignement supérieur de l'EPITA, présentant les programmes de l'école aux futurs étudiants.",
-                "hob-title-ctf": "CTF & Concours",
-                "hob-desc-ctf": "Veille active sur les compétitions de cybersécurité et les CTF, pour affiner les compétences offensives et défensives au-delà du cursus.",
-                "contact-chat": "Envie de discuter cyber, musique ou code ?",
-                "contact-timezone": "Paris, France · UTC+2",
-                "btn-book": "<i class='far fa-calendar-check'></i> Réserver un échange",
-                "btn-email": "<i class='far fa-envelope'></i> M'envoyer un email",
-                "footer-built": "Conçu avec",
-                "footer-and": "et du code C. Hébergé sur"
-            }
-        };
-
-        function setLanguage(lang) {
-            try { localStorage.setItem('portfolioLanguage', lang); } catch (error) { /* Storage can be unavailable in private contexts. */ }
-            document.getElementById('btn-en').className = lang === 'en' ? 'lang-active' : 'lang-inactive';
-            document.getElementById('btn-fr').className = lang === 'fr' ? 'lang-active' : 'lang-inactive';
-
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-
-            document.documentElement.lang = lang;
-
-            const cvHref = lang === 'fr' ? 'mgr_resume_fr.pdf' : 'mgr_resume_eng.pdf';
-            const cvLink = document.getElementById('cv-link');
-            const cvLinkMobile = document.getElementById('cv-link-mobile');
-            if (cvLink) cvLink.href = cvHref;
-            if (cvLinkMobile) cvLinkMobile.href = cvHref;
-
-            AOS.refresh();
-        }
-
-        try { setLanguage(localStorage.getItem('portfolioLanguage') || 'en'); } catch (error) { setLanguage('en'); }
     </script>
-    <script src="responsive-enhancements.js"></script>
 </body>
 </html>
