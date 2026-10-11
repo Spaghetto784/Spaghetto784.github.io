@@ -19,7 +19,7 @@ English lives in the markup; French lives in each page's `Site.i18n.register({..
 
 ### Resume
 
-The resume sources are in `cv/` (`cv_en.tex` on US Letter, `cv_fr.tex` on A4). Build with `pdflatex cv_en.tex` and `pdflatex cv_fr.tex`, then copy the PDFs to `mgr_resume_eng.pdf` and `mgr_resume_fr.pdf`, which the site links to.
+The resume sources are in `cv/` (`cv_en.tex` on US Letter, `cv_fr.tex` on A4). Build with `pdflatex cv_en.tex` and `pdflatex cv_fr.tex`, then copy the PDFs to `Matthieu_Greiner_Resume.pdf` and `Matthieu_Greiner_CV.pdf`, which the site links to.
 
 ## Installation
 

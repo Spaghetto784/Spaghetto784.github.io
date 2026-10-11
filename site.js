@@ -127,7 +127,7 @@
             if (description) description.content = lang === 'fr' && fr.__description ? fr.__description : meta.description;
 
             $$('.lang button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === lang)));
-            $$('[data-cv]').forEach(link => link.setAttribute('href', lang === 'fr' ? 'mgr_resume_fr.pdf' : 'mgr_resume_eng.pdf'));
+            $$('[data-cv]').forEach(link => link.setAttribute('href', lang === 'fr' ? 'Matthieu_Greiner_CV.pdf' : 'Matthieu_Greiner_Resume.pdf'));
 
             if (persist) {
                 try { localStorage.setItem('portfolioLanguage', lang); } catch (error) { /* storage unavailable */ }
