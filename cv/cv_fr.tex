@@ -1,0 +1,94 @@
+% Matthieu Greiner, CV (français, A4)
+% Build: pdflatex cv_fr.tex
+\documentclass[10pt]{article}
+\usepackage[a4paper,top=1.1cm,bottom=1cm,left=1.5cm,right=1.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[default]{sourcesanspro}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{muted}{HTML}{4A4A4A}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.0}
+
+\titleformat{\section}{\scshape\large}{}{0pt}{}[\vspace{-2pt}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+
+\setlist[itemize]{leftmargin=1.2em,itemsep=0pt,topsep=1pt,parsep=0pt,partopsep=0pt,label={\textendash}}
+
+\newcommand{\role}[4]{\textbf{#1} \textbar{} \textit{#2}\hfill\textit{#3}\par\vspace{0pt}}
+\newcommand{\school}[4]{\textbf{#1}\hfill\textit{#2}\par\textit{#3}\hfill\textit{#4}\par}
+\newcommand{\gap}{\vspace{4pt}}
+
+\begin{document}
+\fontsize{10.4}{12.4}\selectfont
+
+{\LARGE\bfseries Matthieu Greiner}\par\vspace{2pt}
+{\small\itshape
+\faMapMarker* Paris, France \,|\, \faPhone* +33 6 07 01 44 61 \,|\,
+\faEnvelope \ \href{mailto:greinermatthieu635@gmail.com}{greinermatthieu635@gmail.com}\par
+\faGlobe \ \href{https://matthieugreiner.com}{matthieugreiner.com} \,|\,
+\faLinkedin \ \href{https://www.linkedin.com/in/matthieu-greiner}{linkedin.com/in/matthieu-greiner} \,|\,
+\faGithub \ \href{https://github.com/Spaghetto784}{github.com/Spaghetto784}\par}
+\vspace{5pt}
+{\small \'Etudiant ing\'enieur en cybers\'ecurit\'e \`a l'EPITA (promo 2028), alternant DevSecOps et chercheur en analyse de malwares.
+Recherche un stage de 6 mois aux \'Etats-Unis \`a partir de d\'ebut 2028.\par}
+
+\section{Formation}
+\school{EPITA, \'Ecole d'ing\'enieurs en informatique}{Paris}{Dipl\^ome d'ing\'enieur (niveau Master) en informatique, majeure Cybers\'ecurit\'e}{2023 -- 2028 (pr\'evu)}\gap
+\school{Chulalongkorn University}{Bangkok}{Semestre d'\'echange, ing\'enierie informatique}{2025}\gap
+\school{Universit\'e Paris-Est Cr\'eteil (UPEC)}{Paris}{Licence en informatique}{2023 -- 2026}\gap
+\school{Lyc\'ee Victor Duruy}{Paris}{Baccalaur\'eat, Math\'ematiques \& Informatique (Mention Tr\`es Bien)}{2020 -- 2023}
+
+\section{Exp\'erience}
+\role{Ing\'enieur DevSecOps (Alternance)}{intuitem, V\'elizy}{sept. 2026 -- Pr\'esent}{}
+\begin{itemize}
+\item D\'eveloppement de features pour CISO Assistant, plateforme GRC open source (Django, Svelte)
+\item Respect de la CI/CD pour chaque changement ; Kubernetes et environnements multi-cloud
+\item R\'eponses aux demandes clients via le support Jira
+\end{itemize}\gap
+\role{Chercheur \'etudiant}{Laboratoire de recherche de l'EPITA (LRE)}{oct. 2026 -- Pr\'esent}{}
+\begin{itemize}
+\item \'Etude des techniques d'\'evasion des malwares sur des \'echantillons Windows x64 r\'ecents, par instrumentation binaire dynamique (Intel Pin)
+\item Suivi de l'\'evolution de ces techniques dans le temps ; objectif : publier un article avant le dipl\^ome (2028)
+\end{itemize}\gap
+\role{Ing\'enieur Syst\`emes d'Information \& S\'ecurit\'e (Alternance)}{SFR Business, Paris}{2025 -- 2026}{}
+\begin{itemize}
+\item Appui \`a la gouvernance SSI et \`a la conformit\'e (NIS2, DORA, RGPD, ISO 27001) ; analyses de risques (EBIOS RM), audits et suivi des rem\'ediations
+\item D\'eveloppement de CyberTool, utilitaire interne en Go (TLS, DNS, r\'eponses HTTP, en-t\^etes de s\'ecurit\'e)
+\item Contribution \`a un assistant IA interne pour les questionnaires s\'ecurit\'e ; automatisation du reporting KPI s\'ecurit\'e (Excel/VBA)
+\end{itemize}\gap
+\role{Assistant d'enseignement (Python / C)}{EPITA}{2025 -- 2026}{}
+\begin{itemize}\item Enseignement des fondamentaux de la programmation et du d\'ebogage\end{itemize}\gap
+\role{Stagiaire D\'eveloppement Logiciel}{Entrepose \'Echafaudages}{2025}{}
+\begin{itemize}\item Plugin C\# pour Autodesk Robot et automatisation de workflows d'ing\'enierie\end{itemize}
+
+\section{Projets}
+\textbf{SecureFlow} \textbar{} \textit{Plateforme DevSecOps}\hfill\textit{github.com/Spaghetto784/SecureFlow}\par
+React, FastAPI, PostgreSQL, Docker ; analyses de s\'ecurit\'e en CI (Semgrep, Gitleaks, Trivy) ; auth JWT et Argon2.\gap\par
+\textbf{wlkom-rootkit} \textbar{} \textit{Projet syst\`eme EPITA}\hfill\textit{C, Python}\par
+Module noyau Linux p\'edagogique dans un labo QEMU isol\'e \`a deux VM, avec protocole client/serveur TCP s\'ecuris\'e.\gap\par
+\textbf{Budgify} \textbar{} \textit{Application iOS orient\'ee confidentialit\'e}\hfill\textit{Swift, SwiftUI}\par
+Cat\'egorisation par ML sur l'appareil, Face ID, chiffrement AES-GCM et gestion des cl\'es via Keychain ; aucun service externe.
+
+\section{Comp\'etences techniques}
+\textbf{Langages} : C, Go, Python, Java, C\#, Swift, SQL, JavaScript, TypeScript\par
+\textbf{Syst\`emes} : Linux, modules noyau, QEMU/KVM, GDB\par
+\textbf{S\'ecurit\'e} : analyse de malwares, Intel Pin (DBI), analyse de vuln\'erabilit\'es, TLS/DNS\par
+\textbf{DevOps \& Cloud} : Git, Docker, Kubernetes, CI/CD, REST APIs, AWS, Azure\par
+\textbf{Frameworks} : Django, Svelte, FastAPI, React\par
+\textbf{GRC} : EBIOS RM (Risk Manager certifi\'e), ISO 27001, NIS2, DORA, RGPD ; CompTIA Security+ (en cours)
+
+\section{Langues \& Centres d'int\'er\^et}
+\textbf{Langues} : Fran\c{c}ais (langue maternelle), Arm\'enien (langue maternelle), Anglais (Cambridge C1), Espagnol (B1)\par
+\textbf{Centres d'int\'er\^et} : guitare \'electrique, CTF, lecture
+
+\end{document}

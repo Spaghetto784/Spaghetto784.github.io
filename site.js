@@ -1,5 +1,5 @@
-/* Matthieu Greiner — portfolio runtime
-   Springs, i18n, navigation, scroll effects and the research sheet. */
+/* Matthieu Greiner, portfolio runtime
+   Springs, i18n, theme, index tree, scroll reveals and the research sheet. */
 (() => {
     'use strict';
 
@@ -30,6 +30,10 @@
             this.damping = damping;
             this.onUpdate = null;
             this.onSettle = null;
+        }
+
+        get running() {
+            return active.has(this);
         }
 
         set(value) {
@@ -104,8 +108,8 @@
             $$('[data-i18n]').forEach(el => {
                 const saved = remember(el);
                 const key = el.dataset.i18n;
-                const next = lang === 'fr' && key in fr ? fr[key] : saved.html;
-                if (el.innerHTML !== next) el.innerHTML = next;
+                const value = lang === 'fr' && key in fr ? fr[key] : saved.html;
+                if (el.innerHTML !== value) el.innerHTML = value;
             });
 
             $$('[data-i18n-attr]').forEach(el => {
@@ -154,88 +158,167 @@
         };
     })();
 
-    /* ───────── Shared French strings ───────── */
-
     function registerBase() {
         i18n.register({
             skip: 'Aller au contenu',
-            'nav-about': 'À propos', 'nav-exp': 'Parcours', 'nav-skills': 'Compétences', 'nav-projects': 'Projets', 'nav-now': 'Maintenant',
-            'nav-cv': 'Mon CV', 'nav-resume': 'Mon CV', 'nav-book': 'Réserver un échange', 'nav-lang': 'Langue', 'nav-menu': 'Menu',
-            'aria-email': 'E-mail', 'btn-book': 'Réserver un échange', 'btn-email': 'M’envoyer un e-mail', 'back-home': 'Retour au portfolio',
-            'footer-built': 'Conçu avec', 'footer-and': 'et du code C. Hébergé sur'
+            'nav-index': 'Index', 'nav-cv': 'Mon CV', 'nav-book': 'Réserver un échange', 'nav-lang': 'Langue',
+            'nav-theme': 'Mode sombre', 'nav-menu': 'Index du site', 'nav-folder': 'Ouvrir ou fermer le dossier',
+            'aria-email': 'E-mail', 'btn-book': 'Réserver un échange', 'btn-email': 'M’envoyer un e-mail',
+            'crumb-home': 'portfolio', 'footer-built': 'Conçu avec', 'footer-and': 'et du code C. Hébergé sur',
         });
     }
 
-    /* ───────── Navigation: scroll edge, active pill, language thumb, menu ───────── */
+    /* ───────── Theme ───────── */
 
-    function initNav() {
-        const nav = $('.nav');
-        if (!nav) return;
+    const theme = (() => {
+        const colors = { light: '#fbfaf6', dark: '#0e0e0c' };
+        const current = () => (document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
 
-        const updateScrolled = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+        function apply(next, { persist = true, animate = false } = {}) {
+            const root = document.documentElement;
+            if (animate && !reducedMotion.matches) {
+                root.classList.add('theme-anim');
+                setTimeout(() => root.classList.remove('theme-anim'), 500);
+            }
+            root.dataset.theme = next;
+            $('meta[name="theme-color"]')?.setAttribute('content', colors[next]);
+            $$('.theme-btn').forEach(button => button.setAttribute('aria-checked', String(next === 'dark')));
+            if (persist) {
+                try { localStorage.setItem('portfolioTheme', next); } catch (error) { /* storage unavailable */ }
+            }
+        }
+
+        return { apply, current };
+    })();
+
+    /* ───────── Index tree: folders open on springs, current location is marked ───────── */
+
+    const normalize = path => path.replace(/index\.html$/, '').replace(/\/$/, '');
+
+    function initTrees() {
+        const rail = $('.rail .tree');
+        const menu = $('#menu');
+        if (!rail) return;
+
+        if (menu) {
+            const clone = rail.cloneNode(true);
+            $('.menu-foot', menu)?.before(clone);
+        }
+
+        const trees = $$('.tree');
+        const folders = new WeakMap();
+        const manual = new Set();
+
+        function folderState(item) {
+            if (folders.has(item)) return folders.get(item);
+            const list = $(':scope > .children', item);
+            const spring = new Spring(0, { response: 0.4 });
+            const state = { list, spring, open: false };
+            spring.onUpdate = height => { list.style.height = `${height}px`; };
+            spring.onSettle = () => {
+                if (state.open) list.style.height = 'auto';
+                else list.style.visibility = 'hidden';
+            };
+            folders.set(item, state);
+            return state;
+        }
+
+        function setFolder(item, open, animate = true) {
+            const state = folderState(item);
+            const toggle = $(':scope > .trow > .caret', item);
+            toggle?.setAttribute('aria-expanded', String(open));
+            if (state.initialized && state.open === open) return;
+            state.initialized = true;
+            state.open = open;
+            const { list, spring } = state;
+            if (!animate || reducedMotion.matches) {
+                spring.stop();
+                list.style.height = open ? 'auto' : '0px';
+                list.style.visibility = open ? 'visible' : 'hidden';
+                list.inert = !open;
+                return;
+            }
+            if (!spring.running) spring.x = list.offsetHeight;
+            if (open) {
+                list.style.visibility = 'visible';
+                list.inert = false;
+                spring.to(list.scrollHeight);
+            } else {
+                list.inert = true;
+                spring.to(0);
+            }
+        }
+
+        trees.forEach(tree => {
+            $$('li.branch', tree).forEach(item => {
+                setFolder(item, false, false);
+                $(':scope > .trow > .caret', item)?.addEventListener('click', () => {
+                    const next = !folderState(item).open;
+                    if (next) manual.add(item); else manual.delete(item);
+                    setFolder(item, next);
+                });
+            });
+        });
+
+        const railLinks = $$('a[href]', rail);
+        const sameDocument = a => normalize(new URL(a.href, location.href).pathname) === normalize(location.pathname);
+        const entries = railLinks
+            .filter(sameDocument)
+            .map(a => ({ a, hash: new URL(a.href, location.href).hash }));
+        const withTarget = entries.filter(e => e.hash && $(e.hash));
+        const pageRoot = entries.find(e => !e.hash)?.a ?? null;
+        const isHome = document.body.dataset.page === 'home';
+
+        let currentHref = null;
+        function setActive(link) {
+            const href = link?.getAttribute('href') ?? null;
+            if (href === currentHref) return;
+            currentHref = href;
+            trees.forEach(tree => $$('a[href]', tree).forEach(a => {
+                if (href && a.getAttribute('href') === href) a.setAttribute('aria-current', 'location');
+                else a.removeAttribute('aria-current');
+            }));
+            trees.forEach(tree => {
+                const activeItem = $('a[aria-current]', tree)?.closest('li.node');
+                const activeFolder = activeItem?.classList.contains('branch') ? activeItem : activeItem?.parentElement?.closest('li.branch');
+                $$('li.branch', tree).forEach(item => {
+                    const wanted = item === activeFolder || manual.has(item);
+                    if (folderState(item).open !== wanted) setFolder(item, wanted);
+                });
+            });
+        }
+
+        let queued = false;
+        function update() {
+            queued = false;
+            const line = window.innerHeight * 0.38;
+            let found = null;
+            let best = -Infinity;
+            for (const entry of withTarget) {
+                const top = $(entry.hash).getBoundingClientRect().top;
+                if (top <= line && top > best) { best = top; found = entry.a; }
+            }
+            if (!found) found = pageRoot ?? (isHome ? null : withTarget[0]?.a ?? null);
+            setActive(found);
+        }
+        const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('resize', schedule, { passive: true });
+        update();
+    }
+
+    /* ───────── Bar: scroll edge, language, theme, index menu ───────── */
+
+    function initBar() {
+        const bar = $('.bar');
+        if (!bar) return;
+
+        const updateScrolled = () => bar.classList.toggle('scrolled', window.scrollY > 8);
         window.addEventListener('scroll', updateScrolled, { passive: true });
         updateScrolled();
 
-        const linksBox = $('.nav-links', nav);
-        const pill = $('.nav-pill', nav);
-        const links = linksBox ? $$('a[data-nav]', linksBox) : [];
-        const pillX = new Spring(0, { response: 0.42 });
-        const pillW = new Spring(0, { response: 0.42 });
-        let current = document.body.dataset.page || null;
-
-        if (pill) {
-            pillX.onUpdate = x => { pill.style.transform = `translate3d(${x}px,0,0)`; };
-            pillW.onUpdate = w => { pill.style.width = `${w}px`; };
-        }
-
-        const mark = key => {
-            [...links, ...$$('#menu a[data-nav]')].forEach(link => {
-                if (link.dataset.nav === key) link.setAttribute('aria-current', link.getAttribute('href').endsWith('now.html') ? 'page' : 'true');
-                else link.removeAttribute('aria-current');
-            });
-        };
-
-        function placePill(animate) {
-            if (!pill || !linksBox) return;
-            const link = links.find(item => item.dataset.nav === current);
-            if (!link || !linksBox.offsetWidth) { pill.classList.remove('on'); return; }
-            const wasOn = pill.classList.contains('on');
-            if (animate && wasOn) {
-                pillX.to(link.offsetLeft);
-                pillW.to(link.offsetWidth);
-            } else {
-                pillX.set(link.offsetLeft);
-                pillW.set(link.offsetWidth);
-            }
-            pill.classList.add('on');
-        }
-
-        function setCurrent(key, animate = true) {
-            if (key === current && pill?.classList.contains('on')) return;
-            current = key;
-            mark(key);
-            placePill(animate && !reducedMotion.matches);
-        }
-
-        mark(current);
-
-        if (document.body.dataset.page === 'home') {
-            current = null;
-            const sections = links.map(link => $(`#${link.dataset.nav}`)).filter(Boolean);
-            if (sections.length && 'IntersectionObserver' in window) {
-                const visible = new Map();
-                const observer = new IntersectionObserver(entries => {
-                    entries.forEach(entry => visible.set(entry.target.id, entry.isIntersecting));
-                    const hit = sections.find(section => visible.get(section.id));
-                    setCurrent(hit ? hit.id : null);
-                }, { rootMargin: '-45% 0px -50% 0px' });
-                sections.forEach(section => observer.observe(section));
-            }
-        }
-
-        /* language thumb */
-        const lang = $('.lang', nav);
-        const thumb = $('.lang-thumb', lang ?? nav);
+        const lang = $('.lang', bar);
+        const thumb = $('.lang-thumb', lang ?? bar);
         const thumbX = new Spring(0, { response: 0.38 });
         const thumbW = new Spring(0, { response: 0.38 });
         if (thumb) {
@@ -256,7 +339,7 @@
             }
         }
 
-        $$('button[data-lang]', lang ?? nav).forEach(button => {
+        $$('button[data-lang]', lang ?? bar).forEach(button => {
             button.addEventListener('click', () => {
                 if (i18n.lang === button.dataset.lang) return;
                 i18n.apply(button.dataset.lang);
@@ -264,36 +347,37 @@
             });
         });
 
-        i18n.onChange(() => requestAnimationFrame(() => { placePill(false); placeThumb(false); }));
+        i18n.onChange(() => requestAnimationFrame(() => placeThumb(false)));
+        window.addEventListener('resize', () => placeThumb(false), { passive: true });
+        document.fonts?.ready.then(() => placeThumb(false));
+        placeThumb(false);
 
-        const relayout = () => { placePill(false); placeThumb(false); };
-        window.addEventListener('resize', relayout, { passive: true });
-        document.fonts?.ready.then(relayout);
-        relayout();
+        $$('.theme-btn').forEach(button => {
+            button.addEventListener('click', () => theme.apply(theme.current() === 'dark' ? 'light' : 'dark', { animate: true }));
+        });
 
-        /* mobile menu — materialises from its trigger and returns the same way */
-        const button = $('.menu-btn', nav);
+        const toggle = $('.index-btn', bar);
         const menu = $('#menu');
-        if (button && menu) {
+        if (toggle && menu) {
             const setMenu = open => {
                 menu.classList.toggle('open', open);
-                button.setAttribute('aria-expanded', String(open));
+                toggle.setAttribute('aria-expanded', String(open));
                 menu.inert = !open;
             };
             menu.inert = true;
-            button.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+            toggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
             menu.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
             document.addEventListener('keydown', event => {
-                if (event.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); button.focus(); }
+                if (event.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); toggle.focus(); }
             });
             document.addEventListener('pointerdown', event => {
-                if (menu.classList.contains('open') && !menu.contains(event.target) && !button.contains(event.target)) setMenu(false);
+                if (menu.classList.contains('open') && !menu.contains(event.target) && !toggle.contains(event.target)) setMenu(false);
             });
-            window.matchMedia('(min-width: 64rem)').addEventListener('change', event => { if (event.matches) setMenu(false); });
+            window.matchMedia('(min-width: 68rem)').addEventListener('change', event => { if (event.matches) setMenu(false); });
         }
     }
 
-    /* ───────── Scroll reveal, spotlight, timeline ───────── */
+    /* ───────── Scroll reveal ───────── */
 
     function initReveal() {
         $$('[data-stagger]').forEach(parent => {
@@ -302,7 +386,7 @@
                 child.style.setProperty('--i', index);
             });
         });
-        const items = $$('.reveal');
+        const items = $$('.reveal, .rule');
         if (!('IntersectionObserver' in window)) { items.forEach(item => item.classList.add('in')); return; }
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -310,45 +394,8 @@
                 entry.target.classList.add('in');
                 observer.unobserve(entry.target);
             });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
         items.forEach(item => observer.observe(item));
-    }
-
-    function initSpotlight() {
-        let frame = 0;
-        let pending = null;
-        document.addEventListener('pointermove', event => {
-            if (event.pointerType !== 'mouse') return;
-            const target = event.target.closest?.('.spot');
-            if (!target) return;
-            pending = { target, x: event.clientX, y: event.clientY };
-            if (frame) return;
-            frame = requestAnimationFrame(() => {
-                frame = 0;
-                const rect = pending.target.getBoundingClientRect();
-                pending.target.style.setProperty('--mx', `${pending.x - rect.left}px`);
-                pending.target.style.setProperty('--my', `${pending.y - rect.top}px`);
-            });
-        }, { passive: true });
-    }
-
-    function initTimeline() {
-        const timeline = $('.timeline');
-        if (!timeline) return;
-        const items = $$('.t-item', timeline);
-        let queued = false;
-
-        const update = () => {
-            queued = false;
-            const line = window.innerHeight * 0.58;
-            const box = timeline.getBoundingClientRect();
-            timeline.style.setProperty('--p', clamp((line - box.top) / box.height, 0, 1).toFixed(4));
-            items.forEach(item => item.classList.toggle('on', item.getBoundingClientRect().top + 28 < line));
-        };
-        const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
-        window.addEventListener('scroll', schedule, { passive: true });
-        window.addEventListener('resize', schedule, { passive: true });
-        update();
     }
 
     /* ───────── Sheet: 1:1 drag, velocity projection, rubber-banding, interruptible ───────── */
@@ -358,7 +405,7 @@
         const sheets = $$('.sheet');
         if (!scrim || !sheets.length) return;
 
-        const page = $$('.nav, main, .footer');
+        const page = $$('.bar, .rail, main, .footer');
         const registry = new Map();
         let openSheet = null;
 
@@ -408,11 +455,10 @@
                 scrim.classList.add('open');
                 lock(true);
                 body.scrollTop = 0;
+                sheet.classList.add('open');
                 if (reducedMotion.matches) {
-                    sheet.classList.add('open');
                     scrim.style.opacity = '1';
                 } else {
-                    sheet.classList.add('open');
                     if (!wasVisible) y.set(closedY());
                     y.to(0, { response: 0.42, damping: 1 });
                 }
@@ -493,15 +539,15 @@
     function boot() {
         document.documentElement.classList.add('js');
         registerBase();
-        initNav();
+        theme.apply(theme.current(), { persist: false });
+        initBar();
+        initTrees();
         initReveal();
-        initSpotlight();
-        initTimeline();
         initSheets();
         i18n.apply(i18n.initial(), { persist: false });
     }
 
-    window.Site = { Spring, i18n, project, rubberband, $, $$ };
+    window.Site = { Spring, i18n, theme, project, rubberband, $, $$ };
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
     else boot();

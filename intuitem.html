@@ -1,166 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>intuitem | Matthieu Greiner</title>
     <meta name="description" content="My DevSecOps apprenticeship at intuitem, the team behind CISO Assistant.">
     <meta name="author" content="Matthieu Greiner">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#fbfaf6">
     <link rel="icon" type="image/png" href="favicon-512.png">
     <script>
-        document.documentElement.classList.add('js');
-        try {
-            var stored = localStorage.getItem('portfolioLanguage');
-            if (stored === 'fr' || (!stored && (navigator.language || '').toLowerCase().indexOf('fr') === 0)) document.documentElement.classList.add('fr-pending');
-        } catch (e) {}
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('js');
+            try {
+                var theme = localStorage.getItem('portfolioTheme');
+                if (theme === 'dark' || theme === 'light') root.dataset.theme = theme;
+                var lang = localStorage.getItem('portfolioLanguage');
+                if (lang === 'fr' || (!lang && (navigator.language || '').toLowerCase().indexOf('fr') === 0)) root.classList.add('fr-pending');
+            } catch (e) {}
+        })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@500..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="site.css">
 </head>
 <body data-page="experience">
     <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
-    <nav class="nav" aria-label="Primary">
-        <div class="container nav-inner">
-            <a class="brand" href="index.html" aria-label="Matthieu Greiner">
-                <span class="avatar"><img src="profile.webp" alt="" width="720" height="1080"></span>
-                <span class="brand-name"><b>&lt;</b>M. Greiner<b>/&gt;</b></span>
-            </a>
-            <div class="nav-links">
-                <span class="nav-pill" aria-hidden="true"></span>
-                <a href="index.html#about" data-nav="about" data-i18n="nav-about">About</a>
-                <a href="index.html#experience" data-nav="experience" data-i18n="nav-exp">Experience</a>
-                <a href="skills.html" data-nav="skills" data-i18n="nav-skills">Skills</a>
-                <a href="projects.html" data-nav="projects" data-i18n="nav-projects">Projects</a>
-                <a href="now.html" data-nav="now" data-i18n="nav-now">Now</a>
-            </div>
-            <div class="nav-actions">
+    <header class="bar">
+        <div class="bar-inner">
+            <a class="mark" href="index.html" aria-label="Matthieu Greiner"><span class="sq"></span><span class="mark-name">Matthieu Greiner</span><span class="mark-short" aria-hidden="true">MG</span></a>
+            <div class="bar-actions">
+                <button class="index-btn" type="button" aria-expanded="false" aria-controls="menu"><span data-i18n="nav-index">Index</span><i class="fas fa-chevron-down"></i></button>
                 <div class="lang" role="group" aria-label="Language" data-i18n-attr="aria-label:nav-lang">
                     <span class="lang-thumb" aria-hidden="true"></span>
                     <button type="button" data-lang="en" aria-pressed="true">EN</button>
                     <button type="button" data-lang="fr" aria-pressed="false">FR</button>
                 </div>
-                <a class="icon-btn nav-wide" data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume" data-i18n-attr="aria-label:nav-cv"><i class="fas fa-file-pdf"></i></a>
-                <a class="btn btn-accent btn-sm nav-wide" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="nav-book">Book a chat</span></a>
-                <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu" data-i18n-attr="aria-label:nav-menu"><span></span><span></span></button>
+                <button class="icon-btn theme-btn" type="button" role="switch" aria-checked="false" aria-label="Dark mode" data-i18n-attr="aria-label:nav-theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg></button>
+                <a class="icon-btn bar-wide" data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume" data-i18n-attr="aria-label:nav-cv">CV</a>
+                <a class="btn btn-accent btn-sm bar-mid" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><span data-i18n="nav-book">Book a chat</span></a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <div class="menu" id="menu" aria-label="Menu" data-i18n-attr="aria-label:nav-menu">
-        <a href="index.html#about" data-nav="about"><span data-i18n="nav-about">About</span><i class="fas fa-chevron-right"></i></a>
-        <a href="index.html#experience" data-nav="experience"><span data-i18n="nav-exp">Experience</span><i class="fas fa-chevron-right"></i></a>
-        <a href="skills.html" data-nav="skills"><span data-i18n="nav-skills">Skills</span><i class="fas fa-chevron-right"></i></a>
-        <a href="projects.html" data-nav="projects"><span data-i18n="nav-projects">Projects</span><i class="fas fa-chevron-right"></i></a>
-        <a href="now.html" data-nav="now"><span data-i18n="nav-now">Now</span><i class="fas fa-chevron-right"></i></a>
-        <a data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer"><span data-i18n="nav-resume">Resume</span><i class="fas fa-arrow-up-right-from-square"></i></a>
-        <div class="menu-sep"></div>
-        <a class="btn btn-accent" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><i class="far fa-calendar-check"></i><span data-i18n="nav-book">Book a chat</span></a>
+    <div class="menu" id="menu" aria-label="Index" data-i18n-attr="aria-label:nav-menu">
+        <div class="menu-foot">
+            <a class="btn btn-ghost" data-cv href="mgr_resume_eng.pdf" target="_blank" rel="noopener noreferrer"><span data-i18n="nav-cv">Resume</span></a>
+            <a class="btn btn-accent" href="https://calendly.com/greinermatthieu635/30min" target="_blank" rel="noopener noreferrer"><span data-i18n="nav-book">Book a chat</span></a>
+        </div>
     </div>
 
-    <main id="main">
-        <header class="container container-narrow page-head">
-            <a class="back-link" href="index.html#experience"><i class="fas fa-arrow-left"></i><span data-i18n="back-home">Back to portfolio</span></a>
-            <p class="eyebrow" data-i18n="in-eyebrow">Apprenticeship · 2026 — 2028</p>
-            <h1 class="page-title"><span data-i18n="in-title">Apprenticeship at</span> <span class="grad">intuitem</span></h1>
-            <p class="lead" data-i18n="in-lead">Working with the team behind CISO Assistant, the open-source GRC platform, across full-stack engineering and DevSecOps.</p>
-        </header>
+    <div class="shell">
+        <aside class="rail">
+            <nav class="tree" aria-label="Index" data-i18n-attr="aria-label:nav-menu">
+                <p class="tree-root"><b>~/</b>matthieu-greiner</p>
+                <ul>
+                    <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#about">about.md</a></div></li>
+                    <li class="node branch"><div class="trow"><button class="caret" type="button" aria-expanded="false" aria-label="Toggle folder" data-i18n-attr="aria-label:nav-folder"><svg viewBox="0 0 8 8" aria-hidden="true"><path d="M2 1l4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><a href="index.html#experience">experience/</a></div>
+                        <ul class="children">
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="intuitem.html">intuitem.md</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#exp-research">lre-research.md</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="projects.html#sfr-projects">sfr-business.md</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#exp-chula">chulalongkorn.md</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="projects.html#academic-projects">epita.md</a></div></li>
+                        </ul>
+                    </li>
+                    <li class="node branch"><div class="trow"><button class="caret" type="button" aria-expanded="false" aria-label="Toggle folder" data-i18n-attr="aria-label:nav-folder"><svg viewBox="0 0 8 8" aria-hidden="true"><path d="M2 1l4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><a href="index.html#skills">skills/</a></div>
+                        <ul class="children">
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#devsecops">devsecops/</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#systems">systems/</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#malware">malware/</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#software">software/</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#grc">grc/</a></div></li>
+                        </ul>
+                    </li>
+                    <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#certifications">certifications.md</a></div></li>
+                    <li class="node branch"><div class="trow"><button class="caret" type="button" aria-expanded="false" aria-label="Toggle folder" data-i18n-attr="aria-label:nav-folder"><svg viewBox="0 0 8 8" aria-hidden="true"><path d="M2 1l4 3-4 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><a href="index.html#projects">projects/</a></div>
+                        <ul class="children">
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#p-secureflow">secureflow.md</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#p-cybertool">cybertool.md</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#p-rootkit">wlkom-rootkit.md</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#p-ciso">ciso-assistant.md</a></div></li>
+                        </ul>
+                    </li>
+                    <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#hobbies">life.md</a></div></li>
+                    <li class="node"><div class="trow"><span class="spacer"></span><a href="now.html">now.md</a></div></li>
+                    <li class="node"><div class="trow"><span class="spacer"></span><a href="index.html#contact">contact.md</a></div></li>
+                </ul>
+            </nav>
+        </aside>
 
-        <section class="container container-narrow" style="padding-bottom: clamp(3rem, 7vw, 5rem)">
-            <div class="glass org-card spot c-violet reveal">
-                <div class="badge-col"><span class="ico"><i class="fas fa-building"></i></span><span class="years">2026 — 2028</span></div>
-                <div>
-                    <div class="top"><h2>intuitem</h2><span class="badge" data-i18n="in-badge">Apprenticeship · Vélizy</span></div>
-                    <p data-i18n="in-intro">intuitem is the company behind CISO Assistant, an open-source GRC platform. As a DevSecOps engineer apprentice, I build features, make sure changes respect the CI/CD, and answer customers on the Jira support desk.</p>
+        <main id="main">
+            <header class="page-head">
+                <nav class="crumb mono" aria-label="Breadcrumb"><a href="index.html" data-i18n="crumb-home">portfolio</a><span>/</span><span>experience</span><span>/</span><span>intuitem.md</span></nav>
+                <h1 class="page-title"><span data-i18n="in-title">Apprenticeship at</span> <em>intuitem</em></h1>
+                <p class="lead" data-i18n="in-lead">Working with the team behind CISO Assistant, the open-source GRC platform, across full-stack engineering and DevSecOps.</p>
+            </header>
+
+            <section class="folder" style="padding-top:0">
+                <div class="org-block reveal">
+                    <div class="meta mono"><span>2026 – 2028</span><span class="tag tag-accent" data-i18n="in-badge">Apprenticeship · Vélizy</span></div>
+                    <div><h2>intuitem</h2><p style="margin-top:1rem" data-i18n="in-intro">intuitem is the company behind CISO Assistant, an open-source GRC platform. As a DevSecOps engineer apprentice, I build features, make sure changes respect the CI/CD, and answer customers on the Jira support desk.</p></div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="container" style="padding-bottom: clamp(4rem, 9vw, 7rem)">
-            <h2 class="reveal" style="margin-bottom: 2rem" data-i18n="in-focus">What I work on</h2>
-            <div class="skill-grid" data-stagger>
-                    <article class="glass skill-card spot c-violet">
-                        <div class="skill-card-top"><span class="ico"><i class="fas fa-code-branch"></i></span><span class="skill-type" data-i18n="in-djangosvelte-type">Features</span></div>
-                        <h3 data-i18n="in-djangosvelte-title">Django + Svelte</h3>
-                        <p class="ctx" data-i18n="in-djangosvelte-ctx">Product</p>
-                        <p data-i18n="in-djangosvelte-desc">Building features across the backend and the frontend of CISO Assistant.</p>
-                    </article>
-                    <article class="glass skill-card spot c-emerald">
-                        <div class="skill-card-top"><span class="ico"><i class="fas fa-shield-halved"></i></span><span class="skill-type" data-i18n="in-cicd-type">Delivery</span></div>
-                        <h3 data-i18n="in-cicd-title">CI/CD</h3>
-                        <p class="ctx" data-i18n="in-cicd-ctx">DevSecOps</p>
-                        <p data-i18n="in-cicd-desc">Making sure every change respects the CI/CD pipeline before it ships.</p>
-                    </article>
-                    <article class="glass skill-card spot c-amber">
-                        <div class="skill-card-top"><span class="ico"><i class="fas fa-headset"></i></span><span class="skill-type" data-i18n="in-customersupport-type">Support</span></div>
-                        <h3 data-i18n="in-customersupport-title">Customer support</h3>
-                        <p class="ctx" data-i18n="in-customersupport-ctx">Jira</p>
-                        <p data-i18n="in-customersupport-desc">Answering customers through the Jira support desk.</p>
-                    </article>
-                    <article class="glass skill-card spot c-sky">
-                        <div class="skill-card-top"><span class="ico"><i class="fas fa-dharmachakra"></i></span><span class="skill-type" data-i18n="in-cloudkubernetes-type">Platform</span></div>
-                        <h3 data-i18n="in-cloudkubernetes-title">Cloud &amp; Kubernetes</h3>
-                        <p class="ctx" data-i18n="in-cloudkubernetes-ctx">Multi-cloud</p>
-                        <p data-i18n="in-cloudkubernetes-desc">Containerized services and multi-cloud environments.</p>
-                    </article>
-            </div>
-        </section>
+            <section class="folder">
+                <span class="rule"></span>
+                <div class="folder-head"><div class="folder-tag mono"><b>01</b><span>/focus</span></div><h2 data-i18n="in-focus">What I work on</h2></div>
+                <ul class="skill-list" data-stagger>
+                    <li class="srow"><h3 data-i18n="in-djangosvelte-title">Django + Svelte</h3><span class="stype mono" data-i18n="in-djangosvelte-type">Features</span><span class="sctx mono" data-i18n="in-djangosvelte-ctx">Product</span><p class="sdesc" data-i18n="in-djangosvelte-desc">Building features across the backend and the frontend of CISO Assistant.</p></li>
+                    <li class="srow"><h3 data-i18n="in-cicd-title">CI/CD</h3><span class="stype mono" data-i18n="in-cicd-type">Delivery</span><span class="sctx mono" data-i18n="in-cicd-ctx">DevSecOps</span><p class="sdesc" data-i18n="in-cicd-desc">Making sure every change respects the CI/CD pipeline before it ships.</p></li>
+                    <li class="srow"><h3 data-i18n="in-customersupport-title">Customer support</h3><span class="stype mono" data-i18n="in-customersupport-type">Support</span><span class="sctx mono" data-i18n="in-customersupport-ctx">Jira</span><p class="sdesc" data-i18n="in-customersupport-desc">Answering customers through the Jira support desk.</p></li>
+                    <li class="srow"><h3 data-i18n="in-cloudkubernetes-title">Cloud &amp; Kubernetes</h3><span class="stype mono" data-i18n="in-cloudkubernetes-type">Platform</span><span class="sctx mono" data-i18n="in-cloudkubernetes-ctx">Multi-cloud</span><p class="sdesc" data-i18n="in-cloudkubernetes-desc">Containerized services and multi-cloud environments.</p></li>
+                </ul>
+            </section>
 
-        <section class="section section-alt">
-            <div class="container container-narrow">
-                <div class="glass cta-banner c-violet reveal">
-                    <span class="eyebrow" data-i18n="in-cta-eyebrow">Open source</span>
-                    <h2 data-i18n="in-cta-title">Explore CISO Assistant</h2>
-                    <p class="lead" style="max-width: 34rem; margin: 1.1rem auto 2rem" data-i18n="in-cta-copy">The project is open source: the easiest way to get a feel for it is to browse the CISO Assistant repository on GitHub.</p>
-                    <div class="hero-cta">
-                        <a class="btn btn-primary" href="https://github.com/intuitem/ciso-assistant-community" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span data-i18n="in-cta-btn">View the project on GitHub</span></a>
-                        <a class="btn btn-glass" href="now.html"><span data-i18n="in-cta-now">See what I’m doing now</span><i class="fas fa-arrow-right"></i></a>
-                    </div>
+            <section class="folder contact">
+                <span class="rule"></span>
+                <div class="folder-head"><div class="folder-tag mono"><b>02</b><span>/open-source</span></div><h2 data-i18n="in-cta-title">Explore <em>CISO Assistant</em></h2></div>
+                <p class="lead" style="max-width:36rem;margin:0 0 2rem" data-i18n="in-cta-copy">The project is open source: the easiest way to get a feel for it is to browse the CISO Assistant repository on GitHub.</p>
+                <div class="hero-cta">
+                    <a class="btn btn-ink" href="https://github.com/intuitem/ciso-assistant-community" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span data-i18n="in-cta-btn">View the project on GitHub</span></a>
+                    <a class="btn btn-ghost" href="now.html"><span data-i18n="in-cta-now">See what I’m doing now</span></a>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
 
     <footer class="footer">
-        <p>© 2026 Matthieu Greiner. <span data-i18n="footer-built">Built with</span> <i class="fas fa-heart" aria-hidden="true"></i> <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a> · <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+        <div class="footer-inner">
+            <p>© 2026 Matthieu Greiner</p>
+            <p><span data-i18n="footer-built">Built with</span> ♥ <span data-i18n="footer-and">and C code. Hosted on</span> <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a> · <a href="https://www.linkedin.com/in/matthieu-greiner" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+        </div>
     </footer>
 
     <script src="site.js"></script>
     <script>
         Site.i18n.register({
-            "__title": "intuitem | Matthieu Greiner",
-            "__description": "Mon alternance DevSecOps chez intuitem, l’équipe derrière CISO Assistant.",
-            "in-eyebrow": "Alternance · 2026 — 2028",
-            "in-title": "Alternance chez",
-            "in-lead": "Au sein de l’équipe derrière CISO Assistant, la plateforme GRC open-source, entre développement full-stack et DevSecOps.",
             "in-badge": "Alternance · Vélizy",
-            "in-intro": "intuitem est l’entreprise derrière CISO Assistant, une plateforme GRC open-source. En tant qu’alternant ingénieur DevSecOps, je développe des features, je veille au respect de la CI/CD et je réponds aux clients sur le support Jira.",
-            "in-focus": "Sur quoi je travaille",
-            "in-cta-eyebrow": "Open source",
-            "in-cta-title": "Découvrir CISO Assistant",
-            "in-cta-copy": "Le projet est open source : le plus simple pour se faire une idée est de parcourir le dépôt GitHub de CISO Assistant.",
-            "in-cta-btn": "Voir le projet sur GitHub",
-            "in-cta-now": "Voir ce que je fais maintenant",
-            "in-djangosvelte-title": "Django + Svelte",
-            "in-djangosvelte-type": "Features",
-            "in-djangosvelte-ctx": "Produit",
-            "in-djangosvelte-desc": "Développement de features sur le backend et le frontend de CISO Assistant.",
-            "in-cicd-title": "CI/CD",
-            "in-cicd-type": "Livraison",
             "in-cicd-ctx": "DevSecOps",
             "in-cicd-desc": "Veiller à ce que chaque changement respecte la CI/CD avant livraison.",
-            "in-customersupport-title": "Support client",
-            "in-customersupport-type": "Support",
-            "in-customersupport-ctx": "Jira",
-            "in-customersupport-desc": "Réponses aux clients via le support Jira.",
+            "in-cicd-title": "CI/CD",
+            "in-cicd-type": "Livraison",
+            "in-cloudkubernetes-ctx": "Multi-cloud",
+            "in-cloudkubernetes-desc": "Services conteneurisés et environnements multi-cloud.",
             "in-cloudkubernetes-title": "Cloud &amp; Kubernetes",
             "in-cloudkubernetes-type": "Plateforme",
-            "in-cloudkubernetes-ctx": "Multi-cloud",
-            "in-cloudkubernetes-desc": "Services conteneurisés et environnements multi-cloud."
+            "in-cta-btn": "Voir le projet sur GitHub",
+            "in-cta-copy": "Le projet est open source : le plus simple pour se faire une idée est de parcourir le dépôt GitHub de CISO Assistant.",
+            "in-cta-now": "Voir ce que je fais maintenant",
+            "in-cta-title": "Découvrir <em>CISO Assistant</em>",
+            "in-customersupport-ctx": "Jira",
+            "in-customersupport-desc": "Réponses aux clients via le support Jira.",
+            "in-customersupport-title": "Support client",
+            "in-customersupport-type": "Support",
+            "in-djangosvelte-ctx": "Produit",
+            "in-djangosvelte-desc": "Développement de features sur le backend et le frontend de CISO Assistant.",
+            "in-djangosvelte-title": "Django + Svelte",
+            "in-djangosvelte-type": "Features",
+            "in-focus": "Sur quoi je travaille",
+            "in-intro": "intuitem est l’entreprise derrière CISO Assistant, une plateforme GRC open-source. En tant qu’alternant ingénieur DevSecOps, je développe des features, je veille au respect de la CI/CD et je réponds aux clients sur le support Jira.",
+            "in-lead": "Au sein de l’équipe derrière CISO Assistant, la plateforme GRC open-source, entre développement full-stack et DevSecOps.",
+            "in-title": "Alternance chez",
+            "__title": "intuitem | Matthieu Greiner",
+            "__description": "Mon alternance DevSecOps chez intuitem, l’équipe derrière CISO Assistant."
 });
     </script>
 </body>
