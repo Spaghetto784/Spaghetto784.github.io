@@ -51,8 +51,15 @@
             try {
                 var theme = localStorage.getItem('portfolioTheme');
                 if (theme === 'dark' || theme === 'light') root.dataset.theme = theme;
+                else if (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) root.dataset.theme = 'dark';
                 var lang = localStorage.getItem('portfolioLanguage');
                 if (lang === 'fr' || (!lang && (navigator.language || '').toLowerCase().indexOf('fr') === 0)) root.classList.add('fr-pending');
+            } catch (e) {}
+            try {
+                if (!sessionStorage.getItem('portfolioIntro') && !location.hash && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    root.classList.add('intro-on');
+                    setTimeout(function () { root.classList.remove('intro-on', 'intro-release'); }, 5000);
+                }
             } catch (e) {}
         })();
     </script>
@@ -63,6 +70,13 @@
     <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body data-page="home">
+    <div class="intro" id="intro" aria-hidden="true">
+        <div class="intro-inner">
+            <div class="intro-name"><span class="intro-sq"></span><span class="intro-word" data-text="Matthieu "></span><span class="intro-word intro-it" data-text="Greiner"></span></div>
+            <div class="intro-meta mono"><span>MG / Portfolio</span><span class="intro-count">000</span></div>
+            <div class="intro-bar"><i></i></div>
+        </div>
+    </div>
     <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
     <header class="bar">

@@ -191,6 +191,13 @@
             }
         }
 
+        const system = window.matchMedia('(prefers-color-scheme: dark)');
+        system.addEventListener('change', event => {
+            let stored = null;
+            try { stored = localStorage.getItem('portfolioTheme'); } catch (error) { /* storage unavailable */ }
+            if (!stored) apply(event.matches ? 'dark' : 'light', { persist: false, animate: true });
+        });
+
         return { apply, current };
     })();
 
@@ -557,10 +564,61 @@
         });
     }
 
+    /* ───────── Intro ───────── */
+
+    function initIntro() {
+        const root = document.documentElement;
+        const intro = $('#intro');
+        if (!intro || !root.classList.contains('intro-on')) return;
+        try { sessionStorage.setItem('portfolioIntro', '1'); } catch (error) { /* storage unavailable */ }
+
+        let index = 0;
+        $$('.intro-word', intro).forEach(word => {
+            const text = word.dataset.text;
+            word.textContent = '';
+            [...text].forEach(char => {
+                const span = document.createElement('span');
+                span.className = 'intro-ch';
+                span.style.setProperty('--i', index++);
+                span.textContent = char === ' ' ? '\u00a0' : char;
+                word.append(span);
+            });
+        });
+
+        const count = $('.intro-count', intro);
+        const bar = $('.intro-bar i', intro);
+        const duration = 950;
+        const start = performance.now() + 250;
+        let done = false;
+
+        function finish() {
+            if (done) return;
+            done = true;
+            intro.classList.add('intro-out');
+            setTimeout(() => root.classList.add('intro-release'), 280);
+            setTimeout(() => root.classList.remove('intro-on', 'intro-release'), 760);
+        }
+
+        function tick(now) {
+            if (done) return;
+            const t = Math.min(Math.max((now - start) / duration, 0), 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            count.textContent = String(Math.round(eased * 100)).padStart(3, '0');
+            bar.style.transform = `scaleX(${eased})`;
+            if (t < 1) requestAnimationFrame(tick);
+            else setTimeout(finish, 160);
+        }
+
+        requestAnimationFrame(tick);
+        intro.addEventListener('pointerdown', finish);
+        window.addEventListener('keydown', finish, { once: true });
+    }
+
     /* ───────── Boot ───────── */
 
     function boot() {
         document.documentElement.classList.add('js');
+        initIntro();
         registerBase();
         theme.apply(theme.current(), { persist: false });
         initBar();

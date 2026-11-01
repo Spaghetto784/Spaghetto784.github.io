@@ -31,6 +31,7 @@
             try {
                 var theme = localStorage.getItem('portfolioTheme');
                 if (theme === 'dark' || theme === 'light') root.dataset.theme = theme;
+                else if (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) root.dataset.theme = 'dark';
                 var lang = localStorage.getItem('portfolioLanguage');
                 if (lang === 'fr' || (!lang && (navigator.language || '').toLowerCase().indexOf('fr') === 0)) root.classList.add('fr-pending');
             } catch (e) {}

@@ -683,6 +683,27 @@ main { min-width: 0; }
 .flow-step strong { display: block; font: 400 1.25rem/1.15 var(--serif); letter-spacing: -0.01em; }
 .flow-step span { display: block; margin-top: 0.2rem; color: var(--muted); font-size: 0.85rem; }
 
+/* ───────── Intro: first visit of the session, home page only ───────── */
+
+.intro { display: none; position: fixed; inset: 0; z-index: 1000; place-items: center; background: var(--bg); color: var(--ink); transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1); will-change: transform; }
+.intro-on .intro { display: grid; }
+.intro-on { overflow: hidden; }
+.intro-inner { display: grid; gap: 1.4rem; width: min(86vw, 40rem); transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.45s ease; }
+.intro-name { display: flex; align-items: center; font: 400 clamp(2.5rem, 9.5vw, 5.75rem)/1 var(--serif); letter-spacing: -0.035em; white-space: pre; }
+.intro-word { display: inline-flex; overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.intro-it { font-style: italic; color: var(--accent-ink); }
+.intro-ch { display: inline-block; animation: rise 0.9s var(--ease-out) backwards; animation-delay: calc(var(--i) * 38ms + 120ms); }
+.intro-sq { flex: none; width: 0.26em; height: 0.26em; margin-right: 0.22em; background: var(--accent); animation: intro-sq 0.8s var(--ease-out) backwards; }
+@keyframes intro-sq { from { transform: scale(0.3) rotate(-90deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.intro-meta { display: flex; justify-content: space-between; color: var(--muted); animation: fade-up 0.8s var(--ease-out) 0.35s backwards; }
+.intro-count { font-variant-numeric: tabular-nums; color: var(--ink); }
+.intro-bar { height: 1px; background: var(--line); animation: fade-up 0.8s var(--ease-out) 0.35s backwards; }
+.intro-bar i { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.intro-out { transform: translateY(-100%); }
+.intro-out .intro-inner { transform: translateY(-12vh); opacity: 0; }
+.intro-on .hero-name .line > span, .intro-on [data-enter] { animation-play-state: paused; }
+.intro-on.intro-release .hero-name .line > span, .intro-on.intro-release [data-enter] { animation-play-state: running; }
+
 /* ───────── Transitions & preferences ───────── */
 
 @view-transition { navigation: auto; }
