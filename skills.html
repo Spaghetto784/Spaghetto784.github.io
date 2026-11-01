@@ -86,6 +86,7 @@
                             <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#systems">systems/</a></div></li>
                             <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#devsecops">devsecops/</a></div></li>
                             <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#code">code/</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#ai">ai/</a></div></li>
                             <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#grc">grc/</a></div></li>
                         </ul>
                     </li>
@@ -136,6 +137,13 @@
                                 <li class="has-desc"><span>C++</span><span data-i18n="s-cpp-w">Pin tools</span><p data-i18n="s-cpp-d">The language of my instrumentation tools at the LRE.</p></li>
                                 <li class="has-desc"><span data-i18n="s-kern-n">Linux kernel modules</span><span>wlkom-rootkit</span><p data-i18n="s-kern-d">Syscall hooking and kernel structures, inside an isolated lab.</p></li>
                                 <li class="has-desc"><span>QEMU/KVM, GDB</span><span data-i18n="s-qemu-w">Isolated labs</span><p data-i18n="s-qemu-d">Virtual labs and debugging for kernel and malware work.</p></li>
+                            </ul>
+                        </div>
+                        <div class="skill-group" id="ai" data-end="governance" data-reveal>
+                            <h3 data-i18n="sg-ai">AI-assisted engineering</h3>
+                            <ul>
+                                <li class="has-desc"><span>Claude Code</span><span data-i18n="s-claude-w">intuitem, daily</span><p data-i18n="s-claude-d">My daily assistant for the work at intuitem.</p></li>
+                                <li class="has-desc"><span data-i18n="s-ai-skills-n">Skills and setup</span><span data-i18n="s-ai-skills-w">My own configuration</span><p data-i18n="s-ai-skills-d">Custom skills and setup, tuned to how I work.</p></li>
                             </ul>
                         </div>
                     </div>
@@ -248,6 +256,12 @@ void wlkom_erase_from_list(
     <script src="site.js"></script>
     <script>
         Site.i18n.register({
+            "sg-ai": "Ingénierie assistée par l’IA",
+            "s-claude-w": "intuitem, au quotidien",
+            "s-claude-d": "Mon assistant de tous les jours pour le travail chez intuitem.",
+            "s-ai-skills-n": "Skills et configuration",
+            "s-ai-skills-w": "Ma propre configuration",
+            "s-ai-skills-d": "Des skills et une configuration adaptés à ma façon de travailler.",
             "nav-main": "Navigation principale",
             "sk-title": "Compétences",
             "sk-lead": "Chacune avec l’endroit où je l’utilise. L’analyse de malwares et la rétro-ingénierie d’abord, puis le DevSecOps, le code et la gouvernance qui transforment ce que je trouve en contrôles. L’orange marque le côté binaire.",

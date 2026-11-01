@@ -37,7 +37,7 @@
             { "@type": "CollegeOrUniversity", "name": "Chulalongkorn University" }
         ],
         "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
-        "knowsAbout": ["Malware analysis", "Reverse engineering", "DevSecOps", "Dynamic binary instrumentation", "Intel Pin", "Ghidra", "C++", "Go", "Python", "ISO 27001", "NIS2", "DORA"],
+        "knowsAbout": ["Claude Code", "AI-assisted development", "Malware analysis", "Reverse engineering", "DevSecOps", "Dynamic binary instrumentation", "Intel Pin", "Ghidra", "C++", "Go", "Python", "ISO 27001", "NIS2", "DORA"],
         "knowsLanguage": ["fr", "en", "hy", "es"],
         "sameAs": ["https://www.linkedin.com/in/matthieu-greiner", "https://github.com/Spaghetto784"]
     }
@@ -106,6 +106,7 @@
                             <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#systems">systems/</a></div></li>
                             <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#devsecops">devsecops/</a></div></li>
                             <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#code">code/</a></div></li>
+                            <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#ai">ai/</a></div></li>
                             <li class="node"><div class="trow"><span class="spacer"></span><a href="skills.html#grc">grc/</a></div></li>
                         </ul>
                     </li>
@@ -250,9 +251,10 @@
                         <h3><span data-i18n="exp-in-t">DevSecOps Engineer</span><small data-i18n="exp-in-o">intuitem, Vélizy · apprenticeship</small></h3>
                         <div>
                             <p data-i18n="exp-in-d">15 merged pull requests on CISO Assistant, the open-source GRC platform (Django/DRF, SvelteKit/TypeScript). Built Data Wizard import and export with label filtering and automatic per-domain IAM groups (#5006), contributed to the CyFun 2026 update for NIS2, and handle technical customer support.</p>
+                            <p data-i18n="exp-in-ai" style="margin-top:0.9rem">I use Claude Code every day at intuitem, with my own skills and setup, and I know how to put AI to work in a real codebase.</p>
                             <a class="row-link" href="intuitem.html" data-i18n="exp-in-more">My contributions</a>
                         </div>
-                        <ul><li data-i18n="exp-in-when">Sep 2026 to now</li><li>Kubernetes, multi-cloud</li><li>Django, SvelteKit</li></ul>
+                        <ul><li data-i18n="exp-in-when">Sep 2026 to now</li><li>Kubernetes, multi-cloud</li><li>Django, SvelteKit</li><li>Claude Code</li></ul>
                     </article>
                     <article class="end-row" id="exp-lre" data-end="binary">
                         <h3><span data-i18n="exp-lre-t">Student Researcher</span><small data-i18n="exp-lre-o">LRE, the EPITA Research Lab</small></h3>
@@ -299,6 +301,7 @@
                     <div class="dir-row"><div class="dir-name">devsecops<span>/</span></div><div class="dir-body"><p data-i18n="d-dev">Security checks on every push, from the SecureFlow pipeline to Kubernetes deployments at intuitem.</p><div class="tags"><span class="tag">Semgrep</span><span class="tag">Gitleaks</span><span class="tag">Trivy</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">GitHub Actions</span></div></div></div>
                     <div class="dir-row"><div class="dir-name">systems<span>/</span></div><div class="dir-body"><p data-i18n="d-sys">C and C++, Linux kernel modules and isolated QEMU labs: the foundations under the tooling.</p><div class="tags"><span class="tag">C</span><span class="tag">C++</span><span class="tag">Linux kernel</span><span class="tag">QEMU/KVM</span><span class="tag">GDB</span></div></div></div>
                     <div class="dir-row"><div class="dir-name">code<span>/</span></div><div class="dir-body"><p data-i18n="d-code">Go and Python for security tooling, Django and SvelteKit on CISO Assistant, Swift for a privacy-first app.</p><div class="tags"><span class="tag">Go</span><span class="tag">Python</span><span class="tag">Django/DRF</span><span class="tag">SvelteKit</span><span class="tag">TypeScript</span><span class="tag">Swift</span></div></div></div>
+                    <div class="dir-row"><div class="dir-name">ai<span>/</span></div><div class="dir-body"><p data-i18n="d-ai">Claude Code every day at intuitem, with my own skills and setup: putting AI to work in a real codebase.</p><div class="tags"><span class="tag tag-accent">Claude Code</span><span class="tag" data-i18n="chip-skills">Skills</span></div></div></div>
                     <div class="dir-row"><div class="dir-name">grc<span>/</span></div><div class="dir-body"><p data-i18n="d-grc">Audits, risk analysis and compliance frameworks, tied back to real systems.</p><div class="tags"><span class="tag">ISO 27001</span><span class="tag">NIS2, DORA</span><span class="tag">EBIOS RM</span><span class="tag">GDPR</span></div></div></div>
                 </div>
                 <a class="link-arrow dir-more" href="skills.html"><span data-i18n="skills-more">Every tool, and where I use it</span><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square"/></svg></a>
@@ -481,6 +484,9 @@ void wlkom_erase_from_list(
     <script src="site.js"></script>
     <script>
         Site.i18n.register({
+            "exp-in-ai": "J’utilise Claude Code tous les jours chez intuitem, avec mes propres skills et ma propre configuration, et je sais mettre l’IA au travail dans une vraie base de code.",
+            "d-ai": "Claude Code tous les jours chez intuitem, avec mes propres skills et ma configuration : mettre l’IA au travail dans une vraie base de code.",
+            "chip-skills": "Skills",
             "about-p1": "Côté binaire, j’écris des outils C++ sur Intel Pin au laboratoire de recherche de l’EPITA pour observer comment les malwares Windows x64 se cachent de l’analyse, et je lis ce qu’ils font dans <strong>Ghidra</strong> et en <strong>assembleur x64</strong>.",
             "about-p2": "Côté gouvernance, je contribue au code de <strong>CISO Assistant</strong>, plateforme GRC open source, après un an d’ISO 27001, NIS2 et DORA chez <strong>SFR Business</strong>. Savoir comment une attaque se déroule vraiment rend les contrôles meilleurs.",
             "about-p3": "J’étudie à l’EPITA (diplôme d’ingénieur niveau Master, promo 2028) en alternance, et j’ai passé mon semestre d’échange 2025 à l’université Chulalongkorn à Bangkok.",
