@@ -223,7 +223,6 @@
                             <h3 data-i18n="rec-training">Training and languages</h3>
                             <ul>
                                 <li><span data-i18n="rec-ebios">Introduction to EBIOS Risk Manager, Club EBIOS</span><span data-i18n="rec-done">Completed</span></li>
-                                <li><span>CompTIA Security+</span><span data-i18n="rec-prep">In progress</span></li>
                                 <li><span data-i18n="rec-en">English, Cambridge</span><span>C1</span></li>
                                 <li><span data-i18n="rec-fr">French and Armenian</span><span data-i18n="rec-native">Native</span></li>
                                 <li><span data-i18n="rec-es">Spanish</span><span>B1</span></li>
@@ -266,7 +265,7 @@
                     <article class="end-row" id="exp-sfr" data-end="governance">
                         <h3><span data-i18n="exp-sfr-t">Information Security Engineer</span><small data-i18n="exp-sfr-o">SFR Business, Paris · B2B apprenticeship</small></h3>
                         <div>
-                            <p data-i18n="exp-sfr-d">Contributed to 2 ISO 27001 audits and handled 20+ security and GDPR questionnaires for B2B clients. Automated compliance calculations with Python, VBA and an internal AI assistant, from several days of work to a few minutes. Built a Go TLS scanner covering 1,000+ URLs, used by a 12-person team.</p>
+                            <p data-i18n="exp-sfr-d">Contributed to 2 ISO 27001 audits and handled 20+ security and GDPR questionnaires for B2B clients. Automated compliance calculations with Python, VBA and an internal AI assistant, from several days of work to a few minutes. Built a Go security scanner covering 1,000+ URLs, used by a 12-person team.</p>
                             <a class="row-link" href="projects.html" data-i18n="exp-sfr-more">The year in detail</a>
                         </div>
                         <ul><li data-i18n="exp-sfr-when">Sep 2025 to Aug 2026</li><li>ISO 27001, NIS2, DORA</li><li>EBIOS RM, Go, Python</li></ul>
@@ -360,12 +359,12 @@ void wlkom_erase_from_list(
                         <span class="proj-num mono">03</span>
                         <div class="proj-main">
                             <h3 class="proj-title">CyberTool</h3>
-                            <p data-i18n="w-ct-d">A Go scanner built at SFR Business to check TLS certificates, DNS, HTTP responses and security headers in-house, without sending client domains to third-party services. The code is internal, so this entry stops at the scope.</p>
-                            <div class="fragment is-facts" data-ui><div class="fragment-bar"><span data-i18n="w-ct-bar">Internal tool, SFR Business</span><span>Go</span></div><dl><div><dt data-i18n="w-ct-f1">URLs scanned</dt><dd>1,000+</dd></div><div><dt data-i18n="w-ct-f2">Checks</dt><dd>TLS, DNS, HTTP</dd></div><div><dt data-i18n="w-ct-f3">Used by</dt><dd data-i18n="w-ct-f3v">12 people</dd></div></dl></div>
+                            <p data-i18n="w-ct-d">A Go scanner built at SFR Business that runs HTTP, DNS, Nmap and TLS and certificate checks across 1,000+ URLs in-house, without sending client domains to third-party services. The code is internal, so this entry stops at the scope.</p>
+                            <div class="fragment is-facts" data-ui><div class="fragment-bar"><span data-i18n="w-ct-bar">Internal tool, SFR Business</span><span>Go</span></div><dl><div><dt data-i18n="w-ct-f1">URLs scanned</dt><dd>1,000+</dd></div><div><dt data-i18n="w-ct-f2">Checks</dt><dd>HTTP, DNS, Nmap, TLS</dd></div><div><dt data-i18n="w-ct-f3">Used by</dt><dd data-i18n="w-ct-f3v">12 people</dd></div></dl></div>
                         </div>
                         <div class="proj-side">
                             <span class="kicker mono"><span class="dot dot-quiet"></span><span data-i18n="w-ct-k">Professional work · details limited</span></span>
-                            <div class="tags"><span class="tag">Go</span><span class="tag">TLS</span><span class="tag">DNS</span><span class="tag" data-i18n="cybertool-s1">Automation</span></div>
+                            <div class="tags"><span class="tag">Go</span><span class="tag">HTTP</span><span class="tag">DNS</span><span class="tag">Nmap</span><span class="tag">TLS</span><span class="tag" data-i18n="cybertool-s1">Automation</span></div>
                         </div>
                     </article>
                     <article class="proj" id="p-ciso">
@@ -639,7 +638,6 @@ void wlkom_erase_from_list(
             "rec-training": "Formations et langues",
             "rec-ebios": "Introduction à la méthode EBIOS Risk Manager, Club EBIOS",
             "rec-done": "Suivie",
-            "rec-prep": "En cours",
             "rec-en": "Anglais, Cambridge",
             "rec-fr": "Français et arménien",
             "rec-native": "Langues maternelles",
@@ -666,7 +664,7 @@ void wlkom_erase_from_list(
             "exp-lre-when": "Depuis oct. 2026",
             "exp-sfr-t": "Ingénieur sécurité de l’information",
             "exp-sfr-o": "SFR Business, Paris · alternance B2B",
-            "exp-sfr-d": "Contribution à 2 audits ISO 27001 et traitement de plus de 20 questionnaires SSI et RGPD pour des clients B2B. Automatisation des calculs de conformité avec Python, VBA et une IA interne, de plusieurs jours de travail à quelques minutes. Scanner TLS en Go couvrant plus de 1 000 URLs, utilisé par une équipe de 12 personnes.",
+            "exp-sfr-d": "Contribution à 2 audits ISO 27001 et traitement de plus de 20 questionnaires SSI et RGPD pour des clients B2B. Automatisation des calculs de conformité avec Python, VBA et une IA interne, de plusieurs jours de travail à quelques minutes. Scanner de sécurité en Go couvrant plus de 1 000 URLs, utilisé par une équipe de 12 personnes.",
             "exp-sfr-more": "L’année en détail",
             "exp-sfr-when": "Sept. 2025 à août 2026",
             "exp-epita-t": "Élève-ingénieur",
@@ -691,7 +689,7 @@ void wlkom_erase_from_list(
             "sk-ci-t": "Sécurité CI/CD",
             "sk-k8s": "intuitem, multi-cloud",
             "sg-code": "Code",
-            "sk-go": "Scanner TLS",
+            "sk-go": "Scanner de sécurité",
             "sk-py": "Automatisation, API",
             "sg-grc": "Gouvernance, risques et conformité",
             "sk-iso": "2 audits, SFR Business",
@@ -710,7 +708,7 @@ void wlkom_erase_from_list(
             "w-ct-f3": "Utilisé par",
             "w-ct-f3v": "12 personnes",
             "w-ct-k": "Expérience pro · détails limités",
-            "w-ct-d": "Un scanner en Go développé chez SFR Business pour vérifier en interne certificats TLS, DNS, réponses HTTP et en-têtes de sécurité, sans envoyer les domaines clients à des services tiers. Le code est interne, cette fiche s’arrête donc au périmètre.",
+            "w-ct-d": "Un scanner en Go développé chez SFR Business qui enchaîne contrôles HTTP, DNS, Nmap, TLS et certificats sur plus de 1 000 URLs, en interne, sans envoyer les domaines clients à des services tiers. Le code est interne, cette fiche s’arrête donc au périmètre.",
             "w-ciso-bar": "mergées",
             "w-ciso-k": "GRC open source, 2026",
             "w-ciso-d": "La plateforme GRC open source sur laquelle je travaille chez intuitem : plus de 200 référentiels, utilisée dans 100 pays. Mes contributions mergées incluent l’import et l’export du Data Wizard avec labels et groupes IAM par domaine, un correctif de synchronisation des scénarios EBIOS RM et un correctif d’import de matrice de risques.",
