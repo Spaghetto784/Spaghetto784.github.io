@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg{fill:#fbfaf6}.ink{fill:none;stroke:#12110f}
+    @media (prefers-color-scheme:dark){.bg{fill:#0e0e0c}.ink{stroke:#f1eee6}}
+  </style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <path class="ink" d="M14 48V18l13 17 13-17v30" stroke-width="6" stroke-linejoin="miter" stroke-linecap="butt"/>
+  <rect x="45" y="40" width="9" height="9" fill="#ff5a1f"/>
+</svg>
