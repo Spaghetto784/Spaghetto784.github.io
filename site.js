@@ -164,7 +164,10 @@
             'nav-index': 'Index', 'nav-cv': 'Mon CV', 'nav-book': 'Réserver un échange', 'nav-lang': 'Langue',
             'nav-theme': 'Mode sombre', 'nav-menu': 'Index du site', 'nav-folder': 'Ouvrir ou fermer le dossier',
             'aria-email': 'E-mail', 'btn-book': 'Réserver un échange', 'btn-email': 'M’envoyer un e-mail',
-            'crumb-home': 'portfolio', 'footer-built': 'Conçu avec', 'footer-and': 'et du code C. Hébergé sur',
+            'crumb-home': 'portfolio', 'foot-pages': 'Pages', 'foot-elsewhere': 'Ailleurs', 'foot-contact': 'Contact',
+            'foot-place': 'Paris, France (CET)', 'foot-cv': 'CV (PDF)', 'foot-home': 'Accueil', 'nav-skills': 'Compétences', 'nav-now': 'Maintenant',
+            'foot-legal': '© 2026 Matthieu Greiner. HTML et CSS écrits à la main, hébergé sur GitHub Pages.',
+            'foot-credits': 'Images : <a href="https://commons.wikimedia.org/wiki/File:Intel-pentium-ii-dixon-die-shot-high-resolution-stitched.jpg">puce Intel Pentium II</a> par Martijn Boer, domaine public ; <a href="https://commons.wikimedia.org/wiki/File:Chulalongkorn_View.jpg">vue de Chulalongkorn</a> par Tree Lightbulb, CC0 ; <a href="https://commons.wikimedia.org/wiki/File:H._Lyman_Sa%C3%BFen_-_Rooftops,_Paris_-_1967.6.15_-_Smithsonian_American_Art_Museum.jpg">« Rooftops, Paris »</a> par Henry Lyman Saÿen, domaine public ; <a href="https://commons.wikimedia.org/wiki/File:The_Crystalys_building_in_V%C3%A9lizy-Villacoublay,_in_the_Paris_region_-_2026-08-21.jpg">l’immeuble Crystalys à Vélizy-Villacoublay</a> par Bretwa, CC0. Via Wikimedia Commons. Captures de CISO Assistant tirées de la documentation du projet (intuitem, AGPLv3).',
         });
     }
 
@@ -251,7 +254,7 @@
 
         trees.forEach(tree => {
             $$('li.branch', tree).forEach(item => {
-                setFolder(item, false, false);
+                setFolder(item, reducedMotion.matches, false);
                 $(':scope > .trow > .caret', item)?.addEventListener('click', () => {
                     const next = !folderState(item).open;
                     if (next) manual.add(item); else manual.delete(item);
@@ -282,7 +285,7 @@
                 const activeItem = $('a[aria-current]', tree)?.closest('li.node');
                 const activeFolder = activeItem?.classList.contains('branch') ? activeItem : activeItem?.parentElement?.closest('li.branch');
                 $$('li.branch', tree).forEach(item => {
-                    const wanted = item === activeFolder || manual.has(item);
+                    const wanted = reducedMotion.matches || item === activeFolder || manual.has(item);
                     if (folderState(item).open !== wanted) setFolder(item, wanted);
                 });
             });
@@ -534,6 +537,26 @@
         });
     }
 
+    /* ───────── The two ends: pick binary or governance, the rows re-sort ───────── */
+
+    function initEnds() {
+        const root = $('.ends');
+        if (!root) return;
+        const rows = $('.ends-rows', root);
+        const buttons = $$('.switch button', root);
+        const status = $('.switch-status', root);
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                root.dataset.show = button.dataset.show;
+                buttons.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+                rows.classList.remove('is-sorting');
+                void rows.offsetWidth;
+                rows.classList.add('is-sorting');
+                if (status) status.textContent = button.dataset.status || '';
+            });
+        });
+    }
+
     /* ───────── Boot ───────── */
 
     function boot() {
@@ -544,6 +567,7 @@
         initTrees();
         initReveal();
         initSheets();
+        initEnds();
         i18n.apply(i18n.initial(), { persist: false });
     }
 

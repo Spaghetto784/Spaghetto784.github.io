@@ -1,6 +1,6 @@
 # Matthieu Greiner - Portfolio
 
-Personal portfolio website designed to showcase my journey as a Cybersecurity Engineering student at EPITA and SFR Business. This project gathers my skills, professional experiences, and technical projects in a modern interface.
+Personal portfolio website designed to showcase my work as a security engineering student at EPITA: DevSecOps at intuitem, malware research at the EPITA Research Lab, and a year at SFR Business. This project gathers my skills, professional experiences, and technical projects in a modern interface.
 
 **Live version:** [matthieugreiner.com](https://matthieugreiner.com)
 
@@ -8,10 +8,12 @@ Personal portfolio website designed to showcase my journey as a Cybersecurity En
 
 This project is a static website with no build step and no framework.
 
-- **HTML5**: Semantic structure, one file per page (`index`, `now`, `skills`, `projects`, `intuitem`).
-- **`site.css`**: Hand-written design system (paper/ink tokens, light + dark themes, components, reduced-motion / transparency / contrast support).
-- **`site.js`**: Vanilla JS runtime: spring physics, FR/EN i18n, theme toggle, the index tree, scroll reveals and the research sheet.
-- **Instrument Serif + Geist + Geist Mono** (Google Fonts) and **Font Awesome** icons.
+- **HTML5**: Semantic structure, one file per page (`index`, `now`, `skills`, `projects` for SFR Business and school projects, `intuitem`).
+- **`site.css`**: Hand-written design system: paper and ink, one orange accent, serif / sans / mono, hairlines, a file-tree rail (`~/matthieu-greiner`), plus black and orange blocks (the pull-request receipt, the experience rows, the footer). Light and dark themes, reduced-motion support.
+- **`site.js`**: Vanilla JS runtime: spring physics, FR/EN i18n, theme toggle, the index tree, scroll reveals, the research sheet and the binary/governance switch.
+- **Instrument Serif + Geist + Geist Mono** (Google Fonts). Icons are inline SVG.
+- **`assets/`**: pictures used on the site. Open-licence pictures are listed with their source and licence in `assets/credits.json` and credited in the footer.
+- **SEO**: Open Graph and Twitter tags on every page, `og-image.png` (1200×630) for link previews, JSON-LD `Person` on the homepage, `robots.txt` and `sitemap.xml`.
 
 ### Translations
 

@@ -39,8 +39,8 @@
 \faLinkedin \ \href{https://www.linkedin.com/in/matthieu-greiner}{linkedin.com/in/matthieu-greiner} \,|\,
 \faGithub \ \href{https://github.com/Spaghetto784}{github.com/Spaghetto784}\par}
 \vspace{5pt}
-{\small \'Etudiant ing\'enieur en cybers\'ecurit\'e \`a l'EPITA (promo 2028), alternant DevSecOps et chercheur en analyse de malwares.
-Recherche un stage de 6 mois aux \'Etats-Unis \`a partir de d\'ebut 2028.\par}
+{\small \'El\`eve-ing\'enieur en s\'ecurit\'e \`a l'EPITA (promo 2028) : analyse de malwares, r\'etro-ing\'enierie et DevSecOps.
+Recherche un stage s\'ecurit\'e aux \'Etats-Unis en 2028.\par}
 
 \section{Formation}
 \school{EPITA, \'Ecole d'ing\'enieurs en informatique}{Paris}{Dipl\^ome d'ing\'enieur (niveau Master) en informatique, majeure Cybers\'ecurit\'e}{2023 -- 2028 (pr\'evu)}\gap
@@ -51,20 +51,21 @@ Recherche un stage de 6 mois aux \'Etats-Unis \`a partir de d\'ebut 2028.\par}
 \section{Exp\'erience}
 \role{Ing\'enieur DevSecOps (Alternance)}{intuitem, V\'elizy}{sept. 2026 -- Pr\'esent}{}
 \begin{itemize}
-\item D\'eveloppement de features pour CISO Assistant, plateforme GRC open source (Django, Svelte ; 4\,000+ \'etoiles GitHub, 3M+ t\'el\'echargements) : \href{https://github.com/intuitem/ciso-assistant-community/pulls?q=is:pr+is:merged+author:Spaghetto784}{pull requests merg\'ees} incluant import/export du data wizard, types de champs personnalis\'es et correctifs EBIOS RM
-\item Respect de la CI/CD pour chaque changement ; Kubernetes et environnements multi-cloud
-\item R\'eponses aux demandes clients via le support Jira
+\item Fonctionnalit\'es et correctifs sur CISO Assistant, plateforme GRC open source (Django/DRF, SvelteKit/TypeScript ; 4,5k+ \'etoiles GitHub, 3,5M+ t\'el\'echargements) : \href{https://github.com/intuitem/ciso-assistant-community/pulls?q=is:pr+is:merged+author:Spaghetto784}{15 pull requests merg\'ees} depuis sept. 2026
+\item Import/export du Data Wizard avec filtrage par labels et cr\'eation automatique des groupes IAM par domaine (\#5006) ; contribution \`a la mise \`a jour CyFun 2026 (NIS2)
+\item Livraison via CI/CD sur des d\'eploiements Kubernetes multi-cloud ; support technique client
 \end{itemize}\gap
 \role{Chercheur \'etudiant}{Laboratoire de recherche de l'EPITA (LRE)}{oct. 2026 -- Pr\'esent}{}
 \begin{itemize}
-\item \'Etude des techniques d'\'evasion des malwares sur des \'echantillons Windows x64 r\'ecents, par instrumentation binaire dynamique (Intel Pin)
+\item \'Etude des techniques par lesquelles les malwares Windows x64 r\'ecents d\'etectent et contournent l'analyse, avec des outils d'instrumentation binaire dynamique \'ecrits en C++ sur Intel Pin, Ghidra et l'assembleur x64
 \item Suivi de l'\'evolution de ces techniques dans le temps ; objectif : publier un article avant le dipl\^ome (2028)
 \end{itemize}\gap
-\role{Ing\'enieur Syst\`emes d'Information \& S\'ecurit\'e (Alternance)}{SFR Business, Paris}{2025 -- 2026}{}
+\role{Ing\'enieur SSI B2B (Alternance)}{SFR Business, Paris}{sept. 2025 -- ao\^ut 2026}{}
 \begin{itemize}
-\item Appui \`a la gouvernance SSI et \`a la conformit\'e (NIS2, DORA, RGPD, ISO 27001) ; analyses de risques (EBIOS RM), audits et suivi des rem\'ediations
-\item D\'eveloppement de CyberTool, utilitaire interne en Go (TLS, DNS, r\'eponses HTTP, en-t\^etes de s\'ecurit\'e), utilis\'e par une \'equipe de 12 personnes
-\item Contribution \`a un assistant IA interne pour les questionnaires s\'ecurit\'e, adopt\'e par l'\'equipe et boostant ses KPI ; automatisation du reporting KPI s\'ecurit\'e (Excel/VBA)
+\item Contribution \`a 2 audits ISO 27001 ; plus de 20 questionnaires SSI/RGPD trait\'es pour des clients B2B
+\item Automatisation des calculs de conformit\'e (IA interne, Python, VBA) : de plusieurs jours \`a quelques minutes
+\item D\'eveloppement de CyberTool, scanner TLS en Go (certificats, DNS, HTTP, en-t\^etes de s\'ecurit\'e) couvrant plus de 1\,000 URLs, utilis\'e par une \'equipe de 12 personnes
+\item Analyse de risques EBIOS RM, \'evaluations de s\'ecurit\'e fournisseurs, conformit\'e NIS2 et DORA
 \end{itemize}\gap
 \role{Stagiaire D\'eveloppement Logiciel}{Entrepose \'Echafaudages}{2025}{}
 \begin{itemize}\item Plugin C\# pour Autodesk Robot et automatisation de workflows d'ing\'enierie\end{itemize}
@@ -72,18 +73,18 @@ Recherche un stage de 6 mois aux \'Etats-Unis \`a partir de d\'ebut 2028.\par}
 \section{Projets}
 \textbf{SecureFlow} \textbar{} \textit{Plateforme DevSecOps}\hfill\textit{github.com/Spaghetto784/SecureFlow}\par
 React, FastAPI, PostgreSQL, Docker ; analyses de s\'ecurit\'e en CI (Semgrep, Gitleaks, Trivy) ; auth JWT et Argon2.\gap\par
-\textbf{wlkom-rootkit} \textbar{} \textit{Projet syst\`eme EPITA}\hfill\textit{C, Python}\par
-Module noyau Linux p\'edagogique dans un labo QEMU isol\'e \`a deux VM, avec protocole client/serveur TCP s\'ecuris\'e.\gap\par
+\textbf{wlkom-rootkit} \textbar{} \textit{Projet syst\`eme EPITA, \'equipe de quatre}\hfill\textit{C, Python}\par
+Rootkit noyau Linux dans un labo QEMU isol\'e \`a deux VM : hooking d'appels syst\`eme, module cach\'e, persistance, canal TCP authentifi\'e.\gap\par
 \textbf{Budgify} \textbar{} \textit{Application iOS orient\'ee confidentialit\'e}\hfill\textit{Swift, SwiftUI}\par
 Cat\'egorisation par ML sur l'appareil, Face ID, chiffrement AES-GCM et gestion des cl\'es via Keychain ; aucun service externe.
 
 \section{Comp\'etences techniques}
-\textbf{Langages} : C, Go, Python, Java, C\#, Swift, SQL, JavaScript, TypeScript\par
+\textbf{Malware \& RE} : analyse de malwares, r\'etro-ing\'enierie, Ghidra, assembleur x64, Intel Pin (DBI), Wireshark\par
+\textbf{Langages} : C, C++, Go, Python, TypeScript, Swift, C\#, Java, SQL\par
 \textbf{Syst\`emes} : Linux, modules noyau, QEMU/KVM, GDB\par
-\textbf{S\'ecurit\'e} : analyse de malwares, Intel Pin (DBI), analyse de vuln\'erabilit\'es, TLS/DNS\par
-\textbf{DevOps \& Cloud} : Git, Docker, Kubernetes, CI/CD, REST APIs, AWS, Azure\par
-\textbf{Frameworks} : Django, Svelte, FastAPI, React\par
-\textbf{GRC} : EBIOS RM (Risk Manager certifi\'e), ISO 27001, NIS2, DORA, RGPD ; CompTIA Security+ (en cours)
+\textbf{DevSecOps \& Cloud} : s\'ecurit\'e CI/CD (Semgrep, Gitleaks, Trivy), Docker, Kubernetes, GitHub Actions, AWS, Azure\par
+\textbf{Frameworks} : Django/DRF, SvelteKit, FastAPI, React\par
+\textbf{GRC} : ISO 27001, NIS2, DORA, RGPD, EBIOS RM (cours d'introduction du Club EBIOS) ; CompTIA Security+ (en cours)
 
 \section{Langues \& Centres d'int\'er\^et}
 \textbf{Langues} : Fran\c{c}ais (langue maternelle), Arm\'enien (langue maternelle), Anglais (Cambridge C1), Espagnol (B1)\par
