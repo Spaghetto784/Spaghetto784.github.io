@@ -8,7 +8,7 @@ Personal portfolio website designed to showcase my work as a security engineerin
 
 This project is a static website with no build step and no framework.
 
-- **HTML5**: Semantic structure, one file per page (`index`, `now`, `skills`, `projects` for SFR Business and school projects, `intuitem`).
+- **HTML5**: Semantic structure, one file per page (`index`, `now`, `skills`, `intuitem`, `projects` for SFR Business, `epita` for school projects).
 - **`site.css`**: Hand-written design system: paper and ink, one orange accent, serif / sans / mono, hairlines, a file-tree rail (`~/matthieu-greiner`), plus black and orange blocks (the pull-request receipt, the experience rows, the footer). Light and dark themes, reduced-motion support.
 - **`site.js`**: Vanilla JS runtime: spring physics, FR/EN i18n, theme toggle, the index tree, scroll reveals, the research sheet and the binary/governance switch.
 - **Instrument Serif + Geist + Geist Mono** (Google Fonts). Icons are inline SVG.
@@ -29,4 +29,10 @@ The resume sources are in `cv/` (`cv_en.tex` on US Letter, `cv_fr.tex` on A4). B
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/Spaghetto784/Spaghetto784.github.io.git](https://github.com/Spaghetto784/Spaghetto784.github.io.git)
+   git clone https://github.com/Spaghetto784/Spaghetto784.github.io.git
+   ```
+2. Serve the folder locally, then open `http://localhost:8000`:
+   ```bash
+   cd Spaghetto784.github.io
+   python3 -m http.server 8000
+   ```
