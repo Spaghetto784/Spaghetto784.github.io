@@ -218,6 +218,24 @@
         const trees = $$('.tree');
         const folders = new WeakMap();
         const manual = new Set();
+        let ready = false;
+
+        // First paint: no springs, no marker transition, so a page change does not replay the tree.
+        const root = document.documentElement;
+        root.classList.add('tree-init');
+        requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('tree-init')));
+
+        const branchKey = item => $(':scope > .trow > a', item)?.textContent.trim() ?? '';
+        const readOpen = () => { try { return JSON.parse(sessionStorage.getItem('portfolioTreeOpen') || '[]'); } catch (error) { return []; } };
+        const saveOpen = () => {
+            try {
+                const keys = new Set(readOpen());
+                $$('.rail .tree li.branch').forEach(item => {
+                    if (manual.has(item)) keys.add(branchKey(item)); else keys.delete(branchKey(item));
+                });
+                sessionStorage.setItem('portfolioTreeOpen', JSON.stringify([...keys]));
+            } catch (error) { /* storage unavailable */ }
+        };
 
         function folderState(item) {
             if (folders.has(item)) return folders.get(item);
@@ -259,13 +277,16 @@
             }
         }
 
+        const remembered = new Set(readOpen());
         trees.forEach(tree => {
             $$('li.branch', tree).forEach(item => {
-                setFolder(item, reducedMotion.matches, false);
+                if (remembered.has(branchKey(item))) manual.add(item);
+                setFolder(item, reducedMotion.matches || manual.has(item), false);
                 $(':scope > .trow > .caret', item)?.addEventListener('click', () => {
                     const next = !folderState(item).open;
                     if (next) manual.add(item); else manual.delete(item);
                     setFolder(item, next);
+                    if (item.closest('.rail')) saveOpen();
                 });
             });
         });
@@ -293,14 +314,42 @@
                 const activeFolder = activeItem?.classList.contains('branch') ? activeItem : activeItem?.parentElement?.closest('li.branch');
                 $$('li.branch', tree).forEach(item => {
                     const wanted = reducedMotion.matches || item === activeFolder || manual.has(item);
-                    if (folderState(item).open !== wanted) setFolder(item, wanted);
+                    if (folderState(item).open !== wanted) setFolder(item, wanted, ready);
                 });
             });
         }
 
+        // After a click the clicked entry stays marked. The spy takes over again only once the
+        // page has settled and the visitor scrolls on (two-column pages put several targets on one line).
+        let locked = false;
+        let settled = false;
+        let settledY = 0;
+        let settleTimer = 0;
+        const settle = () => { settled = true; settledY = window.scrollY; };
+        const lockFor = ms => {
+            locked = true;
+            settled = false;
+            clearTimeout(settleTimer);
+            settleTimer = setTimeout(settle, ms);
+        };
+        trees.forEach(tree => tree.addEventListener('click', event => {
+            const a = event.target.closest('a[href]');
+            if (!a || !sameDocument(a)) return;
+            const hash = new URL(a.href, location.href).hash;
+            if (!hash || !$(hash)) return;
+            setActive(a);
+            lockFor(900);
+        }));
+        window.addEventListener('scroll', () => {
+            if (!locked) return;
+            if (!settled) { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 160); return; }
+            if (Math.abs(window.scrollY - settledY) > 120) { locked = false; schedule(); }
+        }, { passive: true });
+
         let queued = false;
         function update() {
             queued = false;
+            if (locked) return;
             const line = window.innerHeight * 0.38;
             let found = null;
             let best = -Infinity;
@@ -314,7 +363,9 @@
         const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
         window.addEventListener('scroll', schedule, { passive: true });
         window.addEventListener('resize', schedule, { passive: true });
-        update();
+        const arrival = withTarget.find(e => e.hash === location.hash);
+        if (arrival) { setActive(arrival.a); lockFor(900); } else update();
+        ready = true;
     }
 
     /* ───────── Bar: scroll edge, language, theme, index menu ───────── */

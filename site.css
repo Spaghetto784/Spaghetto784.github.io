@@ -939,3 +939,8 @@ html.fr-pending body { visibility: hidden; animation: unhide 0s linear 0.4s forw
 .skills-tags { margin-top: 0.5rem; max-width: 52rem; }
 .proj.compact { padding-block: 1.6rem; }
 .proj.compact .proj-title { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+
+/* The rail stays put when the page changes; the first paint of the tree does not animate. */
+.rail { view-transition-name: rail; }
+::view-transition-group(rail) { animation: none; }
+.tree-init .tree, .tree-init .tree *, .tree-init .tree *::before { transition: none !important; animation: none !important; }
